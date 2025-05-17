@@ -6,214 +6,153 @@
     <title>ကျေးလက်ပညာရေးမှတ်တမ်း</title>
     <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Noto+Sans+Myanmar:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #2c786c;
-            --secondary: #f8b400;
-            --dark: #004445;
-            --light: #faf5e4;
-        }
-
-        body {
-            font-family: 'Padauk', 'Noto Sans Myanmar', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: var(--light);
-            margin: 0;
-            padding: 0;
-        }
-
-        .hero {
-            background: linear-gradient(rgba(0,68,69,0.8), rgba(0,68,69,0.8)), 
-                        url('images/village-bg.jpg') center/cover;
-            color: white;
-            text-align: center;
-            padding: 4rem 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        #village-name {
-            font-size: 3.5rem;
-            margin: 0;
-            animation: fadeIn 2s;
-        }
-
-        #tagline {
-            font-size: 1.5rem;
-            opacity: 0.9;
-        }
-
-        main {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        section {
-            margin-bottom: 3rem;
-        }
-
-        h2 {
-            color: var(--dark);
-            border-bottom: 2px solid var(--secondary);
-            padding-bottom: 0.5rem;
-            font-size: 1.8rem;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            padding: 2rem 0;
-        }
-
-        .stat-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--dark);
-            margin: 0.5rem 0;
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1rem;
-            padding: 1rem 0;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .gallery img:hover {
-            transform: scale(1.03);
-        }
-
-        footer {
-            background-color: var(--dark);
-            color: white;
-            text-align: center;
-            padding: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-
-        @media (max-width: 600px) {
-            #village-name {
-                font-size: 2.5rem;
-            }
-            
-            #tagline {
-                font-size: 1.2rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 </head>
 <body>
     <header class="hero">
-        <h1 id="village-name">ပူရေကျေးရွာ</h1>
-        <p id="tagline">ပညာရေး၊ ယဉ်ကျေးမှုနှင့် အနာဂတ်အိပ်မက်</p>
+        <div class="hero-content">
+            <h1 id="village-name">ကျေးလက်ကျေးရွာ</h1>
+            <p id="tagline">ပညာရေး၊ ယဉ်ကျေးမှုနှင့် အနာဂတ်အိပ်မက်</p>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </div>
     </header>
 
+    <nav id="navbar">
+        <div class="container">
+            <a href="#home" class="logo">ကျေးရွာမှတ်တမ်း</a>
+            <ul class="nav-links">
+                <li><a href="#about"><i class="fas fa-info-circle"></i> အကြောင်း</a></li>
+                <li><a href="#education"><i class="fas fa-graduation-cap"></i> ပညာရေး</a></li>
+                <li><a href="#gallery"><i class="fas fa-images"></i> ဓာတ်ပုံ</a></li>
+                <li><a href="#map"><i class="fas fa-map-marked-alt"></i> မြေပုံ</a></li>
+                <li><a href="#contact"><i class="fas fa-envelope"></i> ဆက်သွယ်ရန်</a></li>
+            </ul>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
     <main>
-        <section id="education-stats">
-            <h2><i class="fas fa-graduation-cap"></i> ပညာရေးအခြေအနေ</h2>
-            <div class="stats-grid"></div>
+        <section id="about" class="section">
+            <div class="container">
+                <h2><i class="fas fa-info-circle"></i> ကျေးရွာအကြောင်း</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p id="village-description"></p>
+                        <div class="quick-facts">
+                            <h3><i class="fas fa-star"></i> အချက်အလက်များ</h3>
+                            <ul id="quick-facts-list"></ul>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="images/village-about.jpg" alt="ကျေးရွာမြင်ကွင်း" id="main-village-image">
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="village-gallery">
-            <h2><i class="fas fa-images"></i> ရွာ့အလှတရား</h2>
-            <div class="gallery"></div>
+        <section id="education" class="section bg-light">
+            <div class="container">
+                <h2><i class="fas fa-graduation-cap"></i> ပညာရေးအခြေအနေ</h2>
+                
+                <div class="stats-grid" id="stats-container"></div>
+                
+                <div class="chart-container">
+                    <h3><i class="fas fa-chart-line"></i> နှစ်အလိုက်ကျောင်းနေနှုန်း</h3>
+                    <canvas id="educationChart"></canvas>
+                </div>
+                
+                <div class="school-schedule">
+                    <h3><i class="fas fa-calendar-alt"></i> ကျောင်းလှုပ်ရှားမှုများ</h3>
+                    <div class="timeline" id="school-timeline"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery" class="section">
+            <div class="container">
+                <h2><i class="fas fa-images"></i> ရွာ့အလှတရား</h2>
+                <div class="gallery-container">
+                    <div class="main-slide">
+                        <img src="" alt="" id="current-slide">
+                        <div class="slide-nav">
+                            <button id="prev-slide"><i class="fas fa-chevron-left"></i></button>
+                            <span id="slide-caption"></span>
+                            <button id="next-slide"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="thumbnail-container" id="thumbnail-container"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="map" class="section bg-light">
+            <div class="container">
+                <h2><i class="fas fa-map-marked-alt"></i> ကျေးရွာတည်နေရာ</h2>
+                <div id="village-map"></div>
+                <div class="map-info">
+                    <p><i class="fas fa-road"></i> <span id="village-location"></span></p>
+                    <p><i class="fas fa-clock"></i> မြို့နယ်ရုံးသို့ <span id="distance-to-town"></span></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2><i class="fas fa-envelope"></i> ဆက်သွယ်ရန်</h2>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name"><i class="fas fa-user"></i> အမည်</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> အီးမေးလ်</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message"><i class="fas fa-comment"></i> စာတမ်း</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> ပေးပို့မည်</button>
+                </form>
+            </div>
         </section>
     </main>
 
     <footer>
-        <p>© <span id="current-year"></span> ကျေးလက်ပညာရေးမှတ်တမ်း</p>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-map-marker-alt"></i> လိပ်စာ</h3>
+                    <p id="footer-address"></p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-phone"></i> ဆက်သွယ်ရန်</h3>
+                    <p id="footer-contact"></p>
+                </div>
+                <div class="footer-section">
+                    <h3><i class="fas fa-share-alt"></i] လူမှုကွန်ရက်</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© <span id="current-year"></span> ကျေးလက်ပညာရေးမှတ်တမ်း. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
-    <script>
-        // ကျေးရွာအချက်အလက်များ
-        const villageData = {
-            name: "ပူ‌ရေကျေးရွာ
-            location: "ကရင်ပြည်နယ်",
-            education: {
-                schools: 3,
-                students: 245,
-                teachers: 12,
-                literacyRate: "78%"
-            },
-            photos: [
-                "school1.jpg",
-                "village-view.jpg",
-                "classroom.jpg",
-                "students.jpg",
-                "library.jpg"
-            ]
-        };
-
-        // DOM ကိုအချက်အလက်တွေနဲ့ဖြည့်မယ်
-        document.getElementById('village-name').textContent = villageData.name;
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // စာရင်းဇယားဖန်တီးခြင်း
-        const statsGrid = document.querySelector('.stats-grid');
-        
-        const statsData = [
-            { icon: "fa-school", title: "ကျောင်းအရေအတွက်", value: villageData.education.schools },
-            { icon: "fa-user-graduate", title: "ကျောင်းသားဦးရေ", value: villageData.education.students },
-            { icon: "fa-chalkboard-teacher", title: "ဆရာဦးရေ", value: villageData.education.teachers },
-            { icon: "fa-book-reader", title: "စာတတ်မြောက်နှုန်း", value: villageData.education.literacyRate }
-        ];
-
-        statsData.forEach(stat => {
-            const statCard = document.createElement('div');
-            statCard.className = 'stat-card';
-            statCard.innerHTML = `
-                <i class="fas ${stat.icon}"></i>
-                <h3>${stat.title}</h3>
-                <p class="stat-value">${stat.value}</p>
-            `;
-            statsGrid.appendChild(statCard);
-        });
-
-        // ဓာတ်ပုံပြခန်း
-        const gallery = document.querySelector('.gallery');
-        villageData.photos.forEach(photo => {
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'gallery-item';
-            imgContainer.innerHTML = `
-                <img src="images/${photo}" alt="${villageData.name} ဓာတ်ပုံ">
-            `;
-            gallery.appendChild(imgContainer);
-        });
-    </script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
+
+   
