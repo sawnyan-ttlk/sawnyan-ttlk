@@ -1029,6 +1029,460 @@
             document.getElementById('village-location').
 
 
+                <section id="gallery" class="section">
+    <div class="container">
+        <h2><i class="fas fa-images"></i> ကျေးရွာဓာတ်ပုံများ</h2>
+        
+        <!-- ရှာဖွေရန် အတွက် စာရိုက်နယ် -->
+        <div class="search-box">
+            <input type="text" id="search-input" placeholder="ဓာတ်ပုံရှာရန်...">
+            <button id="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        
+        <!-- အမျိုးအစားခွဲရန် ခလုတ်များ -->
+        <div class="category-buttons">
+            <button class="category-btn active" data-category="all">အားလုံး</button>
+            <button class="category-btn" data-category="school">ကျောင်း</button>
+            <button class="category-btn" data-category="nature">သဘာဝ</button>
+            <button class="category-btn" data-category="people">လူမှုဘဝ</button>
+            <button class="category-btn" data-category="event">ပွဲများ</button>
+        </div>
+        
+        <!-- ဓာတ်ပုံများပြသမည့်နေရာ -->
+        <div class="photo-gallery" id="photo-gallery"></div>
+        
+        <!-- ဓာတ်ပုံအသေးစားပြမည့်နေရာ -->
+        <div class="lightbox" id="lightbox">
+            <div class="lightbox-content">
+                <span class="close-btn">&times;</span>
+                <img src="" alt="" id="lightbox-img">
+                <div class="lightbox-nav">
+                    <button id="prev-photo"><i class="fas fa-chevron-left"></i></button>
+                    <span id="photo-caption"></span>
+                    <button id="next-photo"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- စာမျက်နှာအောက်ခြေတွင် ဓာတ်ပုံအရေအတွက်ပြမည့်နေရာ -->
+        <div class="pagination">
+            <button id="prev-page"><i class="fas fa-chevron-left"></i> နောက်သို့</button>
+            <span id="page-info">စာမျက်နှာ 1 / 5</span>
+            <button id="next-page">ရှေ့သို့ <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+       /* ဓာတ်ပုံပြခန်းစတိုင် */
+#gallery {
+    background-color: #f9f9f9;
+    padding: 4rem 0;
+}
+
+.search-box {
+    display: flex;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+}
+
+#search-input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px 0 0 4px;
+    font-family: 'Padauk', sans-serif;
+    font-size: 1rem;
+}
+
+#search-btn {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 0 1.2rem;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#search-btn:hover {
+    background-color: var(--dark);
+}
+
+.category-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.category-btn {
+    padding: 0.5rem 1rem;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Padauk', sans-serif;
+}
+
+.category-btn.active {
+    background-color: var(--primary);
+    color: white;
+}
+
+.category-btn:hover:not(.active) {
+    background-color: #d0d0d0;
+}
+
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.photo-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+}
+
+.photo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.photo-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+.photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    color: white;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s;
+}
+
+.photo-item:hover .photo-caption {
+    transform: translateY(0);
+}
+
+/* Lightbox စတိုင် */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+}
+
+#lightbox-img {
+    max-width: 100%;
+    max-height: 80vh;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.close-btn {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.lightbox-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    color: white;
+}
+
+.lightbox-nav button {
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.lightbox-nav button:hover {
+    background-color: rgba(255,255,255,0.4);
+}
+
+#photo-caption {
+    flex-grow: 1;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+/* စာမျက်နှာအောက်ခြေ */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+    background-color: var(--dark);
+}
+
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#page-info {
+    font-weight: bold;
+}
+
+/* တုံ့ပြန်နိုင်သော ဒီဇိုင်း */
+@media (max-width: 768px) {
+    .photo-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+@media (max-width: 480px) {
+    .photo-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+    
+    .category-buttons {
+        justify-content: center;
+    }
+}
+        // ဓာတ်ပုံဒေတာ (ဥပမာ - ဓာတ်ပုံ ၅၀ အတွက်)
+const photoData = [
+    { id: 1, src: "images/gallery/school1.jpg", caption: "ကျေးရွာမူလတန်းကျောင်း", category: "school" },
+    { id: 2, src: "images/gallery/nature1.jpg", caption: "ကျေးရွာသဘာဝမြင်ကွင်း", category: "nature" },
+    { id: 3, src: "images/gallery/people1.jpg", caption: "ကျေးရွာသားများ", category: "people" },
+    { id: 4, src: "images/gallery/event1.jpg", caption: "ကျေးရွာပွဲတော်", category: "event" },
+    { id: 5, src: "images/gallery/school2.jpg", caption: "ကျောင်းသားများ စာသင်နေပုံ", category: "school" },
+    // ... ဓာတ်ပုံ ၄၅ ပုံထပ်မံထည့်ရန်
+];
+
+// ဓာတ်ပုံပြခန်းစတင်ခြင်း
+document.addEventListener('DOMContentLoaded', function() {
+    const galleryContainer = document.getElementById('photo-gallery');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const photoCaption = document.getElementById('photo-caption');
+    const closeBtn = document.querySelector('.close-btn');
+    const prevPhotoBtn = document.getElementById('prev-photo');
+    const nextPhotoBtn = document.getElementById('next-photo');
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.getElementById('search-btn');
+    const categoryBtns = document.querySelectorAll('.category-btn');
+    const prevPageBtn = document.getElementById('prev-page');
+    const nextPageBtn = document.getElementById('next-page');
+    const pageInfo = document.getElementById('page-info');
+    
+    let currentPhotos = [];
+    let currentIndex = 0;
+    let currentPage = 1;
+    const photosPerPage = 12;
+    let activeCategory = "all";
+    let searchTerm = "";
+    
+    // ဓာတ်ပုံများဖော်ပြခြင်း
+    function displayPhotos() {
+        galleryContainer.innerHTML = "";
+        
+        // အမျိုးအစားနှင့် ရှာဖွေမှုအရ ဓာတ်ပုံများစစ်ထုတ်ခြင်း
+        let filteredPhotos = photoData;
+        
+        if (activeCategory !== "all") {
+            filteredPhotos = filteredPhotos.filter(photo => photo.category === activeCategory);
+        }
+        
+        if (searchTerm) {
+            filteredPhotos = filteredPhotos.filter(photo => 
+                photo.caption.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+        
+        currentPhotos = filteredPhotos;
+        
+        // စာမျက်နှာခွဲခြင်း
+        const totalPages = Math.ceil(currentPhotos.length / photosPerPage);
+        const startIndex = (currentPage - 1) * photosPerPage;
+        const endIndex = Math.min(startIndex + photosPerPage, currentPhotos.length);
+        const paginatedPhotos = currentPhotos.slice(startIndex, endIndex);
+        
+        // ဓာတ်ပုံများဖော်ပြခြင်း
+        paginatedPhotos.forEach(photo => {
+            const photoItem = document.createElement('div');
+            photoItem.className = 'photo-item';
+            photoItem.dataset.id = photo.id;
+            photoItem.innerHTML = `
+                <img src="${photo.src}" alt="${photo.caption}">
+                <div class="photo-caption">${photo.caption}</div>
+            `;
+            
+            photoItem.addEventListener('click', () => openLightbox(photo.id));
+            galleryContainer.appendChild(photoItem);
+        });
+        
+        // စာမျက်နှာအချက်အလက်များပြသခြင်း
+        pageInfo.textContent = `စာမျက်နှာ ${currentPage} / ${totalPages}`;
+        
+        // ခလုတ်များကိုအသက်သွင်းခြင်း
+        prevPageBtn.disabled = currentPage === 1;
+        nextPageBtn.disabled = currentPage === totalPages;
+    }
+    
+    // Lightbox ဖွင့်ခြင်း
+    function openLightbox(photoId) {
+        const index = currentPhotos.findIndex(photo => photo.id === photoId);
+        if (index !== -1) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.style.display = "flex";
+            document.body.style.overflow = "hidden";
+        }
+    }
+    
+    // Lightbox ပြင်ဆင်ခြင်း
+    function updateLightbox() {
+        const photo = currentPhotos[currentIndex];
+        lightboxImg.src = photo.src;
+        lightboxImg.alt = photo.caption;
+        photoCaption.textContent = photo.caption;
+    }
+    
+    // Lightbox ပိတ်ခြင်း
+    function closeLightbox() {
+        lightbox.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+    
+    // နောက်ဓာတ်ပုံသို့ပြောင်းခြင်း
+    function showNextPhoto() {
+        currentIndex = (currentIndex + 1) % currentPhotos.length;
+        updateLightbox();
+    }
+    
+    // အရှေ့ဓာတ်ပုံသို့ပြောင်းခြင်း
+    function showPrevPhoto() {
+        currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
+        updateLightbox();
+    }
+    
+    // အမျိုးအစားခွဲခြင်း
+    function filterByCategory(category) {
+        activeCategory = category;
+        currentPage = 1;
+        displayPhotos();
+    }
+    
+    // ရှာဖွေခြင်း
+    function searchPhotos() {
+        searchTerm = searchInput.value.trim();
+        currentPage = 1;
+        displayPhotos();
+    }
+    
+    // နောက်စာမျက်နှာသို့ပြောင်းခြင်း
+    function nextPage() {
+        const totalPages = Math.ceil(currentPhotos.length / photosPerPage);
+        if (currentPage < totalPages) {
+            currentPage++;
+            displayPhotos();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+    
+    // အရှေ့စာမျက်နှာသို့ပြောင်းခြင်း
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPhotos();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+    
+    // Event listeners များ
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+    nextPhotoBtn.addEventListener('click', showNextPhoto);
+    prevPhotoBtn.addEventListener('click', showPrevPhoto);
+    searchBtn.addEventListener('click', searchPhotos);
+    searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') searchPhotos();
+    });
+    
+    categoryBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            categoryBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            filterByCategory(btn.dataset.category);
+        });
+    });
+    
+    prevPageBtn.addEventListener('click', prevPage);
+    nextPageBtn.addEventListener('click', nextPage);
+    
+    // ကီးဘုတ်ဖြင့်ထိန်းချုပ်ခြင်း
+    document.addEventListener('keydown', (e) => {
+        if (lightbox.style.display === "flex") {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') showNextPhoto();
+            if (e.key === 'ArrowLeft') showPrevPhoto();
+        }
+    });
+    
+    // ပထမဆုံးဓာတ်ပုံများဖော်ပြခြင်း
+    displayPhotos();
+});
+
+
 
 
 
