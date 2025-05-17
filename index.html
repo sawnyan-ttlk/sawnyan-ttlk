@@ -6,9 +6,644 @@
     <title>ကျေးလက်ပညာရေးမှတ်တမ်း</title>
     <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Noto+Sans+Myanmar:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+    <style>
+        :root {
+            --primary: #2c786c;
+            --primary-light: #5da89b;
+            --secondary: #f8b400;
+            --secondary-light: #ffd166;
+            --dark: #004445;
+            --dark-light: #336b6d;
+            --light: #faf5e4;
+            --white: #ffffff;
+            --gray: #f0f0f0;
+            --dark-gray: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Padauk', 'Noto Sans Myanmar', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header Styles */
+        .hero {
+            background: linear-gradient(rgba(0,68,69,0.8), rgba(0,68,69,0.8)), 
+                        url('images/village-bg.jpg') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 2;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        #village-name {
+            font-size: 3.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        #tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--white);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        /* Navigation */
+        #navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a i {
+            margin-right: 0.5rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hamburger {
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section h2 {
+            color: var(--dark);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+            display: inline-block;
+        }
+
+        .section h2 i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+
+        .bg-light {
+            background-color: var(--gray);
+        }
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .quick-facts {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .quick-facts h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .quick-facts ul {
+            list-style-position: inside;
+        }
+
+        .quick-facts li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 0.5rem 0;
+        }
+
+        .chart-container {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 3rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .school-schedule {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 100%;
+            margin: 2rem auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -10px;
+        }
+
+        .right::after {
+            left: -10px;
+        }
+
+        .timeline-content {
+            padding: 1rem;
+            background-color: var(--white);
+            border-radius: 6px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--primary);
+        }
+
+        .right .timeline-content {
+            border-left: none;
+            border-right: 3px solid var(--primary);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Gallery Section */
+        .gallery-container {
+            margin-top: 2rem;
+        }
+
+        .main-slide {
+            position: relative;
+            margin-bottom: 1rem;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        #current-slide {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .slide-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.6);
+            color: var(--white);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #slide-caption {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .slide-nav button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: var(--white);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .slide-nav button:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        .thumbnail-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+        }
+
+        .thumbnail {
+            height: 80px;
+            cursor: pointer;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        /* Map Section */
+        #village-map {
+            height: 400px;
+            width: 100%;
+            margin: 2rem 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .map-info {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 1rem;
+        }
+
+        .map-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .map-info i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        /* Contact Section */
+        #contact-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .form-group label i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn i {
+            margin-right: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--dark);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary);
+        }
+
+        .footer-section p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                height: 80vh;
+            }
+            
+            #village-name {
+                font-size: 2.5rem;
+            }
+            
+            #tagline {
+                font-size: 1.2rem;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+            
+            .main-slide {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #village-name {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 3rem 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="hero">
@@ -136,7 +771,7 @@
                     <p id="footer-contact"></p>
                 </div>
                 <div class="footer-section">
-                    <h3><i class="fas fa-share-alt"></i] လူမှုကွန်ရက်</h3>
+                    <h3><i class="fas fa-share-alt"></i> လူမှုကွန်ရက်</h3>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -150,9 +785,250 @@
         </div>
     </footer>
 
-    <script src="js/data.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
+    <script>
+        // ကျေးရွာအချက်အလက်များ
+        const villageData = {
+            name: "သီပေါကျေးရွာ",
+            location: "ရှမ်းပြည်နယ်၊ ညောင်ရွှေခရိုင်",
+            description: "သီပေါကျေးရွာသည် ရှမ်းပြည်နယ်၏ အလှပဆုံးကျေးရွာများထဲမှ တစ်ခုဖြစ်ပြီး လက်ဖက်စိုက်ပျိုးရေးကို အဓိကလုပ်ကိုင်ကြသည်။ ကျေးရွာတွင် မူလတန်းကျောင်း ၂ကျောင်း၊ အလယ်တန်းကျောင်း ၁ကျောင်းရှိပြီး ကျေးရွာသားများသည် ပညာရေးကို အထူးအလေးထားကြသည်။",
+            
+            quickFacts: [
+                "တည်နေရာ: ရှမ်းပြည်နယ်၊ ညောင်ရွှေခရိုင်",
+                "လူဦးရေ: ၁,၂၀၀ ဦး",
+                "အဓိကလုပ်ငန်း: လက်ဖက်စိုက်ပျိုးရေး",
+                "ဘာသာရေး: ဗုဒ္ဓဘာသာ ၉၀%",
+                "ပညာတတ်နှုန်း: ၇၈%"
+            ],
+            
+            education: {
+                primarySchools: 2,
+                middleSchool: 1,
+                students: 245,
+                teachers: 12,
+                literacyRate: "78%",
+                enrollmentRate: "92%"
+            },
+            
+            enrollmentData: {
+                labels: ["2018", "2019", "2020", "2021", "2022"],
+                data: [85, 88, 90, 89, 92]
+            },
+            
+            schoolEvents: [
+                {
+                    date: "ဇန်နဝါရီ ၁၀",
+                    title: "ကျောင်းဖွင့်ပွဲ",
+                    description: "နှစ်စဉ်ကျောင်းဖွင့်ပွဲအခမ်းအနား"
+                },
+                {
+                    date: "မတ် ၂",
+                    title: "ပညာရေးလှုပ်ရှားမှုနေ့",
+                    description: "ကျေးရွာအခြေပြု ပညာရေးဆွေးနွေးပွဲ"
+                },
+                {
+                    date: "ဇွန် ၁၅",
+                    title: "စာမေးပွဲစတင်",
+                    description: "နှစ်လည်စာမေးပွဲများ စတင်"
+                },
+                {
+                    date: "အောက်တိုဘာ ၅",
+                    title: "ဆရာများနေ့",
+                    description: "ကျေးဇူးတင်လွှာပေးပို့ခြင်း"
+                }
+            ],
+            
+            gallery: [
+                {
+                    src: "images/school1.jpg",
+                    caption: "ကျေးရွာမူလတန်းကျောင်း"
+                },
+                {
+                    src: "images/village-view.jpg",
+                    caption: "ကျေးရွာမြင်ကွင်း"
+                },
+                {
+                    src: "images/classroom.jpg",
+                    caption: "စာသင်ခန်းအတွင်း"
+                },
+                {
+                    src: "images/students.jpg",
+                    caption: "ကျောင်းသားများ"
+                },
+                {
+                    src: "images/library.jpg",
+                    caption: "စာကြည့်တိုက်"
+                }
+            ],
+            
+            map: {
+                lat: 20.5937,
+                lng: 96.1563,
+                zoom: 14,
+                distanceToTown: "၁၅ မိုင်"
+            },
+            
+            contact: {
+                address: "သီပေါကျေးရွာ၊ ညောင်ရွှေမြို့နယ်၊ ရှမ်းပြည်နယ်",
+                phone: "၀၉ ၁၂၃ ၄၅၆ ၇၈၉",
+                email: "thipawvillage@gmail.com"
+            }
+        };
+
+        // Google Maps API အတွက် API Key
+        const googleMapsApiKey = "YOUR_GOOGLE_MAPS_API_KEY";
+
+        // DOM တွင် အချက်အလက်များထည့်သွင်းခြင်း
+        document.addEventListener('DOMContentLoaded', function() {
+            // ကျေးရွာအမည်နှင့်ဖော်ပြချက်
+            document.getElementById('village-name').textContent = villageData.name;
+            document.getElementById('tagline').textContent = villageData.tagline || "ပညာရေး၊ ယဉ်ကျေးမှုနှင့် အနာဂတ်အိပ်မက်";
+            document.getElementById('village-description').textContent = villageData.description;
+            
+            // အချက်အလက်များ
+            const quickFactsList = document.getElementById('quick-facts-list');
+            villageData.quickFacts.forEach(fact => {
+                const li = document.createElement('li');
+                li.textContent = fact;
+                quickFactsList.appendChild(li);
+            });
+            
+            // ပညာရေးစာရင်းဇယား
+            const statsContainer = document.getElementById('stats-container');
+            const statsData = [
+                { icon: "fa-school", title: "မူလတန်းကျောင်း", value: villageData.education.primarySchools },
+                { icon: "fa-graduation-cap", title: "အလယ်တန်းကျောင်း", value: villageData.education.middleSchool },
+                { icon: "fa-user-graduate", title: "ကျောင်းသားဦးရေ", value: villageData.education.students },
+                { icon: "fa-chalkboard-teacher", title: "ဆရာဦးရေ", value: villageData.education.teachers },
+                { icon: "fa-book-reader", title: "စာတတ်မြောက်နှုန်း", value: villageData.education.literacyRate },
+                { icon: "fa-child", title: "ကျောင်းနေနှုန်း", value: villageData.education.enrollmentRate }
+            ];
+            
+            statsData.forEach(stat => {
+                const statCard = document.createElement('div');
+                statCard.className = 'stat-card';
+                statCard.innerHTML = `
+                    <i class="fas ${stat.icon}"></i>
+                    <h3>${stat.title}</h3>
+                    <p class="stat-value">${stat.value}</p>
+                `;
+                statsContainer.appendChild(statCard);
+            });
+            
+            // ကျောင်းနေနှုန်းဂရပ်
+            const ctx = document.getElementById('educationChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: villageData.enrollmentData.labels,
+                    datasets: [{
+                        label: 'ကျောင်းနေနှုန်း (%)',
+                        data: villageData.enrollmentData.data,
+                        backgroundColor: 'rgba(44, 120, 108, 0.2)',
+                        borderColor: 'rgba(44, 120, 108, 1)',
+                        borderWidth: 2,
+                        tension: 0.3,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 80,
+                            max: 100
+                        }
+                    }
+                }
+            });
+            
+            // ကျောင်းလှုပ်ရှားမှုဇယား
+            const timeline = document.getElementById('school-timeline');
+            villageData.schoolEvents.forEach((event, index) => {
+                const timelineItem = document.createElement('div');
+                timelineItem.className = `timeline-item ${index % 2 === 0 ? 'left' : 'right'}`;
+                timelineItem.innerHTML = `
+                    <div class="timeline-content">
+                        <div class="timeline-date">${event.date}</div>
+                        <h4>${event.title}</h4>
+                        <p>${event.description}</p>
+                    </div>
+                `;
+                timeline.appendChild(timelineItem);
+            });
+            
+            // ဓာတ်ပုံပြခန်း
+            let currentSlideIndex = 0;
+            const currentSlide = document.getElementById('current-slide');
+            const slideCaption = document.getElementById('slide-caption');
+            const thumbnailContainer = document.getElementById('thumbnail-container');
+            
+            function showSlide(index) {
+                currentSlide.src = villageData.gallery[index].src;
+                currentSlide.alt = villageData.gallery[index].caption;
+                slideCaption.textContent = villageData.gallery[index].caption;
+                
+                // Update active thumbnail
+                const thumbnails = document.querySelectorAll('.thumbnail');
+                thumbnails.forEach((thumb, i) => {
+                    if (i === index) {
+                        thumb.classList.add('active');
+                    } else {
+                        thumb.classList.remove('active');
+                    }
+                });
+            }
+            
+            // ဓာတ်ပုံများအားလုံးအတွက် thumbnail ဖန်တီးခြင်း
+            villageData.gallery.forEach((photo, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'thumbnail';
+                if (index === 0) thumbnail.classList.add('active');
+                thumbnail.innerHTML = `<img src="${photo.src}" alt="${photo.caption}">`;
+                thumbnail.addEventListener('click', () => {
+                    currentSlideIndex = index;
+                    showSlide(currentSlideIndex);
+                });
+                thumbnailContainer.appendChild(thumbnail);
+            });
+            
+            // ပထမဆုံးဓာတ်ပုံပြသခြင်း
+            if (villageData.gallery.length > 0) {
+                showSlide(0);
+            }
+            
+            // နောက်ဓာတ်ပုံသို့ပြောင်းခြင်း
+            document.getElementById('next-slide').addEventListener('click', () => {
+                currentSlideIndex = (currentSlideIndex + 1) % villageData.gallery.length;
+                showSlide(currentSlideIndex);
+            });
+            
+            // အရှေ့ဓာတ်ပုံသို့ပြောင်းခြင်း
+            document.getElementById('prev-slide').addEventListener('click', () => {
+                currentSlideIndex = (currentSlideIndex - 1 + villageData.gallery.length) % villageData.gallery.length;
+                showSlide(currentSlideIndex);
+            });
+            
+            // Google Maps စတင်ခြင်း
+            function initMap() {
+                const villageLocation = { lat: villageData.map.lat, lng: villageData.map.lng };
+                const map = new google.maps.Map(document.getElementById('village-map'), {
+                    zoom: villageData.map.zoom,
+                    center: villageLocation
+                });
+                
+                new google.maps.Marker({
+                    position: villageLocation,
+                    map: map,
+                    title: villageData.name
+                });
+            }
+            
+            // မြေပုံအချက်အလက်များပြသခြင်း
+            document.getElementById('village-location').
+
+
+
+
 
 
