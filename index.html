@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="my">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ကျေးလက်ပညာရေးမှတ်တမ်း</title>
+    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&family=Noto+Sans+Myanmar:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c786c;
+            --secondary: #f8b400;
+            --dark: #004445;
+            --light: #faf5e4;
+        }
+
+        body {
+            font-family: 'Padauk', 'Noto Sans Myanmar', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light);
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(0,68,69,0.8), rgba(0,68,69,0.8)), 
+                        url('images/village-bg.jpg') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4rem 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        #village-name {
+            font-size: 3.5rem;
+            margin: 0;
+            animation: fadeIn 2s;
+        }
+
+        #tagline {
+            font-size: 1.5rem;
+            opacity: 0.9;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+        }
+
+        h2 {
+            color: var(--dark);
+            border-bottom: 2px solid var(--secondary);
+            padding-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            padding: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin: 0.5rem 0;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+            padding: 1rem 0;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @media (max-width: 600px) {
+            #village-name {
+                font-size: 2.5rem;
+            }
+            
+            #tagline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <h1 id="village-name">ကျေးလက်ကျေးရွာ</h1>
+        <p id="tagline">ပညာရေး၊ ယဉ်ကျေးမှုနှင့် အနာဂတ်အိပ်မက်</p>
+    </header>
+
+    <main>
+        <section id="education-stats">
+            <h2><i class="fas fa-graduation-cap"></i> ပညာရေးအခြေအနေ</h2>
+            <div class="stats-grid"></div>
+        </section>
+
+        <section id="village-gallery">
+            <h2><i class="fas fa-images"></i> ရွာ့အလှတရား</h2>
+            <div class="gallery"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© <span id="current-year"></span> ကျေးလက်ပညာရေးမှတ်တမ်း</p>
+    </footer>
+
+    <script>
+        // ကျေးရွာအချက်အလက်များ
+        const villageData = {
+            name: "သီပေါကျေးရွာ",
+            location: "ရှမ်းပြည်နယ်",
+            education: {
+                schools: 3,
+                students: 245,
+                teachers: 12,
+                literacyRate: "78%"
+            },
+            photos: [
+                "school1.jpg",
+                "village-view.jpg",
+                "classroom.jpg",
+                "students.jpg",
+                "library.jpg"
+            ]
+        };
+
+        // DOM ကိုအချက်အလက်တွေနဲ့ဖြည့်မယ်
+        document.getElementById('village-name').textContent = villageData.name;
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // စာရင်းဇယားဖန်တီးခြင်း
+        const statsGrid = document.querySelector('.stats-grid');
+        
+        const statsData = [
+            { icon: "fa-school", title: "ကျောင်းအရေအတွက်", value: villageData.education.schools },
+            { icon: "fa-user-graduate", title: "ကျောင်းသားဦးရေ", value: villageData.education.students },
+            { icon: "fa-chalkboard-teacher", title: "ဆရာဦးရေ", value: villageData.education.teachers },
+            { icon: "fa-book-reader", title: "စာတတ်မြောက်နှုန်း", value: villageData.education.literacyRate }
+        ];
+
+        statsData.forEach(stat => {
+            const statCard = document.createElement('div');
+            statCard.className = 'stat-card';
+            statCard.innerHTML = `
+                <i class="fas ${stat.icon}"></i>
+                <h3>${stat.title}</h3>
+                <p class="stat-value">${stat.value}</p>
+            `;
+            statsGrid.appendChild(statCard);
+        });
+
+        // ဓာတ်ပုံပြခန်း
+        const gallery = document.querySelector('.gallery');
+        villageData.photos.forEach(photo => {
+            const imgContainer = document.createElement('div');
+            imgContainer.className = 'gallery-item';
+            imgContainer.innerHTML = `
+                <img src="images/${photo}" alt="${villageData.name} ဓာတ်ပုံ">
+            `;
+            gallery.appendChild(imgContainer);
+        });
+    </script>
+</body>
+</html>
