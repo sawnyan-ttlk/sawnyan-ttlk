@@ -1009,26 +1009,6 @@
                 currentSlideIndex = (currentSlideIndex - 1 + villageData.gallery.length) % villageData.gallery.length;
                 showSlide(currentSlideIndex);
             });
-            
-            // Google Maps စတင်ခြင်း
-            function initMap() {
-                const villageLocation = { lat: villageData.map.lat, lng: villageData.map.lng };
-                const map = new google.maps.Map(document.getElementById('village-map'), {
-                    zoom: villageData.map.zoom,
-                    center: villageLocation
-                });
-                
-                new google.maps.Marker({
-                    position: villageLocation,
-                    map: map,
-                    title: villageData.name
-                });
-            }
-            
-            // မြေပုံအချက်အလက်များပြသခြင်း
-            document.getElementById('village-location').
-
-
                 <section id="gallery" class="section">
     <div class="container">
         <h2><i class="fas fa-images"></i> ကျေးရွာဓာတ်ပုံများ</h2>
@@ -1487,3 +1467,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+
+            
+            // Google Maps စတင်ခြင်း
+            function initMap() {
+                const villageLocation = { lat: villageData.map.lat, lng: villageData.map.lng };
+                const map = new google.maps.Map(document.getElementById('village-map'), {
+                    zoom: villageData.map.zoom,
+                    center: villageLocation
+                });
+                
+                new google.maps.Marker({
+                    position: villageLocation,
+                    map: map,
+                    title: villageData.name
+                });
+            }
+            
+            // မြေပုံအချက်အလက်များပြသခြင်း
+            document.getElementById('village-location').
+
+
+            
