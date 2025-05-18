@@ -40,110 +40,11 @@
             padding: 0 1.5rem;
         }
 
-        /* Header Styles */
-        .hero {
-            background: linear-gradient(rgba(0,68,69,0.8), rgba(0,68,69,0.8)), 
-                        url('images/village-bg.jpg') center/cover no-repeat;
-            color: var(--white);
-            text-align: center;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .hero-content {
-            z-index: 2;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        #village-name {
-            font-size: 3.5rem;
-            margin: 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        #tagline {
-            font-size: 1.5rem;
-            opacity: 0.9;
-            margin-top: 1rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
-        .scroll-down {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            color: var(--white);
-            font-size: 1.5rem;
-            animation: bounce 2s infinite;
-        }
-
-        /* Navigation */
-        #navbar {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        #navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 1.5rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--dark);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links a i {
-            margin-right: 0.5rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .hamburger {
-            font-size: 1.5rem;
-            color: var(--dark);
-            cursor: pointer;
-            display: none;
-        }
-
-        /* Section Styles */
         .section {
             padding: 5rem 0;
         }
 
-        .section h2 {
+        .section-title {
             color: var(--dark);
             border-bottom: 2px solid var(--secondary);
             padding-bottom: 0.5rem;
@@ -152,7 +53,7 @@
             display: inline-block;
         }
 
-        .section h2 i {
+        .section-title i {
             margin-right: 0.5rem;
             color: var(--primary);
         }
@@ -161,1331 +62,356 @@
             background-color: var(--gray);
         }
 
-        /* About Section */
-        .about-content {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-image {
-            flex: 1;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .quick-facts {
+        /* ဓာတ်ပုံပြတိုက်စတိုင် */
+        .photo-museum {
             background-color: var(--white);
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 8px;
-            margin-top: 2rem;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
         }
 
-        .quick-facts h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .quick-facts ul {
-            list-style-position: inside;
-        }
-
-        .quick-facts li {
-            margin-bottom: 0.5rem;
-        }
-
-        /* Education Section */
-        .stats-grid {
+        .photo-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 1.5rem;
-            margin: 2rem 0;
-        }
-
-        .stat-card {
-            background: var(--white);
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-
-        .stat-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-value {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--dark);
-            margin: 0.5rem 0;
-        }
-
-        .chart-container {
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            margin: 3rem 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .school-schedule {
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 100%;
-            margin: 2rem auto;
-        }
-
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background-color: var(--primary);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
-        }
-
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background-color: var(--white);
-            border: 3px solid var(--primary);
-            border-radius: 50%;
-            top: 15px;
-            z-index: 1;
-        }
-
-        .left {
-            left: 0;
-        }
-
-        .right {
-            left: 50%;
-        }
-
-        .left::after {
-            right: -10px;
-        }
-
-        .right::after {
-            left: -10px;
-        }
-
-        .timeline-content {
-            padding: 1rem;
-            background-color: var(--white);
-            border-radius: 6px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-left: 3px solid var(--primary);
-        }
-
-        .right .timeline-content {
-            border-left: none;
-            border-right: 3px solid var(--primary);
-        }
-
-        .timeline-date {
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        /* Gallery Section */
-        .gallery-container {
             margin-top: 2rem;
         }
 
-        .main-slide {
+        .photo-card {
             position: relative;
-            margin-bottom: 1rem;
-            height: 400px;
             overflow: hidden;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            aspect-ratio: 4/3;
         }
 
-        #current-slide {
+        .photo-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.5s ease;
+            transition: transform 0.5s;
         }
 
-        .slide-nav {
+        .photo-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-info {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            background: rgba(0,0,0,0.6);
-            color: var(--white);
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
             padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        #slide-caption {
-            flex-grow: 1;
-            text-align: center;
-        }
-
-        .slide-nav button {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: var(--white);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .slide-nav button:hover {
-            background: rgba(255,255,255,0.4);
-        }
-
-        .thumbnail-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-            gap: 0.5rem;
-        }
-
-        .thumbnail {
-            height: 80px;
-            cursor: pointer;
-            border-radius: 4px;
-            overflow: hidden;
+            transform: translateY(100%);
             transition: transform 0.3s;
-            border: 2px solid transparent;
         }
 
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .photo-card:hover .photo-info {
+            transform: translateY(0);
         }
 
-        .thumbnail:hover {
-            transform: scale(1.05);
-        }
-
-        .thumbnail.active {
-            border-color: var(--primary);
-        }
-
-        /* Map Section */
-        #village-map {
-            height: 400px;
-            width: 100%;
-            margin: 2rem 0;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .map-info {
-            background-color: var(--white);
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            margin-top: 1rem;
-        }
-
-        .map-info p {
-            margin-bottom: 0.5rem;
-        }
-
-        .map-info i {
-            color: var(--primary);
-            margin-right: 0.5rem;
-        }
-
-        /* Contact Section */
-        #contact-form {
+        /* စာကြည့်တိုက်စတိုင် */
+        .library-section {
             background-color: var(--white);
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .book-shelf {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
             margin-top: 2rem;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .book {
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s;
+            border-left: 4px solid var(--primary);
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
+        .book:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+
+        .book-cover {
+            height: 150px;
+            background-color: #e0e0e0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--dark);
+            font-weight: bold;
+            border-radius: 2px;
         }
 
-        .form-group label i {
+        .book-title {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .book-author {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* အင်္ဂလိပ်စာသင်ကြားရေးစတိုင် */
+        .english-learning {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .english-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .english-card {
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .english-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .english-card h3 {
             color: var(--primary);
-            margin-right: 0.5rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 1rem;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .btn {
-            background-color: var(--primary);
-            color: var(--white);
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: background-color 0.3s;
-            display: inline-flex;
+            margin-bottom: 1rem;
+            display: flex;
             align-items: center;
         }
 
-        .btn i {
+        .english-card h3 i {
             margin-right: 0.5rem;
         }
 
-        .btn:hover {
-            background-color: var(--dark);
+        .english-card ul {
+            list-style-position: inside;
+            margin-top: 1rem;
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--secondary);
-        }
-
-        .footer-section p {
+        .english-card li {
             margin-bottom: 0.5rem;
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: var(--white);
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--secondary);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to   { opacity: 1; }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-            40% { transform: translateY(-20px) translateX(-50%); }
-            60% { transform: translateY(-10px) translateX(-50%); }
-        }
-
-        /* Responsive Design */
+        /* တုံ့ပြန်နိုင်သော ဒီဇိုင်း */
         @media (max-width: 768px) {
-            .hero {
-                height: 80vh;
+            .photo-grid, .book-shelf {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
             
-            #village-name {
-                font-size: 2.5rem;
-            }
-            
-            #tagline {
-                font-size: 1.2rem;
-            }
-            
-            .hamburger {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 70px);
-                background-color: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding: 2rem 0;
-                transition: left 0.3s ease;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 1rem 0;
-            }
-            
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item::after {
-                left: 21px;
-            }
-            
-            .left::after, .right::after {
-                left: 21px;
-            }
-            
-            .right {
-                left: 0%;
-            }
-            
-            .main-slide {
-                height: 300px;
+            .english-cards {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            #village-name {
-                font-size: 2rem;
+            .photo-grid, .book-shelf {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             }
             
             .section {
                 padding: 3rem 0;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
     <header class="hero">
-        <div class="hero-content">
-            <h1 id="village-name">ကျေးလက်ကျေးရွာ</h1>
-            <p id="tagline">ပညာရေး၊ ယဉ်ကျေးမှုနှင့် အနာဂတ်အိပ်မက်</p>
-            <div class="scroll-down">
-                <i class="fas fa-chevron-down"></i>
-            </div>
+        <div class="container">
+            <h1>ကျေးလက်ပညာရေးမှတ်တမ်း</h1>
+            <p>ကျေးလက်ဒေသဖွံ့ဖြိုးရေးနှင့် ပညာရေးတိုးတက်မှု</p>
         </div>
     </header>
 
-    <nav id="navbar">
+    <nav>
         <div class="container">
-            <a href="#home" class="logo">ကျေးရွာမှတ်တမ်း</a>
-            <ul class="nav-links">
-                <li><a href="#about"><i class="fas fa-info-circle"></i> အကြောင်း</a></li>
-                <li><a href="#education"><i class="fas fa-graduation-cap"></i> ပညာရေး</a></li>
-                <li><a href="#gallery"><i class="fas fa-images"></i> ဓာတ်ပုံ</a></li>
-                <li><a href="#map"><i class="fas fa-map-marked-alt"></i> မြေပုံ</a></li>
-                <li><a href="#contact"><i class="fas fa-envelope"></i> ဆက်သွယ်ရန်</a></li>
+            <ul>
+                <li><a href="#museum">ဓာတ်ပုံပြတိုက်</a></li>
+                <li><a href="#library">စာကြည့်တိုက်</a></li>
+                <li><a href="#english">အင်္ဂလိပ်စာ</a></li>
             </ul>
-            <div class="hamburger">
-                <i class="fas fa-bars"></i>
-            </div>
         </div>
     </nav>
 
     <main>
-        <section id="about" class="section">
+        <!-- ဓာတ်ပုံပြတိုက်အပိုင်း -->
+        <section id="museum" class="section">
             <div class="container">
-                <h2><i class="fas fa-info-circle"></i> ကျေးရွာအကြောင်း</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p id="village-description"></p>
-                        <div class="quick-facts">
-                            <h3><i class="fas fa-star"></i> အချက်အလက်များ</h3>
-                            <ul id="quick-facts-list"></ul>
-                        </div>
-                    </div>
-                    <div class="about-image">
-                        <img src="images/village-about.jpg" alt="ကျေးရွာမြင်ကွင်း" id="main-village-image">
+                <h2 class="section-title"><i class="fas fa-camera"></i> ကျေးရွာဓာတ်ပုံပြတိုက်</h2>
+                <div class="photo-museum">
+                    <div class="photo-grid" id="photo-grid">
+                        <!-- JavaScript မှဓာတ်ပုံများထည့်သွင်းမည် -->
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="education" class="section bg-light">
+        <!-- စာကြည့်တိုက်အပိုင်း -->
+        <section id="library" class="section bg-light">
             <div class="container">
-                <h2><i class="fas fa-graduation-cap"></i> ပညာရေးအခြေအနေ</h2>
-                
-                <div class="stats-grid" id="stats-container"></div>
-                
-                <div class="chart-container">
-                    <h3><i class="fas fa-chart-line"></i> နှစ်အလိုက်ကျောင်းနေနှုန်း</h3>
-                    <canvas id="educationChart"></canvas>
-                </div>
-                
-                <div class="school-schedule">
-                    <h3><i class="fas fa-calendar-alt"></i> ကျောင်းလှုပ်ရှားမှုများ</h3>
-                    <div class="timeline" id="school-timeline"></div>
+                <h2 class="section-title"><i class="fas fa-book"></i> ကျေးရွာစာကြည့်တိုက်</h2>
+                <div class="library-section">
+                    <div class="book-shelf" id="book-shelf">
+                        <!-- JavaScript မှစာအုပ်များထည့်သွင်းမည် -->
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="gallery" class="section">
+        <!-- အင်္ဂလိပ်စာအပိုင်း -->
+        <section id="english" class="section">
             <div class="container">
-                <h2><i class="fas fa-images"></i> ရွာ့အလှတရား</h2>
-                <div class="gallery-container">
-                    <div class="main-slide">
-                        <img src="village 1.jpg" alt="" id="current-slide">
-                        <img src="village 2.jpg" alt="" id="current-slide">
-                        <div class="slide-nav">
-                            <button id="prev-slide"><i class="fas fa-chevron-left"></i></button>
-                            <span id="slide-caption"></span>
-                            <button id="next-slide"><i class="fas fa-chevron-right"></i></button>
-                        </div>
+                <h2 class="section-title"><i class="fas fa-language"></i> အင်္ဂလိပ်စာသင်ကြားရေး</h2>
+                <div class="english-learning">
+                    <div class="english-cards" id="english-cards">
+                        <!-- JavaScript မှသင်ခန်းစာများထည့်သွင်းမည် -->
                     </div>
-                    <div class="thumbnail-container" id="thumbnail-container"></div>
                 </div>
-            </div>
-        </section>
-
-        <section id="map" class="section bg-light">
-            <div class="container">
-                <h2><i class="fas fa-map-marked-alt"></i> ကျေးရွာတည်နေရာ</h2>
-                <div id="village-map"></div>
-                <div class="map-info">
-                    <p><i class="fas fa-road"></i> <span id="village-location"></span></p>
-                    <p><i class="fas fa-clock"></i> မြို့နယ်ရုံးသို့ <span id="distance-to-town"></span></p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="section">
-            <div class="container">
-                <h2><i class="fas fa-envelope"></i> ဆက်သွယ်ရန်</h2>
-                <form id="contact-form">
-                    <div class="form-group">
-                        <label for="name"><i class="fas fa-user"></i> အမည်</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><i class="fas fa-envelope"></i> အီးမေးလ်</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message"><i class="fas fa-comment"></i> စာတမ်း</label>
-                        <textarea id="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> ပေးပို့မည်</button>
-                </form>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3><i class="fas fa-map-marker-alt"></i> လိပ်စာ</h3>
-                    <p id="footer-address"></p>
-                </div>
-                <div class="footer-section">
-                    <h3><i class="fas fa-phone"></i> ဆက်သွယ်ရန်</h3>
-                    <p id="footer-contact"></p>
-                </div>
-                <div class="footer-section">
-                    <h3><i class="fas fa-share-alt"></i> လူမှုကွန်ရက်</h3>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>© <span id="current-year"></span> ကျေးလက်ပညာရေးမှတ်တမ်း. All rights reserved.</p>
-            </div>
+            <p>© 2023 ကျေးလက်ပညာရေးမှတ်တမ်း. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // ကျေးရွာအချက်အလက်များ
-        const villageData = {
-            name: "သီပေါကျေးရွာ",
-            location: "ရှမ်းပြည်နယ်၊ ညောင်ရွှေခရိုင်",
-            description: "သီပေါကျေးရွာသည် ရှမ်းပြည်နယ်၏ အလှပဆုံးကျေးရွာများထဲမှ တစ်ခုဖြစ်ပြီး လက်ဖက်စိုက်ပျိုးရေးကို အဓိကလုပ်ကိုင်ကြသည်။ ကျေးရွာတွင် မူလတန်းကျောင်း ၂ကျောင်း၊ အလယ်တန်းကျောင်း ၁ကျောင်းရှိပြီး ကျေးရွာသားများသည် ပညာရေးကို အထူးအလေးထားကြသည်။",
-            
-            quickFacts: [
-                "တည်နေရာ: ရှမ်းပြည်နယ်၊ ညောင်ရွှေခရိုင်",
-                "လူဦးရေ: ၁,၂၀၀ ဦး",
-                "အဓိကလုပ်ငန်း: လက်ဖက်စိုက်ပျိုးရေး",
-                "ဘာသာရေး: ဗုဒ္ဓဘာသာ ၉၀%",
-                "ပညာတတ်နှုန်း: ၇၈%"
-            ],
-            
-            education: {
-                primarySchools: 2,
-                middleSchool: 1,
-                students: 245,
-                teachers: 12,
-                literacyRate: "78%",
-                enrollmentRate: "92%"
+        // ဓာတ်ပုံပြတိုက်ဒေတာ
+        const museumPhotos = [
+            { id: 1, src: "images/museum/photo1.jpg", title: "ကျေးရွာသမိုင်း", year: "၁၉၅၀" },
+            { id: 2, src: "images/museum/photo2.jpg", title: "ကျေးရွာဦးဆောင်သူများ", year: "၁၉၇၀" },
+            { id: 3, src: "images/museum/photo3.jpg", title: "ကျေးလက်ပညာရေး", year: "၁၉၈၀" },
+            { id: 4, src: "images/museum/photo4.jpg", title: "စိုက်ပျိုးရေးလုပ်ငန်း", year: "၁၉၉၀" },
+            { id: 5, src: "images/museum/photo5.jpg", title: "ကျေးရွာကလေးများ", year: "၂၀၀၀" },
+            { id: 6, src: "images/museum/photo6.jpg", title: "ကျေးရွာလမ်းများ", year: "၂၀၁၀" },
+            { id: 7, src: "images/museum/photo7.jpg", title: "ကျေးရွာပွဲတော်", year: "၂၀၁၅" },
+            { id: 8, src: "images/museum/photo8.jpg", title: "ကျေးလက်ကျန်းမာရေး", year: "၂၀၂၀" }
+        ];
+
+        // စာကြည့်တိုက်စာအုပ်ဒေတာ
+        const libraryBooks = [
+            { id: 1, title: "မြန်မာ့ရိုးရာပုံပြင်", author: "ဦးသန်းထွန်း", category: "စာပေ" },
+            { id: 2, title: "ကျေးလက်ဖွံ့ဖြိုးရေး", author: "ဒေါ်မြင့်မြင့်ခင်", category: "ပညာရေး" },
+            { id: 3, title: "စိုက်ပျိုးရေးနည်းပညာ", author: "ဦးအောင်မြင့်", category: "စိုက်ပျိုးရေး" },
+            { id: 4, title: "ကျန်းမာရေးဗဟုသုတ", author: "ဒေါက်တာမိုးသူ", category: "ကျန်းမာရေး" },
+            { id: 5, title: "အင်္ဂလိပ်စာအခြေခံ", author: "ဦးကျော်မင်း", category: "ဘာသာစကား" },
+            { id: 6, title: "ကွန်ပျူတာအခြေခံ", author: "ဒေါ်နီလာထွန်း", category: "နည်းပညာ" },
+            { id: 7, title: "စီးပွားရေးလုပ်ငန်း", author: "ဦးဝင်းလှိုင်", category: "စီးပွားရေး" },
+            { id: 8, title: "သဘာဝပတ်ဝန်းကျင်", author: "ဒေါက်တာရွှေရည်", category: "ပတ်ဝန်းကျင်" }
+        ];
+
+        // အင်္ဂလိပ်စာသင်ကြားရေးဒေတာ
+        const englishResources = [
+            {
+                id: 1,
+                title: "အခြေခံအင်္ဂလိပ်စာ",
+                icon: "fa-language",
+                lessons: [
+                    "အခြေခံစကားပြော",
+                    "နေ့စဉ်သုံးစကားများ",
+                    "ဝါကျတည်ဆောက်ပုံ"
+                ]
             },
-            
-            enrollmentData: {
-                labels: ["2018", "2019", "2020", "2021", "2022"],
-                data: [85, 88, 90, 89, 92]
+            {
+                id: 2,
+                title: "သဒ္ဒါသင်ခန်းစာ",
+                icon: "fa-book-open",
+                lessons: [
+                    "Present Tense",
+                    "Past Tense",
+                    "Future Tense"
+                ]
             },
-            
-            schoolEvents: [
-                {
-                    date: "ဇန်နဝါရီ ၁၀",
-                    title: "ကျောင်းဖွင့်ပွဲ",
-                    description: "နှစ်စဉ်ကျောင်းဖွင့်ပွဲအခမ်းအနား"
-                },
-                {
-                    date: "မတ် ၂",
-                    title: "ပညာရေးလှုပ်ရှားမှုနေ့",
-                    description: "ကျေးရွာအခြေပြု ပညာရေးဆွေးနွေးပွဲ"
-                },
-                {
-                    date: "ဇွန် ၁၅",
-                    title: "စာမေးပွဲစတင်",
-                    description: "နှစ်လည်စာမေးပွဲများ စတင်"
-                },
-                {
-                    date: "အောက်တိုဘာ ၅",
-                    title: "ဆရာများနေ့",
-                    description: "ကျေးဇူးတင်လွှာပေးပို့ခြင်း"
-                }
-            ],
-            
-            gallery: [
-                {
-                    src: "images/school1.jpg",
-                    caption: "ကျေးရွာမူလတန်းကျောင်း"
-                },
-                {
-                    src: "images/village-view.jpg",
-                    caption: "ကျေးရွာမြင်ကွင်း"
-                },
-                {
-                    src: "images/classroom.jpg",
-                    caption: "စာသင်ခန်းအတွင်း"
-                },
-                {
-                    src: "images/students.jpg",
-                    caption: "ကျောင်းသားများ"
-                },
-                {
-                    src: "images/library.jpg",
-                    caption: "စာကြည့်တိုက်"
-                }
-            ],
-            
-            map: {
-                lat: 20.5937,
-                lng: 96.1563,
-                zoom: 14,
-                distanceToTown: "၁၅ မိုင်"
+            {
+                id: 3,
+                title: "ဝေါဟာရများ",
+                icon: "fa-spell-check",
+                lessons: [
+                    "နေ့စဉ်သုံးစကားလုံးများ",
+                    "အလုပ်အကိုင်ဆိုင်ရာစကားလုံးများ",
+                    "ကျန်းမာရေးဆိုင်ရာစကားလုံးများ"
+                ]
             },
-            
-            contact: {
-                address: "သီပေါကျေးရွာ၊ ညောင်ရွှေမြို့နယ်၊ ရှမ်းပြည်နယ်",
-                phone: "၀၉ ၁၂၃ ၄၅၆ ၇၈၉",
-                email: "thipawvillage@gmail.com"
+            {
+                id: 4,
+                title: "အသံထွက်သင်ခန်းစာ",
+                icon: "fa-volume-up",
+                lessons: [
+                    "ဗျည်းသံများ",
+                    "သရသံများ",
+                    "စကားပြောလေ့ကျင့်ခန်း"
+                ]
             }
-        };
+        ];
 
-        // Google Maps API အတွက် API Key
-        const googleMapsApiKey = "YOUR_GOOGLE_MAPS_API_KEY";
-
-        // DOM တွင် အချက်အလက်များထည့်သွင်းခြင်း
         document.addEventListener('DOMContentLoaded', function() {
-            // ကျေးရွာအမည်နှင့်ဖော်ပြချက်
-            document.getElementById('village-name').textContent = villageData.name;
-            document.getElementById('tagline').textContent = villageData.tagline || "ပညာရေး၊ ယဉ်ကျေးမှုနှင့် အနာဂတ်အိပ်မက်";
-            document.getElementById('village-description').textContent = villageData.description;
-            
-            // အချက်အလက်များ
-            const quickFactsList = document.getElementById('quick-facts-list');
-            villageData.quickFacts.forEach(fact => {
-                const li = document.createElement('li');
-                li.textContent = fact;
-                quickFactsList.appendChild(li);
-            });
-            
-            // ပညာရေးစာရင်းဇယား
-            const statsContainer = document.getElementById('stats-container');
-            const statsData = [
-                { icon: "fa-school", title: "မူလတန်းကျောင်း", value: villageData.education.primarySchools },
-                { icon: "fa-graduation-cap", title: "အလယ်တန်းကျောင်း", value: villageData.education.middleSchool },
-                { icon: "fa-user-graduate", title: "ကျောင်းသားဦးရေ", value: villageData.education.students },
-                { icon: "fa-chalkboard-teacher", title: "ဆရာဦးရေ", value: villageData.education.teachers },
-                { icon: "fa-book-reader", title: "စာတတ်မြောက်နှုန်း", value: villageData.education.literacyRate },
-                { icon: "fa-child", title: "ကျောင်းနေနှုန်း", value: villageData.education.enrollmentRate }
-            ];
-            
-            statsData.forEach(stat => {
-                const statCard = document.createElement('div');
-                statCard.className = 'stat-card';
-                statCard.innerHTML = `
-                    <i class="fas ${stat.icon}"></i>
-                    <h3>${stat.title}</h3>
-                    <p class="stat-value">${stat.value}</p>
-                `;
-                statsContainer.appendChild(statCard);
-            });
-            
-            // ကျောင်းနေနှုန်းဂရပ်
-            const ctx = document.getElementById('educationChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: villageData.enrollmentData.labels,
-                    datasets: [{
-                        label: 'ကျောင်းနေနှုန်း (%)',
-                        data: villageData.enrollmentData.data,
-                        backgroundColor: 'rgba(44, 120, 108, 0.2)',
-                        borderColor: 'rgba(44, 120, 108, 1)',
-                        borderWidth: 2,
-                        tension: 0.3,
-                        fill: true
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 80,
-                            max: 100
-                        }
-                    }
-                }
-            });
-            
-            // ကျောင်းလှုပ်ရှားမှုဇယား
-            const timeline = document.getElementById('school-timeline');
-            villageData.schoolEvents.forEach((event, index) => {
-                const timelineItem = document.createElement('div');
-                timelineItem.className = `timeline-item ${index % 2 === 0 ? 'left' : 'right'}`;
-                timelineItem.innerHTML = `
-                    <div class="timeline-content">
-                        <div class="timeline-date">${event.date}</div>
-                        <h4>${event.title}</h4>
-                        <p>${event.description}</p>
+            // ဓာတ်ပုံပြတိုက်ဖော်ပြခြင်း
+            const photoGrid = document.getElementById('photo-grid');
+            museumPhotos.forEach(photo => {
+                const photoCard = document.createElement('div');
+                photoCard.className = 'photo-card';
+                photoCard.innerHTML = `
+                    <img src="${photo.src}" alt="${photo.title}">
+                    <div class="photo-info">
+                        <h4>${photo.title}</h4>
+                        <p>${photo.year}</p>
                     </div>
                 `;
-                timeline.appendChild(timelineItem);
+                photoGrid.appendChild(photoCard);
             });
-            
-            // ဓာတ်ပုံပြခန်း
-            let currentSlideIndex = 0;
-            const currentSlide = document.getElementById('current-slide');
-            const slideCaption = document.getElementById('slide-caption');
-            const thumbnailContainer = document.getElementById('thumbnail-container');
-            
-            function showSlide(index) {
-                currentSlide.src = villageData.gallery[index].src;
-                currentSlide.alt = villageData.gallery[index].caption;
-                slideCaption.textContent = villageData.gallery[index].caption;
-                
-                // Update active thumbnail
-                const thumbnails = document.querySelectorAll('.thumbnail');
-                thumbnails.forEach((thumb, i) => {
-                    if (i === index) {
-                        thumb.classList.add('active');
-                    } else {
-                        thumb.classList.remove('active');
-                    }
-                });
-            }
-            
-            // ဓာတ်ပုံများအားလုံးအတွက် thumbnail ဖန်တီးခြင်း
-            villageData.gallery.forEach((photo, index) => {
-                const thumbnail = document.createElement('div');
-                thumbnail.className = 'thumbnail';
-                if (index === 0) thumbnail.classList.add('active');
-                thumbnail.innerHTML = `<img src="${photo.src}" alt="${photo.caption}">`;
-                thumbnail.addEventListener('click', () => {
-                    currentSlideIndex = index;
-                    showSlide(currentSlideIndex);
-                });
-                thumbnailContainer.appendChild(thumbnail);
+
+            // စာကြည့်တိုက်စာအုပ်များဖော်ပြခြင်း
+            const bookShelf = document.getElementById('book-shelf');
+            libraryBooks.forEach(book => {
+                const bookItem = document.createElement('div');
+                bookItem.className = 'book';
+                bookItem.innerHTML = `
+                    <div class="book-cover">${book.title}</div>
+                    <div class="book-title">${book.title}</div>
+                    <div class="book-author">${book.author}</div>
+                `;
+                bookShelf.appendChild(bookItem);
             });
-            
-            // ပထမဆုံးဓာတ်ပုံပြသခြင်း
-            if (villageData.gallery.length > 0) {
-                showSlide(0);
-            }
-            
-            // နောက်ဓာတ်ပုံသို့ပြောင်းခြင်း
-            document.getElementById('next-slide').addEventListener('click', () => {
-                currentSlideIndex = (currentSlideIndex + 1) % villageData.gallery.length;
-                showSlide(currentSlideIndex);
+
+            // အင်္ဂလိပ်စာသင်ကြားရေးဖော်ပြခြင်း
+            const englishCards = document.getElementById('english-cards');
+            englishResources.forEach(resource => {
+                const card = document.createElement('div');
+                card.className = 'english-card';
+                card.innerHTML = `
+                    <h3><i class="fas ${resource.icon}"></i> ${resource.title}</h3>
+                    <ul>
+                        ${resource.lessons.map(lesson => `<li>${lesson}</li>`).join('')}
+                    </ul>
+                `;
+                englishCards.appendChild(card);
             });
-            
-            // အရှေ့ဓာတ်ပုံသို့ပြောင်းခြင်း
-            document.getElementById('prev-slide').addEventListener('click', () => {
-                currentSlideIndex = (currentSlideIndex - 1 + villageData.gallery.length) % villageData.gallery.length;
-                showSlide(currentSlideIndex);
-            });
-                <section id="gallery" class="section">
-    <div class="container">
-        <h2><i class="fas fa-images"></i> ကျေးရွာဓာတ်ပုံများ</h2>
-        
-        <!-- ရှာဖွေရန် အတွက် စာရိုက်နယ် -->
-        <div class="search-box">
-            <input type="text" id="search-input" placeholder="ဓာတ်ပုံရှာရန်...">
-            <button id="search-btn"><i class="fas fa-search"></i></button>
-        </div>
-        
-        <!-- အမျိုးအစားခွဲရန် ခလုတ်များ -->
-        <div class="category-buttons">
-            <button class="category-btn active" data-category="all">အားလုံး</button>
-            <button class="category-btn" data-category="school">ကျောင်း</button>
-            <button class="category-btn" data-category="nature">သဘာဝ</button>
-            <button class="category-btn" data-category="people">လူမှုဘဝ</button>
-            <button class="category-btn" data-category="event">ပွဲများ</button>
-        </div>
-        
-        <!-- ဓာတ်ပုံများပြသမည့်နေရာ -->
-        <div class="photo-gallery" id="photo-gallery"></div>
-        
-        <!-- ဓာတ်ပုံအသေးစားပြမည့်နေရာ -->
-        <div class="lightbox" id="lightbox">
-            <div class="lightbox-content">
-                <span class="close-btn">&times;</span>
-                <img src="" alt="" id="lightbox-img">
-                <div class="lightbox-nav">
-                    <button id="prev-photo"><i class="fas fa-chevron-left"></i></button>
-                    <span id="photo-caption"></span>
-                    <button id="next-photo"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- စာမျက်နှာအောက်ခြေတွင် ဓာတ်ပုံအရေအတွက်ပြမည့်နေရာ -->
-        <div class="pagination">
-            <button id="prev-page"><i class="fas fa-chevron-left"></i> နောက်သို့</button>
-            <span id="page-info">စာမျက်နှာ 1 / 5</span>
-            <button id="next-page">ရှေ့သို့ <i class="fas fa-chevron-right"></i></button>
-        </div>
-    </div>
-</section>
-       /* ဓာတ်ပုံပြခန်းစတိုင် */
-#gallery {
-    background-color: #f9f9f9;
-    padding: 4rem 0;
-}
-
-.search-box {
-    display: flex;
-    margin-bottom: 1.5rem;
-    max-width: 500px;
-}
-
-#search-input {
-    flex: 1;
-    padding: 0.8rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px 0 0 4px;
-    font-family: 'Padauk', sans-serif;
-    font-size: 1rem;
-}
-
-#search-btn {
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    padding: 0 1.2rem;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#search-btn:hover {
-    background-color: var(--dark);
-}
-
-.category-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-}
-
-.category-btn {
-    padding: 0.5rem 1rem;
-    background-color: #e0e0e0;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.3s;
-    font-family: 'Padauk', sans-serif;
-}
-
-.category-btn.active {
-    background-color: var(--primary);
-    color: white;
-}
-
-.category-btn:hover:not(.active) {
-    background-color: #d0d0d0;
-}
-
-.photo-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.photo-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    aspect-ratio: 4/3;
-    cursor: pointer;
-}
-
-.photo-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-.photo-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s;
-}
-
-.photo-item:hover img {
-    transform: scale(1.05);
-}
-
-.photo-caption {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-    color: white;
-    padding: 1rem;
-    transform: translateY(100%);
-    transition: transform 0.3s;
-}
-
-.photo-item:hover .photo-caption {
-    transform: translateY(0);
-}
-
-/* Lightbox စတိုင် */
-.lightbox {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.9);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-}
-
-#lightbox-img {
-    max-width: 100%;
-    max-height: 80vh;
-    display: block;
-    margin: 0 auto;
-    border-radius: 4px;
-}
-
-.close-btn {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    color: white;
-    font-size: 2rem;
-    cursor: pointer;
-}
-
-.lightbox-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-    color: white;
-}
-
-.lightbox-nav button {
-    background-color: rgba(255,255,255,0.2);
-    border: none;
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.lightbox-nav button:hover {
-    background-color: rgba(255,255,255,0.4);
-}
-
-#photo-caption {
-    flex-grow: 1;
-    text-align: center;
-    padding: 0 1rem;
-}
-
-/* စာမျက်နှာအောက်ခြေ */
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 2rem;
-}
-
-.pagination button {
-    padding: 0.5rem 1rem;
-    background-color: var(--primary);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.pagination button:hover {
-    background-color: var(--dark);
-}
-
-.pagination button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-#page-info {
-    font-weight: bold;
-}
-
-/* တုံ့ပြန်နိုင်သော ဒီဇိုင်း */
-@media (max-width: 768px) {
-    .photo-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    .photo-gallery {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    }
-    
-    .category-buttons {
-        justify-content: center;
-    }
-}
-        // ဓာတ်ပုံဒေတာ (ဥပမာ - ဓာတ်ပုံ ၅၀ အတွက်)
-const photoData = [
-    { id: 1, src: "images/gallery/school1.jpg", caption: "ကျေးရွာမူလတန်းကျောင်း", category: "school" },
-    { id: 2, src: "images/gallery/nature1.jpg", caption: "ကျေးရွာသဘာဝမြင်ကွင်း", category: "nature" },
-    { id: 3, src: "images/gallery/people1.jpg", caption: "ကျေးရွာသားများ", category: "people" },
-    { id: 4, src: "images/gallery/event1.jpg", caption: "ကျေးရွာပွဲတော်", category: "event" },
-    { id: 5, src: "images/gallery/school2.jpg", caption: "ကျောင်းသားများ စာသင်နေပုံ", category: "school" },
-    // ... ဓာတ်ပုံ ၄၅ ပုံထပ်မံထည့်ရန်
-];
-
-// ဓာတ်ပုံပြခန်းစတင်ခြင်း
-document.addEventListener('DOMContentLoaded', function() {
-    const galleryContainer = document.getElementById('photo-gallery');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const photoCaption = document.getElementById('photo-caption');
-    const closeBtn = document.querySelector('.close-btn');
-    const prevPhotoBtn = document.getElementById('prev-photo');
-    const nextPhotoBtn = document.getElementById('next-photo');
-    const searchInput = document.getElementById('search-input');
-    const searchBtn = document.getElementById('search-btn');
-    const categoryBtns = document.querySelectorAll('.category-btn');
-    const prevPageBtn = document.getElementById('prev-page');
-    const nextPageBtn = document.getElementById('next-page');
-    const pageInfo = document.getElementById('page-info');
-    
-    let currentPhotos = [];
-    let currentIndex = 0;
-    let currentPage = 1;
-    const photosPerPage = 12;
-    let activeCategory = "all";
-    let searchTerm = "";
-    
-    // ဓာတ်ပုံများဖော်ပြခြင်း
-    function displayPhotos() {
-        galleryContainer.innerHTML = "";
-        
-        // အမျိုးအစားနှင့် ရှာဖွေမှုအရ ဓာတ်ပုံများစစ်ထုတ်ခြင်း
-        let filteredPhotos = photoData;
-        
-        if (activeCategory !== "all") {
-            filteredPhotos = filteredPhotos.filter(photo => photo.category === activeCategory);
-        }
-        
-        if (searchTerm) {
-            filteredPhotos = filteredPhotos.filter(photo => 
-                photo.caption.toLowerCase().includes(searchTerm.toLowerCase())
-            );
-        }
-        
-        currentPhotos = filteredPhotos;
-        
-        // စာမျက်နှာခွဲခြင်း
-        const totalPages = Math.ceil(currentPhotos.length / photosPerPage);
-        const startIndex = (currentPage - 1) * photosPerPage;
-        const endIndex = Math.min(startIndex + photosPerPage, currentPhotos.length);
-        const paginatedPhotos = currentPhotos.slice(startIndex, endIndex);
-        
-        // ဓာတ်ပုံများဖော်ပြခြင်း
-        paginatedPhotos.forEach(photo => {
-            const photoItem = document.createElement('div');
-            photoItem.className = 'photo-item';
-            photoItem.dataset.id = photo.id;
-            photoItem.innerHTML = `
-                <img src="${photo.src}" alt="${photo.caption}">
-                <div class="photo-caption">${photo.caption}</div>
-            `;
-            
-            photoItem.addEventListener('click', () => openLightbox(photo.id));
-            galleryContainer.appendChild(photoItem);
         });
-        
-        // စာမျက်နှာအချက်အလက်များပြသခြင်း
-        pageInfo.textContent = `စာမျက်နှာ ${currentPage} / ${totalPages}`;
-        
-        // ခလုတ်များကိုအသက်သွင်းခြင်း
-        prevPageBtn.disabled = currentPage === 1;
-        nextPageBtn.disabled = currentPage === totalPages;
-    }
-    
-    // Lightbox ဖွင့်ခြင်း
-    function openLightbox(photoId) {
-        const index = currentPhotos.findIndex(photo => photo.id === photoId);
-        if (index !== -1) {
-            currentIndex = index;
-            updateLightbox();
-            lightbox.style.display = "flex";
-            document.body.style.overflow = "hidden";
-        }
-    }
-    
-    // Lightbox ပြင်ဆင်ခြင်း
-    function updateLightbox() {
-        const photo = currentPhotos[currentIndex];
-        lightboxImg.src = photo.src;
-        lightboxImg.alt = photo.caption;
-        photoCaption.textContent = photo.caption;
-    }
-    
-    // Lightbox ပိတ်ခြင်း
-    function closeLightbox() {
-        lightbox.style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-    
-    // နောက်ဓာတ်ပုံသို့ပြောင်းခြင်း
-    function showNextPhoto() {
-        currentIndex = (currentIndex + 1) % currentPhotos.length;
-        updateLightbox();
-    }
-    
-    // အရှေ့ဓာတ်ပုံသို့ပြောင်းခြင်း
-    function showPrevPhoto() {
-        currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
-        updateLightbox();
-    }
-    
-    // အမျိုးအစားခွဲခြင်း
-    function filterByCategory(category) {
-        activeCategory = category;
-        currentPage = 1;
-        displayPhotos();
-    }
-    
-    // ရှာဖွေခြင်း
-    function searchPhotos() {
-        searchTerm = searchInput.value.trim();
-        currentPage = 1;
-        displayPhotos();
-    }
-    
-    // နောက်စာမျက်နှာသို့ပြောင်းခြင်း
-    function nextPage() {
-        const totalPages = Math.ceil(currentPhotos.length / photosPerPage);
-        if (currentPage < totalPages) {
-            currentPage++;
-            displayPhotos();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }
-    
-    // အရှေ့စာမျက်နှာသို့ပြောင်းခြင်း
-    function prevPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            displayPhotos();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    }
-    
-    // Event listeners များ
-    closeBtn.addEventListener('click', closeLightbox);
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) closeLightbox();
-    });
-    nextPhotoBtn.addEventListener('click', showNextPhoto);
-    prevPhotoBtn.addEventListener('click', showPrevPhoto);
-    searchBtn.addEventListener('click', searchPhotos);
-    searchInput.addEventListener('keyup', (e) => {
-        if (e.key === 'Enter') searchPhotos();
-    });
-    
-    categoryBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            categoryBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            filterByCategory(btn.dataset.category);
-        });
-    });
-    
-    prevPageBtn.addEventListener('click', prevPage);
-    nextPageBtn.addEventListener('click', nextPage);
-    
-    // ကီးဘုတ်ဖြင့်ထိန်းချုပ်ခြင်း
-    document.addEventListener('keydown', (e) => {
-        if (lightbox.style.display === "flex") {
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') showNextPhoto();
-            if (e.key === 'ArrowLeft') showPrevPhoto();
-        }
-    });
-    
-    // ပထမဆုံးဓာတ်ပုံများဖော်ပြခြင်း
-    displayPhotos();
-});
-
-
-
-
-
-
-
-            
-            // Google Maps စတင်ခြင်း
-            function initMap() {
-                const villageLocation = { lat: villageData.map.lat, lng: villageData.map.lng };
-                const map = new google.maps.Map(document.getElementById('village-map'), {
-                    zoom: villageData.map.zoom,
-                    center: villageLocation
-                });
-                
-                new google.maps.Marker({
-                    position: villageLocation,
-                    map: map,
-                    title: villageData.name
-                });
-            }
-            
-            // မြေပုံအချက်အလက်များပြသခြင်း
-            document.getElementById('village-location').
-
-
-            
+    </script>
+</body>
+</html>
