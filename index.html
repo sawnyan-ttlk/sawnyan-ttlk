@@ -1,163 +1,3 @@
-Norbu Buddhist AI Friend, [7/2/2025 7:53 PM]
-<!DOCTYPE html>
-<html lang="my">
-<head>
-    <meta charset="UTF-8">
-    <title>ဗုဒ္ဓဘာသာ အခြေခံသိကောင်းစရာများ</title>
-    <style>
-        :root {
-            --primary-color: #8B4513;
-            --secondary-color: #DEB887;
-            --accent-color: #FFE4B5;
-        }
-
-        body {
-            font-family: 'Padauk', sans-serif;
-            margin: 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        h1, h2 {
-            color: var(--primary-color);
-            text-align: center;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        h1::after, h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--primary-color);
-        }
-
-        .section {
-            margin: 30px 0;
-            padding: 20px;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-        }
-
-        .dhamma-wheel {
-            width: 120px;
-            height: 120px;
-            display: block;
-            margin: 20px auto;
-            animation: spin 20s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .buddha-image {
-            max-width: 300px;
-            display: block;
-            margin: 20px auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .buddha-image:hover {
-            transform: scale(1.05);
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .button {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            background: var(--accent-color);
-            border-radius: 10px;
-        }
-
-        / Dark mode switch /
-        .dark-mode-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-        }
-
-        / Dark mode styles /
-        .dark-mode {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-        }
-
-        .dark-mode .container {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: white;
-        }
-
-        .dark-mode .card {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        / Animation classes /
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s 1/3
-
-Norbu Buddhist AI Friend, [7/2/2025 8:06 PM]
 <!DOCTYPE html>
 <html lang="my">
 <head>
@@ -166,349 +6,110 @@ Norbu Buddhist AI Friend, [7/2/2025 8:06 PM]
     <title>ဗုဒ္ဓဘာသာ အခြေခံသိကောင်းစရာများ</title>
     <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        / Previous CSS remains and add these new styles /
-        
-        / Meditation Timer Styles /
-        .meditation-timer {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 20px 0;
-        }
+    <link rel="stylesheet" href="styles.css"> <!-- Ensure you link the CSS file here -->
+</head>
+<body>
+    <div class="container">
+        <h1>ဗုဒ္ဓဘာသာ အခြေခံသိကောင်းစရာများ</h1>
 
-        .timer-display {
-            font-size: 3rem;
-            margin: 20px 0;
-            font-family: monospace;
-            color: var(--primary-color);
-        }
+        <!-- Meditation Timer Section -->
+        <div class="meditation-timer">
+            <h2>သ медیتခင်စ<br></h2>
+            <div class="timer-display" id="timerDisplay">00:00</div>
+            <button onclick="startTimer()">စတင်ရန်</button>
+        </div>
 
-        / Prayer Wheel Animation /
-        .prayer-wheel {
-            width: 100px;
-            height: 100px;
-            margin: 20px auto;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
+        <!-- Prayer Wheel Animation -->
+        <div class="prayer-wheel" onclick="spinWheel()">
+            <img src="path-to-your-image/prayer-wheel.png" alt="Prayer Wheel" />
+        </div>
 
-        .prayer-wheel:active {
-            animation: spin 0.5s linear infinite;
-        }
+        <!-- Quote Carousel -->
+        <div class="quote-carousel">
+            <div class="quote-slide active">“မုိးထဲမွာအာသာရိပ္ခ်က္ရွိလို႔၊ အၿငိဳးစားခ်င္တယ္။”</div>
+            <div class="quote-slide">“ဤလက မျှော်လင့်ချက်ရှိ၊ တောင့်တယ်။”</div>
+            <div class="quote-slide">“သင်ထုတ်လုပ်သောလှိက်လှဲမှု။”</div>
+            <button onclick="nextQuote()">နောက်ကွယ်သို</button>
+        </div>
 
-        / Quote Carousel /
-        .quote-carousel {
-            position: relative;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
-            margin: 20px 0;
-        }
+        <!-- Progress Tracker -->
+        <div class="progress-tracker">
+            <h2>သင်သည် ဘာဝါလီစန်နှစ်ပုံရအောင်ရှိလျက်</h2>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 60%;"></div>
+            </div>
+        </div>
+    </div>
 
-        .quote-slide {
-            display: none;
-            padding: 20px;
-            text-align: center;
-            font-style: italic;
-        }
+    <!-- Floating Menu -->
+    <div class="floating-menu" onclick="toggleMenu()">
+        <i class="fas fa-plus"></i>
+    </div>
+    <div class="menu-items">
+        <div><a href="#">မူလစာမျက်နှာ</a></div>
+        <div><a href="#">သီချင်းများ</a></div>
+        <div><a href="#">အသိုင်းအဝိုင်း</a></div>
+    </div>
 
-        .quote-slide.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
+    <!-- Notification System -->
+    <div class="notification" id="notification">အသိပေးချက်။</div>
 
-        / Progress Tracker /
-        .progress-tracker {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-        }
-
-        .progress-bar {
-            height: 20px;
-            background: #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--primary-color);
-            width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        / Floating Menu /
-        .floating-menu {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-        }
-
-        .menu-items {
-            position: absolute;
-            bottom: 70px;
-            right: 0;
-            background: white;
-            border-radius: 10px;
-            padding: 10px;
-            display: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .menu-items.active {
-            display: block;
-        }
-
-        / Notification System /
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 15px 25px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transform: translateX(150%);
-            transition: transform 0.3s ease;
-            z-index: 1000;
-        }
-
-        .notification.show {
-            transform: translateX(0);
-        }
-
-        / Responsive Design Improvements /
-        @media (max-width: 768px) {
-            .grid-container {
-                grid-template-columns: 1fr;
-            }
-
-            .container {
-                margin: 10px;
-                padding: 10px;
-            }
-
-            .meditation-timer {
-                padding: 10px;
-            }
-
-            .timer-display {
-                font-size: 2rem;
-            }
-        }
-
-        / Animation for page 1/3
-
-Norbu Buddhist AI Friend, [7/2/2025 8:06 PM]
-menuItems.classList.toggle('active');
-        });
-
-        // Notification System
-        function showNotification(message) {
-            const notification = document.createElement('div');
-            notification.classList.add('notification');
-            notification.textContent = message;
-            document.body.appendChild(notification);
-
-            setTimeout(() ={
-                notification.classList.add('show');
-            }, 100);
-
-            setTimeout(() ={
-                notification.classList.remove('show');
-                setTimeout(() ={
-                    document.body.removeChild(notification);
-                }, 300);
-            }, 3000);
-        }
-
-        // Prayer Wheel Interaction
-        let rotations = 0;
-        const prayerWheel = document.getElementById('prayerWheel');
-        
-        prayerWheel.addEventListener('click', () ={
-            rotations++;
-            showNotification(သာဓု! ${rotations} ကြိမ်ပြည့်ပါပြီ);
-        });
-
-        // Page Transition
-        function initPageTransitions() {
-            const observer = new IntersectionObserver((entries) ={
-                entries.forEach(entry ={
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            });
-
-            document.querySelectorAll('.section').forEach(section ={
-                section.classList.add('page-transition');
-                observer.observe(section);
-            });
-        }
-
-        initPageTransitions();
-    </script>
+    <script src="script.js"></script> <!-- Ensure you link your JS file here -->
 </body>
 </html>
-
-အသစ်ထပ်မံဖြည့်စွက်ထားသော features များ:
-
-1. တရားထိုင်ချိန် အချိန်တိုင်းစနစ်
-2. Prayer Wheel အလုပ်လုပ်ပုံ animation
-3. ဗုဒ္ဓဝင်ကျမ်းမှ ကောက်နုတ်ချက်များ ပြသသည့် carousel
-4. သင်ခန်းစာ တိုးတက်မှု tracker
-5. Floating menu
-6. Notification system
-7. Responsive design improvements
-8. Page transition effects
-9. Progress tracking system
-10. Interactive elements များ
-
-ထို့အပြင် code ကို ပိုမိုကောင်းမွ 3/3
-
-Norbu Buddhist AI Friend, [7/2/2025 8:06 PM]
-transitions /
-        .page-transition {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.5s ease;
+s ease;
         }
 
-        .page-transition.visible {
+        .fade-in.show {
             opacity: 1;
             transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Previous HTML content remains and add these new elements -->
-
-    <!-- Meditation Timer -->
-    <div class="meditation-timer">
-        <h2>တရားထိုင်ချိန် အချိန်တိုင်း</h2>
-        <div class="timer-display">00:00</div>
-        <button class="button" id="startTimer">စတင်ရန်</button>
-        <button class="button" id="pauseTimer">ရပ်နားရန်</button>
-        <button class="button" id="resetTimer">ပြန်စရန်</button>
+    <div class="dark-mode-switch">
+        <button class="button" onclick="toggleDarkMode()">Dark Mode</button>
     </div>
-
-    <!-- Prayer Wheel -->
-    <div class="prayer-wheel">
-        <img src="prayer-wheel.png" alt="Prayer Wheel" id="prayerWheel">
-        <p>နှိပ်၍ လှည့်ပါ</p>
-    </div>
-
-    <!-- Quote Carousel -->
-    <div class="quote-carousel">
-        <div class="quote-slide active">
-            "မေတ္တာတရားဖြင့် အမုန်းကို အောင်နိုင်နိုင်၏"
+    <div class="container">
+        <h1>ဗုဒ္ဓဘာသာ အခြေခံသိကောင်းစရာများ</h1>
+        <img src="dhamma-wheel.png" alt="Dhamma Wheel" class="dhamma-wheel">
+        <div class="section fade-in" id="introduction">
+            <h2>နိဒါန်း</h2>
+            <p>ဗုဒ္ဓဘာသာသည် ရုပ်သိမ်းမှုများနှင့် ပညာရှင်ဖြစ်ရန် ချဉ်းကပ်မှုများပါရှိသော လောကဓုမှတ်တမ်းလေးဖြစ်ပါသည်။</p>
         </div>
-        <div class="quote-slide">
-            "စိတ်ကို ထိန်းသိမ်းခြင်းသည် ကောင်း၏"
+        <div class="grid-container">
+            <div class="card fade-in" id="five-precepts">
+                <h3>၅ ကျင့်ဝတ်</h3>
+                <p>ဘဝကို ကာကွယ်ရန်နှင့် စစ်တမ်းအခြေအနေများကို ပေါင်းစည်းရန်၊ အလေးအနက်ပြုခြင်းတို ပါဝင်သည်။</p>
+            </div>
+            <div class="card fade-in" id="four-noble-truths">
+                <h3>လေးကြိမ်သိမြင်ချက်</h3>
+                <p>ဒုက္ခများနှင့် ပြုပြင်ပျက်စီးမှုများသည် အများအတွက် စကားပြောပါသည်။</p>
+            </div>
+            <div class="card fade-in" id="eightfold-path">
+                <h3>၈ ရွှေနှစ်ခု</h3>
+                <p>ဆရာဘုရား၏ကိုယ်ရေး မှတ်တမ်းရရှိရန်လှုပ်ရှားမှု ၆ ယဉ်ကျေးမှုဟူ၍ တွေ့မြင်သည်။</p>
+            </div>
         </div>
-        <!-- Add more quotes as needed -->
-    </div>
-
-    <!-- Progress Tracker -->
-    <div class="progress-tracker">
-        <h3>သင်ခန်းစာ တိုးတက်မှု</h3>
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-    </div>
-
-    <!-- Floating Menu -->
-    <div class="floating-menu">
-        <i class="fas fa-bars"></i>
-        <div class="menu-items">
-            <a href="#home">ပင်မစာမျက်နှာ</a>
-            <a href="#meditation">တရားထိုင်ရန်</a>
-            <a href="#teachings">တရားတော်များ</a>
-            <a href="#about">အကြောင်း</a>
+        <div class="footer">
+            <p>&copy; 2025 မင်္ဂလာပါစေ။</p>
         </div>
     </div>
 
     <script>
-        // Previous JavaScript remains and add these new functions
-
-        // Meditation Timer
-        let timerInterval;
-        let seconds = 0;
-        let isRunning = false;
-
-        function updateTimer() {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = seconds % 60;
-            document.querySelector('.timer-display').textContent = 
-                ${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')};
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelectorAll('.fade-in').forEach((element) => {
+                element.classList.toggle('show');
+            });
         }
 
-        document.getElementById('startTimer').addEventListener('click', () ={
-            if (!isRunning) {
-                isRunning = true;
-                timerInterval = setInterval(() ={
-                    seconds++;
-                    updateTimer();
-                }, 1000);
-            }
-        });
-
-        document.getElementById('pauseTimer').addEventListener('click', () ={
-            isRunning = false;
-            clearInterval(timerInterval);
-        });
-
-        document.getElementById('resetTimer').addEventListener('click', () ={
-            isRunning = false;
-            clearInterval(timerInterval);
-            seconds = 0;
-            updateTimer();
-        });
-
-        // Quote Carousel
-        let currentQuote = 0;
-        const quotes = document.querySelectorAll('.quote-slide');
-
-        function showNextQuote() {
-            quotescurrentQuote.classList.remove('active');
-            currentQuote = (currentQuote + 1) % quotes.length;
-            quotescurrentQuote.classList.add('active');
+        // Automatically show fade-in elements after the page loads
+        window.onload = () => {
+            document.querySelectorAll('.fade-in').forEach((element) => {
+                element.classList.add('show');
+            });
         }
-
-        setInterval(showNextQuote, 5000);
-
-        // Progress Tracker
-        function updateProgress(percent) {
-            document.querySelector('.progress-fill').style.width = ${percent}%;
-        }
-
-        // Simulate progress
-        let progress = 0;
-        setInterval(() ={
-            if (progress < 100) {
-                progress += 1;
-                updateProgress(progress);
-            }
-        }, 1000);
-
-        // Floating Menu
-        const floatingMenu = document.querySelector('.floating-menu');
-        const menuItems = document.querySelector('.menu-items');
-
-        floatingMenu.addEventListener('click', () ={
-            2/3
+    </script>
+</body>
+</html>
