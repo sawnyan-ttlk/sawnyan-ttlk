@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biology Learning Hub</title>
+    <title>Biology Education Portal</title>
     <style>
-        /* CSS Styles */
+        /* Global Styles */
         :root {
-            --primary-color: #2e7d32;
-            --secondary-color: #81c784;
-            --accent-color: #ff8f00;
-            --light-color: #f1f8e9;
-            --dark-color: #1b5e20;
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
             --text-color: #333;
-            --white: #ffffff;
+            --text-light: #7f8c8d;
         }
         
         * {
@@ -24,25 +24,36 @@
         }
         
         body {
-            background-color: var(--light-color);
+            background-color: #f5f5f5;
             color: var(--text-color);
             line-height: 1.6;
         }
         
-        header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--accent-color);
         }
         
         .container {
-            width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
         
         .header-container {
@@ -52,14 +63,13 @@
         }
         
         .logo {
-            font-size: 1.8rem;
+            font-size: 24px;
             font-weight: bold;
-            display: flex;
-            align-items: center;
+            color: white;
         }
         
-        .logo i {
-            margin-right: 10px;
+        .logo span {
+            color: var(--secondary-color);
         }
         
         nav ul {
@@ -68,627 +78,409 @@
         }
         
         nav ul li {
-            margin-left: 1.5rem;
+            margin-left: 20px;
         }
         
         nav ul li a {
-            color: var(--white);
-            text-decoration: none;
+            color: white;
             font-weight: 500;
-            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
         }
         
         nav ul li a:hover {
-            color: var(--secondary-color);
+            background-color: rgba(255, 255, 255, 0.1);
         }
         
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
-            color: var(--white);
-            font-size: 1.5rem;
+            color: white;
+            font-size: 24px;
             cursor: pointer;
         }
         
+        /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 60vh;
-            display: flex;
-            align-items: center;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
             text-align: center;
-            color: var(--white);
-        }
-        
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
         }
         
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 48px;
+            margin-bottom: 20px;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 4px;
+            font-weight: 500;
             transition: background-color 0.3s;
-            cursor: pointer;
         }
         
         .btn:hover {
-            background-color: #ff6f00;
+            background-color: #2980b9;
+            color: white;
         }
         
-        .section {
-            padding: 4rem 0;
+        /* Chapters Section */
+        .chapters {
+            padding: 80px 0;
         }
         
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
-            color: var(--dark-color);
+            margin-bottom: 50px;
         }
         
-        .features {
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .chapter-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
         
-        .feature-card {
-            background-color: var(--white);
+        .chapter-card {
+            background-color: white;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .feature-card:hover {
+        .chapter-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .feature-img {
+        .chapter-img {
             height: 200px;
             overflow: hidden;
         }
         
-        .feature-img img {
+        .chapter-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s;
         }
         
-        .feature-card:hover .feature-img img {
+        .chapter-card:hover .chapter-img img {
             transform: scale(1.1);
         }
         
-        .feature-content {
-            padding: 1.5rem;
+        .chapter-content {
+            padding: 25px;
         }
         
-        .feature-content h3 {
-            margin-bottom: 1rem;
+        .chapter-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
             color: var(--primary-color);
         }
         
-        .topics {
-            background-color: var(--white);
+        .chapter-content p {
+            color: var(--text-light);
+            margin-bottom: 20px;
         }
         
-        .topic-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+        .chapter-content .btn {
+            padding: 8px 20px;
+            font-size: 14px;
         }
         
-        .topic-card {
-            background-color: var(--light-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-            transition: all 0.3s;
+        /* Content Section */
+        .content-section {
+            padding: 80px 0;
+            background-color: white;
         }
         
-        .topic-card:hover {
-            background-color: var(--secondary-color);
-            color: var(--white);
-        }
-        
-        .topic-card i {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        
-        .topic-card:hover i {
-            color: var(--white);
-        }
-        
-        .resources {
-            background-color: var(--light-color);
-        }
-        
-        .resource-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
-        
-        .tab-btn {
-            padding: 0.8rem 1.5rem;
-            background-color: var(--white);
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-        
-        .tab-btn:first-child {
-            border-radius: 5px 0 0 5px;
-        }
-        
-        .tab-btn:last-child {
-            border-radius: 0 5px 5px 0;
-        }
-        
-        .tab-btn.active {
-            background-color: var(--primary-color);
-            color: var(--white);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .resource-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-        
-        .resource-item {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .resource-item iframe {
-            width: 100%;
-            height: 200px;
-            border: none;
-        }
-        
-        .resource-info {
-            padding: 1.5rem;
-        }
-        
-        .quiz-section {
-            background-color: var(--white);
-        }
-        
-        .quiz-container {
-            max-width: 800px;
+        .content-container {
+            max-width: 900px;
             margin: 0 auto;
-            background-color: var(--light-color);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         }
         
-        .quiz-header {
+        .content-header {
             text-align: center;
-            margin-bottom: 2rem;
+            margin-bottom: 50px;
         }
         
-        .quiz-progress {
-            height: 10px;
-            background-color: #ddd;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background-color: var(--primary-color);
-            border-radius: 5px;
-            width: 0%;
-            transition: width 0.3s;
-        }
-        
-        .question-container {
-            margin-bottom: 2rem;
-        }
-        
-        .question {
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            font-weight: bold;
-        }
-        
-        .options {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-        
-        .option {
-            background-color: var(--white);
-            padding: 1rem;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-            border: 2px solid #ddd;
-        }
-        
-        .option:hover {
-            background-color: var(--secondary-color);
-            color: var(--white);
-            border-color: var(--secondary-color);
-        }
-        
-        .option.selected {
-            background-color: var(--primary-color);
-            color: var(--white);
-            border-color: var(--primary-color);
-        }
-        
-        .quiz-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .result-container {
-            text-align: center;
-            display: none;
-        }
-        
-        .result-container h2 {
-            margin-bottom: 1rem;
-        }
-        
-        .score {
-            font-size: 2rem;
-            font-weight: bold;
+        .content-header h1 {
+            font-size: 36px;
             color: var(--primary-color);
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
         }
         
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        .content-header .meta {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 20px;
         }
         
-        .form-group {
-            margin-bottom: 1.5rem;
+        .content-body {
+            line-height: 1.8;
         }
         
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
+        .content-body h2 {
+            font-size: 28px;
+            color: var(--primary-color);
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
         }
         
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
+        .content-body h3 {
+            font-size: 22px;
+            color: var(--secondary-color);
+            margin: 30px 0 15px;
         }
         
-        .form-group textarea {
-            height: 150px;
-            resize: vertical;
+        .content-body p {
+            margin-bottom: 20px;
         }
         
-        .newsletter {
+        .content-body ul, .content-body ol {
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        .content-body li {
+            margin-bottom: 10px;
+        }
+        
+        .content-body figure {
+            margin: 30px 0;
             text-align: center;
-            margin-top: 2rem;
         }
         
-        .newsletter-form {
-            display: flex;
-            max-width: 500px;
-            margin: 1rem auto 0;
+        .content-body figure img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .newsletter-form input {
-            flex: 1;
-            padding: 0.8rem;
+        .content-body figcaption {
+            font-size: 14px;
+            color: var(--text-light);
+            margin-top: 10px;
+        }
+        
+        .content-body table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+        
+        .content-body table th, 
+        .content-body table td {
+            padding: 12px 15px;
+            text-align: left;
             border: 1px solid #ddd;
-            border-radius: 5px 0 0 5px;
-            font-size: 1rem;
         }
         
-        .newsletter-form button {
-            padding: 0.8rem 1.5rem;
-            background-color: var(--primary-color);
-            color: var(--white);
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .content-body table th {
+            background-color: var(--light-color);
+            font-weight: 600;
         }
         
-        .newsletter-form button:hover {
-            background-color: var(--dark-color);
+        .content-body table tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
         
-        footer {
-            background-color: var(--dark-color);
-            color: var(--white);
-            padding: 3rem 0 1rem;
+        /* Sidebar */
+        .sidebar {
+            width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            position: sticky;
+            top: 100px;
         }
         
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+        .sidebar-title {
+            font-size: 20px;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-color);
         }
         
-        .footer-column h3 {
-            margin-bottom: 1.5rem;
-            font-size: 1.2rem;
-        }
-        
-        .footer-column ul {
+        .sidebar-menu {
             list-style: none;
         }
         
-        .footer-column ul li {
-            margin-bottom: 0.8rem;
+        .sidebar-menu li {
+            margin-bottom: 10px;
         }
         
-        .footer-column ul li a {
+        .sidebar-menu a {
+            display: block;
+            padding: 8px 10px;
+            border-radius: 4px;
+            color: var(--text-color);
+            transition: background-color 0.3s;
+        }
+        
+        .sidebar-menu a:hover {
+            background-color: var(--light-color);
             color: var(--secondary-color);
-            text-decoration: none;
+        }
+        
+        .sidebar-menu a.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        /* Two-column layout */
+        .two-column {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .main-content {
+            flex: 1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .footer-col p {
+            margin-bottom: 15px;
+            color: #bdc3c7;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #bdc3c7;
             transition: color 0.3s;
         }
         
-        .footer-column ul li a:hover {
-            color: var(--white);
+        .footer-col ul li a:hover {
+            color: var(--secondary-color);
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
+            gap: 15px;
         }
         
         .social-links a {
-            color: var(--white);
-            font-size: 1.5rem;
-            transition: color 0.3s;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            transition: background-color 0.3s;
         }
         
         .social-links a:hover {
-            color: var(--secondary-color);
+            background-color: var(--secondary-color);
         }
         
         .copyright {
             text-align: center;
-            padding-top: 1.5rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 14px;
         }
         
-        /* FAQ Styles */
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .faq-item {
-            background-color: var(--white);
-            margin-bottom: 1rem;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .faq-question {
-            padding: 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-weight: bold;
-            background-color: var(--light-color);
-        }
-        
-        .faq-answer {
-            padding: 0 1.5rem;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out, padding 0.3s ease;
-        }
-        
-        .faq-item.active .faq-answer {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-        
-        .faq-toggle {
-            font-size: 1.5rem;
-            transition: transform 0.3s;
-        }
-        
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-        
-        /* Blog Styles */
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .blog-card {
-            background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-        
-        .blog-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .blog-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        
-        .blog-card:hover .blog-img img {
-            transform: scale(1.1);
-        }
-        
-        .blog-content {
-            padding: 1.5rem;
-        }
-        
-        .blog-meta {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
-        .blog-title {
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-        
-        .blog-excerpt {
-            margin-bottom: 1.5rem;
-        }
-        
-        .read-more {
-            color: var(--primary-color);
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-        }
-        
-        .read-more i {
-            margin-left: 5px;
-            transition: transform 0.3s;
-        }
-        
-        .read-more:hover i {
-            transform: translateX(5px);
-        }
-        
-        /* About Page Styles */
-        .about-section {
-            background-color: var(--white);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
-        }
-        
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .team-member {
-            text-align: center;
-        }
-        
-        .team-img {
-            width: 150px;
-            height: 150px;
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: white;
             border-radius: 50%;
-            overflow: hidden;
-            margin: 0 auto 1rem;
-            border: 5px solid var(--light-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
         }
         
-        .team-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
         }
         
-        .team-name {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-        
-        .team-role {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        
-        .testimonials {
-            margin-top: 3rem;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .testimonial-card {
-            background-color: var(--light-color);
-            padding: 1.5rem;
-            border-radius: 8px;
-            position: relative;
-        }
-        
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-        
-        .testimonial-author {
-            font-weight: bold;
-        }
-        
-        .testimonial-role {
-            color: #666;
-            font-size: 0.9rem;
+        .back-to-top:hover {
+            background-color: var(--primary-color);
         }
         
         /* Responsive Styles */
+        @media (max-width: 992px) {
+            .two-column {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+                position: static;
+                margin-bottom: 40px;
+            }
+        }
+        
         @media (max-width: 768px) {
             .header-container {
                 flex-direction: column;
@@ -696,568 +488,254 @@
             }
             
             nav ul {
-                margin-top: 1rem;
+                margin-top: 20px;
                 flex-direction: column;
                 align-items: center;
             }
             
             nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-                position: absolute;
-                top: 1rem;
-                right: 1rem;
-            }
-            
-            .nav-menu {
-                display: none;
-                width: 100%;
-            }
-            
-            .nav-menu.active {
-                display: flex;
+                margin: 5px 0;
             }
             
             .hero h1 {
-                font-size: 2rem;
+                font-size: 36px;
             }
             
             .hero p {
-                font-size: 1rem;
+                font-size: 18px;
             }
             
-            .newsletter-form {
-                flex-direction: column;
+            .section-title h2 {
+                font-size: 30px;
             }
             
-            .newsletter-form input {
-                border-radius: 5px;
-                margin-bottom: 0.5rem;
+            .content-header h1 {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 80px 0;
             }
             
-            .newsletter-form button {
-                border-radius: 5px;
+            .hero h1 {
+                font-size: 30px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .chapter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 26px;
+            }
+            
+            .content-body h2 {
+                font-size: 24px;
+            }
+            
+            .content-body h3 {
+                font-size: 20px;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">
-                <i class="fas fa-microscope"></i>
-                <span>Biology Learning Hub</span>
-            </div>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <nav class="nav-menu" id="navMenu">
+            <a href="index.html" class="logo">Bio<span>Learn</span></a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#topics">Biology Topics</a></li>
-                    <li><a href="#resources">Resources</a></li>
-                    <li><a href="#quizzes">Quizzes</a></li>
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="chapters.html">Chapters</a></li>
+                    <li><a href="resources.html">Resources</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1>Explore the Wonders of Biology</h1>
-            <p>Discover the fascinating world of life sciences through interactive lessons, engaging resources, and fun quizzes.</p>
-            <a href="#topics" class="btn">Start Learning</a>
+    <section class="hero">
+        <div class="container">
+            <h1>Introduction to Biology</h1>
+            <p>Explore the fascinating world of living organisms, from molecular biology to ecosystems and biodiversity conservation.</p>
+            <a href="#start-learning" class="btn">Start Learning</a>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section class="section">
+    <!-- Chapters Section -->
+    <section class="chapters" id="start-learning">
         <div class="container">
-            <h2 class="section-title">Why Learn With Us?</h2>
-            <div class="features">
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Interactive Learning">
-                    </div>
-                    <div class="feature-content">
-                        <h3>Interactive Learning</h3>
-                        <p>Engage with interactive diagrams, 3D models, and virtual labs that make complex biological concepts easy to understand.</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Expert Resources">
-                    </div>
-                    <div class="feature-content">
-                        <h3>Expert Resources</h3>
-                        <p>Access high-quality content created by biology educators and researchers with years of experience.</p>
-                    </div>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-img">
-                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Personalized Learning">
-                    </div>
-                    <div class="feature-content">
-                        <h3>Personalized Learning</h3>
-                        <p>Track your progress and get personalized recommendations based on your learning style and pace.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Topics Section -->
-    <section class="section topics" id="topics">
-        <div class="container">
-            <h2 class="section-title">Explore Biology Topics</h2>
-            <div class="topic-grid">
-                <div class="topic-card">
-                    <i class="fas fa-microscope"></i>
-                    <h3>Cell Biology</h3>
-                    <p>Study the building blocks of life and their functions.</p>
-                </div>
-                <div class="topic-card">
-                    <i class="fas fa-dna"></i>
-                    <h3>Genetics</h3>
-                    <p>Explore DNA, genes, and inheritance patterns.</p>
-                </div>
-                <div class="topic-card">
-                    <i class="fas fa-frog"></i>
-                    <h3>Evolution</h3>
-                    <p>Understand how life changes over time.</p>
-                </div>
-                <div class="topic-card">
-                    <i class="fas fa-tree"></i>
-                    <h3>Ecology</h3>
-                    <p>Learn about ecosystems and environmental interactions.</p>
-                </div>
-                <div class="topic-card">
-                    <i class="fas fa-heartbeat"></i>
-                    <h3>Anatomy & Physiology</h3>
-                    <p>Discover how the human body works.</p>
-                </div>
-                <div class="topic-card">
-                    <i class="fas fa-bacteria"></i>
-                    <h3>Microbiology</h3>
-                    <p>Explore the microscopic world of organisms.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Resources Section -->
-    <section class="section resources" id="resources">
-        <div class="container">
-            <h2 class="section-title">Learning Resources</h2>
-            <div class="resource-tabs">
-                <button class="tab-btn active" data-tab="articles">Articles</button>
-                <button class="tab-btn" data-tab="videos">Videos</button>
-                <button class="tab-btn" data-tab="infographics">Infographics</button>
-                <button class="tab-btn" data-tab="podcasts">Podcasts</button>
+            <div class="section-title">
+                <h2>Course Chapters</h2>
+                <p>Browse through our comprehensive biology curriculum covering all major topics</p>
             </div>
             
-            <div class="tab-content active" id="articles-tab">
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cell Biology Article">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Introduction to Cell Biology</h3>
-                            <p>A comprehensive guide to understanding cell structure and function.</p>
-                            <a href="#" class="btn">Read Article</a>
-                        </div>
+            <div class="chapter-grid">
+                <!-- Chapter 1 -->
+                <div class="chapter-card">
+                    <div class="chapter-img">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Introduction to Biology">
                     </div>
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Genetics Article">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Mendelian Genetics Explained</h3>
-                            <p>Learn the basics of inheritance and Punnett squares.</p>
-                            <a href="#" class="btn">Read Article</a>
-                        </div>
+                    <div class="chapter-content">
+                        <h3>Chapter 1: Introduction to Biology</h3>
+                        <p>Explore the fundamental themes of biology and its importance in daily life, including agriculture, aquaculture, health, and more.</p>
+                        <a href="chapter1.html" class="btn">Read Chapter</a>
                     </div>
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evolution Article">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Evidence for Evolution</h3>
-                            <p>Explore the scientific evidence supporting evolutionary theory.</p>
-                            <a href="#" class="btn">Read Article</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="videos-tab">
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <iframe src="https://www.youtube.com/embed/URUJD5NEXC8" frameborder="0" allowfullscreen></iframe>
-                        <div class="resource-info">
-                            <h3>Cell Structure and Function</h3>
-                            <p>A visual tour through the eukaryotic cell.</p>
-                        </div>
-                    </div>
-                    <div class="resource-item">
-                        <iframe src="https://www.youtube.com/embed/CBezq1fFUEA" frameborder="0" allowfullscreen></iframe>
-                        <div class="resource-info">
-                            <h3>DNA Replication</h3>
-                            <p>How cells copy their genetic information.</p>
-                        </div>
-                    </div>
-                    <div class="resource-item">
-                        <iframe src="https://www.youtube.com/embed/GcjgWov7mTM" frameborder="0" allowfullscreen></iframe>
-                        <div class="resource-info">
-                            <h3>Natural Selection</h3>
-                            <p>Understanding Darwin's revolutionary idea.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="infographics-tab">
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cell Biology Infographic">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Organelles at a Glance</h3>
-                            <p>Visual guide to cellular organelles and their functions.</p>
-                            <a href="#" class="btn">View Full Size</a>
-                        </div>
-                    </div>
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Genetics Infographic">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Genetic Inheritance Patterns</h3>
-                            <p>Quick reference for Mendelian and non-Mendelian inheritance.</p>
-                            <a href="#" class="btn">View Full Size</a>
-                        </div>
-                    </div>
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1581093057305-255b0b0b8c3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ecosystem Infographic">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Ecosystem Relationships</h3>
-                            <p>Visualizing food webs and energy flow in ecosystems.</p>
-                            <a href="#" class="btn">View Full Size</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content" id="podcasts-tab">
-                <div class="resource-grid">
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Podcast Cover">
-                        </div>
-                        <div class="resource-info">
-                            <h3>The Biology Podcast</h3>
-                            <p>Episode 42: CRISPR and Gene Editing</p>
-                            <audio controls style="width: 100%; margin-top: 1rem;">
-                                <source src="#" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-                    </div>
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Podcast Cover">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Science Today</h3>
-                            <p>Microbiomes and Human Health</p>
-                            <audio controls style="width: 100%; margin-top: 1rem;">
-                                <source src="#" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-                    </div>
-                    <div class="resource-item">
-                        <div class="resource-img">
-                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Podcast Cover">
-                        </div>
-                        <div class="resource-info">
-                            <h3>Evolution Matters</h3>
-                            <p>Speciation in the Galapagos</p>
-                            <audio controls style="width: 100%; margin-top: 1rem;">
-                                <source src="#" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quiz Section -->
-    <section class="section quiz-section" id="quizzes">
-        <div class="container">
-            <h2 class="section-title">Test Your Knowledge</h2>
-            <div class="quiz-container">
-                <div class="quiz-header">
-                    <h3>Biology Basics Quiz</h3>
-                    <p>Answer 5 questions to test your understanding of fundamental biology concepts.</p>
                 </div>
                 
-                <div class="quiz-progress">
-                    <div class="progress-bar" id="progressBar"></div>
+                <!-- Chapter 2 -->
+                <div class="chapter-card">
+                    <div class="chapter-img">
+                        <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Molecular Biology">
+                    </div>
+                    <div class="chapter-content">
+                        <h3>Chapter 2: Molecular Biology</h3>
+                        <p>Learn about DNA and RNA structure, genetic code, protein synthesis, and genetic engineering techniques.</p>
+                        <a href="chapter2.html" class="btn">Read Chapter</a>
+                    </div>
                 </div>
                 
-                <div class="quiz-content">
-                    <div class="question-container" id="questionContainer">
-                        <div class="question" id="question">Question text goes here</div>
-                        <div class="options" id="options">
-                            <!-- Options will be inserted here by JavaScript -->
-                        </div>
+                <!-- Chapter 3 -->
+                <div class="chapter-card">
+                    <div class="chapter-img">
+                        <img src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Transport System">
                     </div>
+                    <div class="chapter-content">
+                        <h3>Chapter 3: Transport System in Organisms</h3>
+                        <p>Understand transport mechanisms in plants and animals, including xylem, phloem, and cardiovascular systems.</p>
+                        <a href="chapter3.html" class="btn">Read Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 4 -->
+                <div class="chapter-card">
+                    <div class="chapter-img">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diseases">
+                    </div>
+                    <div class="chapter-content">
+                        <h3>Chapter 4: Diseases in Plants and Animals</h3>
+                        <p>Study plant and animal diseases, including infectious and non-infectious diseases like malaria and cardiovascular diseases.</p>
+                        <a href="chapter4.html" class="btn">Read Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 5 -->
+                <div class="chapter-card">
+                    <div class="chapter-img">
+                        <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coordination and Response">
+                    </div>
+                    <div class="chapter-content">
+                        <h3>Chapter 5: Coordination and Response</h3>
+                        <p>Explore how plants and animals coordinate their activities and respond to stimuli through hormones and nervous systems.</p>
+                        <a href="chapter5.html" class="btn">Read Chapter</a>
+                    </div>
+                </div>
+                
+                <!-- Chapter 6 -->
+                <div class="chapter-card">
+                    <div class="chapter-img">
+                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Biodiversity">
+                    </div>
+                    <div class="chapter-content">
+                        <h3>Chapter 6: Biodiversity and Conservation</h3>
+                        <p>Learn about biodiversity levels, threats to biodiversity, and conservation methods to protect our planet's species.</p>
+                        <a href="chapter6.html" class="btn">Read Chapter</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chapter Content Example (Chapter 1) -->
+    <section class="content-section">
+        <div class="container two-column">
+            <div class="main-content">
+                <div class="content-header">
+                    <h1>Chapter 1: Introduction to Biology</h1>
+                    <div class="meta">Last updated: June 15, 2023</div>
+                    <p>This chapter introduces the fundamental themes of biology and explores its importance in our daily lives.</p>
+                </div>
+                
+                <div class="content-body">
+                    <h2>1.1 Learning Outcomes</h2>
+                    <p>It is expected that students will be able to:</p>
+                    <ul>
+                        <li>Identify, explain and give examples of the five themes that central to living organisms</li>
+                        <li>Understand the core theme of evolution, together with organization, information, energy and matter, and their interactions</li>
+                        <li>Review the importance of biology in the daily lives of people</li>
+                        <li>Increase the awareness of production and productivity of cereals and vegetable crops</li>
+                        <li>Understand the basic knowledge of aquaculture and livestock</li>
+                        <li>Gain knowledge about the food resources</li>
+                        <li>Promote the knowledge of health and how to prevent diseases by using medicines</li>
+                        <li>Learn the uses of fibres and materials used in making clothing and shelter</li>
+                    </ul>
                     
-                    <div class="result-container" id="resultContainer">
-                        <h2>Quiz Completed!</h2>
-                        <div class="score" id="score">You scored 4/5</div>
-                        <p id="resultMessage">Great job! You have a solid understanding of basic biology concepts.</p>
-                        <button class="btn" id="retryBtn">Try Again</button>
-                    </div>
+                    <h2>1.1 THEMES OF BIOLOGY</h2>
+                    <p>Biology is broadly divided into five major themes: organization, information, energy and matter, interactions and evolution. Each of these themes will be described and explained their importance to understand life as a whole. Life on Earth is simply amazing diverse, resilient, powerful, intelligent, and mystify. In the time, that humans have studied biology understanding of its five major themes has been able to be categorized.</p>
                     
-                    <div class="quiz-footer">
-                        <div class="question-count" id="questionCount">Question 1 of 5</div>
-                        <button class="btn" id="nextBtn">Next Question</button>
-                    </div>
+                    <h3>1.1.1 Theme 1: New Properties Emerge at Successive Levels of Biological Organization</h3>
+                    <p>The hierarchy of life on earth is unfolded as follows: biosphere, ecosystem, community, population, organism, organ system, organ, tissue, cell, organelle, molecule and atom. With each set up, new properties emerge (emergent properties) because of interactions among components at the lower levels.</p>
+                    <p>The structure and function of biological components are interrelated. At each level of the biological hierarchy, a correlation of structure and function can be observed. For example, the hummingbird's anatomy allows the wings to rotate at the shoulder, so hummingbirds have the ability, unique among birds, to fly backward or hover in place. While hovering, the birds can extend their long, slender beaks into flowers and feed on nectar (Figure 1.1).</p>
+                    
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1551085251-e8b8592d5e9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hummingbird feeding">
+                        <figcaption>Figure 1.1: A hummingbird feeding on nectar, demonstrating the relationship between structure and function.</figcaption>
+                    </figure>
+                    
+                    <p>The cell, one of the steps composed in the hierarchy of life is a basic unit structure and function of an organism. It is the lowest level of organization that can perform all activities required for life. Cells are either prokaryote or eukaryote. Eukaryotic cells contain membrane- enclosed organelles, including DNA in nucleus whereas prokaryotic cells lack membrane-enclosed organelles (Figure 1.2).</p>
+                    
+                    <h3>1.1.2 Theme 2: Life's Processes Involve the Expression and Transmission of Genetic Information</h3>
+                    <p>The genetic information is encoded in the nucleotide sequences of DNA. The DNA transmits heritable information from parents to offspring. DNA sequences (called genes) act as instructions to make a cell's protein production by being transcribed into mRNA and then translated into specific proteins. These processes are called gene expression. Gene expression can also produce some RNAs that are not translated into proteins but serve other important functions (Figure 1.3 A and B).</p>
+                    
+                    <!-- More content would continue here... -->
+                    
+                    <h2>1.2 IMPORTANCE OF BIOLOGY IN DAILY LIFE</h2>
+                    <p>Scientific research and the development of new tools and techniques have undoubtedly improved the quality of our lives. Generally, the relevance of biology is the important of the human society and humankind. Biology is also important to our everyday life because it allows human beings to know better their bodies, their resources and potential threats in the environment.</p>
+                    <p>Biology being the study of living things help us to understand every organism. As a field of science, biology helps us to understand the living world and the ways its many species (including humans) function, evolve, and interact. Advances in medicine, agriculture, biotechnology, and many other areas of biology have brought improvements in the quality of life.</p>
+                    <p>Fields such as genetics and evolution give insight into the past and can help shape the future, and research in ecology and conservation inform how we can protect this planet's precious biodiversity. Biology has also helped us to understand the characteristics of living things, the similarities between plants and animals, as well as how germs work and help us staying healthier.</p>
+                    
+                    <h3>1.2.1 Agriculture, Horticulture and Hydroponic Culture</h3>
+                    <p>The food that we consume is the results of agriculture. Humans and animals depend on the agricultural products for sustaining themselves. Fruits, vegetables, grains, pulses, oils, sugar, tea, coffee, and other foods are obtained from the plants.</p>
+                    
+                    <h4>Agriculture</h4>
+                    <p>Agriculture is defined to produce commodities which maintain life, including foods, fibers, forest products, agricultural crops, horticultural crops, and their related services. Agricultural crops mean food or fiber commodities grown for resale or commercial or economic purposes that provide foods, clothing, or animal feeds, and include nursery products and florist items while in the hands of a nursery grower. The global major agricultural products can be broadly grouped into foods, fibers, fuels, and raw materials (such as rubber). Myanmar's agricultural exports include rice, maize, blackgram, greengram, pigeonpea, chickpea, sesame, onion, tamarind, raw rubber, vegetables, and fruits. Commercially cultivating agricultural crops in Myanmar are mainly cereals, pulses and oilseed crops. Myanmar's farms are well diversified, with most farms producing rice paddy during the monsoon season and other crops such as beans, pulses, oilseeds and maize, during the cool and dry seasons.</p>
+                    
+                    <figure>
+                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rice cultivation">
+                        <figcaption>Figure 1.7 A: Rice cultivation in Myanmar</figcaption>
+                    </figure>
+                    
+                    <!-- Continue with more content... -->
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section class="section" id="blog">
-        <div class="container">
-            <h2 class="section-title">From Our Blog</h2>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-img">
-                        <img src="https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blog Post Image">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
-                            <span><i class="far fa-comment"></i> 12 Comments</span>
-                        </div>
-                        <h3 class="blog-title">The Future of Gene Editing</h3>
-                        <p class="blog-excerpt">Explore how CRISPR technology is revolutionizing medicine and agriculture, and what ethical considerations we must address.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-img">
-                        <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blog Post Image">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
-                            <span><i class="far fa-comment"></i> 8 Comments</span>
-                        </div>
-                        <h3 class="blog-title">Understanding the Human Microbiome</h3>
-                        <p class="blog-excerpt">Discover how the trillions of microbes living in and on your body affect your health, mood, and even behavior.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-img">
-                        <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blog Post Image">
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="far fa-calendar-alt"></i> May 10, 2023</span>
-                            <span><i class="far fa-comment"></i> 15 Comments</span>
-                        </div>
-                        <h3 class="blog-title">Conservation Success Stories</h3>
-                        <p class="blog-excerpt">Learn about species that have come back from the brink of extinction thanks to dedicated conservation efforts.</p>
-                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="#" class="btn">View All Blog Posts</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="section" id="about">
-        <div class="container">
-            <h2 class="section-title">About Us</h2>
-            <div class="about-section">
-                <h3>Our Mission</h3>
-                <p>At Biology Learning Hub, we believe that understanding biology is essential for everyone. Our mission is to make biological concepts accessible, engaging, and relevant to students, educators, and lifelong learners around the world.</p>
-                <p>Founded in 2020 by a team of biology educators and science communicators, we've grown into a trusted resource for thousands of learners each month.</p>
-                
-                <h3 style="margin-top: 2rem;">Our Team</h3>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="team-img">
-                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Dr. Sarah Johnson">
-                        </div>
-                        <div class="team-name">Dr. Sarah Johnson</div>
-                        <div class="team-role">Founder & Lead Educator</div>
-                        <p>PhD in Molecular Biology with 15 years of teaching experience.</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img">
-                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
-                        </div>
-                        <div class="team-name">Michael Chen</div>
-                        <div class="team-role">Content Developer</div>
-                        <p>MS in Ecology and Evolutionary Biology, specializing in science communication.</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="team-img">
-                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Amina Diallo">
-                        </div>
-                        <div class="team-name">Dr. Amina Diallo</div>
-                        <div class="team-role">Medical Consultant</div>
-                        <p>MD with specialization in human anatomy and physiology education.</p>
-                    </div>
-                </div>
-                
-                <div class="testimonials">
-                    <h3>What Our Users Say</h3>
-                    <div class="testimonial-grid">
-                        <div class="testimonial-card">
-                            <div class="testimonial-text">
-                                "This website completely transformed how I teach cell biology. The interactive resources engage my students like never before."
-                            </div>
-                            <div class="testimonial-author">Jessica R.</div>
-                            <div class="testimonial-role">High School Biology Teacher</div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-text">
-                                "As a pre-med student, I've found the anatomy and physiology materials to be incredibly thorough and well-presented."
-                            </div>
-                            <div class="testimonial-author">David P.</div>
-                            <div class="testimonial-role">College Student</div>
-                        </div>
-                        <div class="testimonial-card">
-                            <div class="testimonial-text">
-                                "The genetics section helped me finally understand concepts I'd struggled with for years. The visual explanations are brilliant."
-                            </div>
-                            <div class="testimonial-author">Maria G.</div>
-                            <div class="testimonial-role">Homeschool Parent</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Is this website suitable for all age groups?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Our content is primarily designed for high school and college-level learners, but we have resources that can be adapted for younger students with guidance from educators or parents. We're currently working on expanding our elementary and middle school content.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Do I need to create an account to access materials?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>No, all our educational resources are freely available without requiring an account. However, creating a free account allows you to track your progress, save favorite resources, and participate in our community forums.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>How often is new content added?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We add new content weekly, including blog posts, video lessons, and interactive activities. Major topic expansions occur every 3-6 months based on user feedback and curriculum needs.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Can I contribute content to the website?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>We welcome contributions from qualified educators and researchers. Please visit our Contact page and select "Content Contribution" from the dropdown menu to submit your proposal along with your credentials.</p>
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-question">
-                        <span>Are there any costs associated with using this site?</span>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <p>All core educational content on Biology Learning Hub is completely free. We offer optional premium features like personalized tutoring and certification programs for those who want additional support.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="section" id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact Us</h2>
-            <div class="contact-form">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Your Name</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject">Subject</label>
-                        <select id="subject" name="subject">
-                            <option value="general">General Inquiry</option>
-                            <option value="content">Content Suggestion</option>
-                            <option value="technical">Technical Issue</option>
-                            <option value="partnership">Partnership Opportunity</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Your Message</label>
-                        <textarea id="message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
-                </form>
-                
-                <div class="newsletter">
-                    <h3>Subscribe to Our Newsletter</h3>
-                    <p>Get the latest biology resources, news, and updates delivered to your inbox.</p>
-                    <form class="newsletter-form" id="newsletterForm">
-                        <input type="email" placeholder="Your email address" required>
-                        <button type="submit">Subscribe</button>
-                    </form>
-                </div>
+            
+            <div class="sidebar">
+                <h3 class="sidebar-title">Chapter Contents</h3>
+                <ul class="sidebar-menu">
+                    <li><a href="#learning-outcomes" class="active">1.1 Learning Outcomes</a></li>
+                    <li><a href="#themes-of-biology">1.1 Themes of Biology</a></li>
+                    <li><a href="#theme1">1.1.1 New Properties Emerge</a></li>
+                    <li><a href="#theme2">1.1.2 Genetic Information</a></li>
+                    <li><a href="#theme3">1.1.3 Energy and Matter</a></li>
+                    <li><a href="#theme4">1.1.4 Interactions</a></li>
+                    <li><a href="#theme5">1.1.5 Evolution</a></li>
+                    <li><a href="#importance-biology">1.2 Importance of Biology</a></li>
+                    <li><a href="#agriculture">1.2.1 Agriculture</a></li>
+                    <li><a href="#aquaculture">1.2.2 Aquaculture</a></li>
+                    <li><a href="#food">1.2.3 Food</a></li>
+                    <li><a href="#health">1.2.4 Health</a></li>
+                    <li><a href="#clothing">1.2.5 Clothing</a></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -1265,278 +743,146 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Biology Learning Hub</h3>
-                    <p>Making biology education accessible and engaging for everyone.</p>
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>About BioLearn</h3>
+                    <p>BioLearn is an educational platform dedicated to providing comprehensive biology resources for students and educators worldwide.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f">f</i></a>
+                        <a href="#"><i class="fab fa-twitter">t</i></a>
+                        <a href="#"><i class="fab fa-instagram">i</i></a>
+                        <a href="#"><i class="fab fa-youtube">y</i></a>
                     </div>
                 </div>
-                <div class="footer-column">
+                
+                <div class="footer-col">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#topics">Biology Topics</a></li>
-                        <li><a href="#resources">Resources</a></li>
-                        <li><a href="#quizzes">Quizzes</a></li>
-                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="chapters.html">Chapters</a></li>
+                        <li><a href="resources.html">Resources</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
+                
+                <div class="footer-col">
                     <h3>Resources</h3>
                     <ul>
-                        <li><a href="#">Articles</a></li>
-                        <li><a href="#">Videos</a></li>
-                        <li><a href="#">Infographics</a></li>
-                        <li><a href="#">Podcasts</a></li>
-                        <li><a href="#">Lesson Plans</a></li>
-                        <li><a href="#">Glossary</a></li>
+                        <li><a href="glossary.html">Glossary</a></li>
+                        <li><a href="quizzes.html">Quizzes</a></li>
+                        <li><a href="videos.html">Video Lectures</a></li>
+                        <li><a href="downloads.html">Download Materials</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul>
-                        <li><a href="#contact">Contact Us</a></li>
-                        <li><a href="#">FAQs</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                        <li><a href="#">Accessibility</a></li>
-                    </ul>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <p>Email: info@biolearn.edu</p>
+                    <p>Phone: +1 (555) 123-4567</p>
+                    <p>Address: 123 Biology Lane, Science City</p>
                 </div>
             </div>
+            
             <div class="copyright">
-                <p>&copy; 2023 Biology Learning Hub. All rights reserved.</p>
+                <p>&copy; 2023 BioLearn. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <div class="back-to-top">↑</div>
+
     <!-- JavaScript -->
     <script>
         // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
         
         mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+            nav.classList.toggle('active');
         });
         
-        // Smooth Scrolling for Navigation Links
+        // Back to Top Button
+        const backToTopBtn = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('active');
+            } else {
+                backToTopBtn.classList.remove('active');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                if (targetId === '#') return;
                 
+                const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
+                    targetElement.scrollIntoView({
                         behavior: 'smooth'
                     });
-                    
-                    // Close mobile menu if open
-                    if (navMenu.classList.contains('active')) {
-                        navMenu.classList.remove('active');
-                    }
                 }
             });
         });
         
-        // Resource Tabs
-        const tabBtns = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
+        // Active link highlighting in sidebar
+        const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+        const sections = document.querySelectorAll('.content-body h2, .content-body h3');
         
-        tabBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Remove active class from all buttons and contents
-                tabBtns.forEach(btn => btn.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-                
-                // Add active class to clicked button and corresponding content
-                btn.classList.add('active');
-                const tabId = btn.getAttribute('data-tab');
-                document.getElementById(`${tabId}-tab`).classList.add('active');
-            });
-        });
-        
-        // FAQ Accordion
-        const faqItems = document.querySelectorAll('.faq-item');
-        
-        faqItems.forEach(item => {
-            const question = item.querySelector('.faq-question');
+        window.addEventListener('scroll', () => {
+            let current = '';
             
-            question.addEventListener('click', () => {
-                // Close all other items
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item) {
-                        otherItem.classList.remove('active');
-                    }
-                });
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
                 
-                // Toggle current item
-                item.classList.toggle('active');
+                if (pageYOffset >= sectionTop - 200) {
+                    current = '#' + section.getAttribute('id');
+                }
+            });
+            
+            sidebarLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === current) {
+                    link.classList.add('active');
+                }
             });
         });
         
-        // Quiz Functionality
+        // Simple quiz functionality example
         const quizQuestions = [
             {
-                question: "What is the basic structural and functional unit of all living organisms?",
-                options: ["Atom", "Cell", "Molecule", "Organ"],
-                correctAnswer: 1
+                question: "Which of these is NOT one of the five major themes of biology?",
+                options: ["Organization", "Information", "Energy and Matter", "Reproduction"],
+                answer: 3
             },
             {
-                question: "Which of these is NOT one of the four main types of biological macromolecules?",
-                options: ["Proteins", "Carbohydrates", "Lipids", "Vitamins"],
-                correctAnswer: 3
+                question: "What is the basic unit of structure and function in living organisms?",
+                options: ["Atom", "Molecule", "Cell", "Tissue"],
+                answer: 2
             },
             {
-                question: "What is the process by which plants convert sunlight into chemical energy?",
-                options: ["Respiration", "Photosynthesis", "Fermentation", "Transpiration"],
-                correctAnswer: 1
-            },
-            {
-                question: "Which scientist is known as the father of modern genetics?",
-                options: ["Charles Darwin", "Gregor Mendel", "Louis Pasteur", "James Watson"],
-                correctAnswer: 1
-            },
-            {
-                question: "What is the name of the molecule that carries genetic information in cells?",
-                options: ["RNA", "Protein", "DNA", "Lipid"],
-                correctAnswer: 2
+                question: "Which process involves the conversion of DNA to mRNA?",
+                options: ["Translation", "Transcription", "Replication", "Mutation"],
+                answer: 1
             }
         ];
         
-        const questionElement = document.getElementById('question');
-        const optionsElement = document.getElementById('options');
-        const questionCountElement = document.getElementById('questionCount');
-        const nextBtn = document.getElementById('nextBtn');
-        const resultContainer = document.getElementById('resultContainer');
-        const questionContainer = document.getElementById('questionContainer');
-        const scoreElement = document.getElementById('score');
-        const resultMessageElement = document.getElementById('resultMessage');
-        const retryBtn = document.getElementById('retryBtn');
-        const progressBar = document.getElementById('progressBar');
-        
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let selectedOption = null;
-        
-        function loadQuestion() {
-            const currentQuestion = quizQuestions[currentQuestionIndex];
-            questionElement.textContent = currentQuestion.question;
-            
-            optionsElement.innerHTML = '';
-            currentQuestion.options.forEach((option, index) => {
-                const optionElement = document.createElement('div');
-                optionElement.classList.add('option');
-                optionElement.textContent = option;
-                optionElement.addEventListener('click', () => selectOption(index));
-                optionsElement.appendChild(optionElement);
-            });
-            
-            questionCountElement.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
-            progressBar.style.width = `${((currentQuestionIndex) / quizQuestions.length) * 100}%`;
-            
-            nextBtn.style.display = 'none';
-            selectedOption = null;
-        }
-        
-        function selectOption(index) {
-            const options = document.querySelectorAll('.option');
-            
-            // Remove selected class from all options
-            options.forEach(option => {
-                option.classList.remove('selected');
-            });
-            
-            // Add selected class to clicked option
-            options[index].classList.add('selected');
-            selectedOption = index;
-            
-            // Show next button
-            nextBtn.style.display = 'block';
-        }
-        
-        function showResult() {
-            questionContainer.style.display = 'none';
-            resultContainer.style.display = 'block';
-            
-            scoreElement.textContent = `You scored ${score}/${quizQuestions.length}`;
-            
-            // Custom result message based on score
-            if (score === quizQuestions.length) {
-                resultMessageElement.textContent = "Perfect! You're a biology expert!";
-            } else if (score >= quizQuestions.length * 0.7) {
-                resultMessageElement.textContent = "Great job! You have a solid understanding of basic biology concepts.";
-            } else if (score >= quizQuestions.length * 0.5) {
-                resultMessageElement.textContent = "Good effort! Review some materials and try again to improve.";
-            } else {
-                resultMessageElement.textContent = "Keep learning! Check out our resources to strengthen your biology knowledge.";
-            }
-            
-            progressBar.style.width = '100%';
-        }
-        
-        nextBtn.addEventListener('click', () => {
-            if (selectedOption !== null) {
-                // Check if answer is correct
-                if (selectedOption === quizQuestions[currentQuestionIndex].correctAnswer) {
-                    score++;
-                }
-                
-                currentQuestionIndex++;
-                
-                if (currentQuestionIndex < quizQuestions.length) {
-                    loadQuestion();
-                } else {
-                    showResult();
-                }
-            }
-        });
-        
-        retryBtn.addEventListener('click', () => {
-            currentQuestionIndex = 0;
-            score = 0;
-            questionContainer.style.display = 'block';
-            resultContainer.style.display = 'none';
-            loadQuestion();
-        });
-        
-        // Initialize quiz
-        loadQuestion();
-        
-        // Form Submission
-        const contactForm = document.getElementById('contactForm');
-        const newsletterForm = document.getElementById('newsletterForm');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            contactForm.reset();
-        });
-        
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for subscribing to our newsletter!');
-            newsletterForm.reset();
-        });
-        
-        // Sticky Header on Scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = 'none';
-            }
-        });
+        // You would implement a quiz system using the above data
+        // This is just a placeholder for the actual implementation
     </script>
 </body>
 </html>
