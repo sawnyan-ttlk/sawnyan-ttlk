@@ -1,115 +1,1542 @@
 <!DOCTYPE html>
-<html lang="my">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ဗုဒ္ဓဘာသာ အခြေခံသိကောင်းစရာများ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Ensure you link the CSS file here -->
-</head>
-<body>
-    <div class="container">
-        <h1>ဗုဒ္ဓဘာသာ အခြေခံသိကောင်းစရာများ</h1>
-
-        <!-- Meditation Timer Section -->
-        <div class="meditation-timer">
-            <h2>သ медیتခင်စ<br></h2>
-            <div class="timer-display" id="timerDisplay">00:00</div>
-            <button onclick="startTimer()">စတင်ရန်</button>
-        </div>
-
-        <!-- Prayer Wheel Animation -->
-        <div class="prayer-wheel" onclick="spinWheel()">
-            <img src="path-to-your-image/prayer-wheel.png" alt="Prayer Wheel" />
-        </div>
-
-        <!-- Quote Carousel -->
-        <div class="quote-carousel">
-            <div class="quote-slide active">“မုိးထဲမွာအာသာရိပ္ခ်က္ရွိလို႔၊ အၿငိဳးစားခ်င္တယ္။”</div>
-            <div class="quote-slide">“ဤလက မျှော်လင့်ချက်ရှိ၊ တောင့်တယ်။”</div>
-            <div class="quote-slide">“သင်ထုတ်လုပ်သောလှိက်လှဲမှု။”</div>
-            <button onclick="nextQuote()">နောက်ကွယ်သို</button>
-        </div>
-
-        <!-- Progress Tracker -->
-        <div class="progress-tracker">
-            <h2>သင်သည် ဘာဝါလီစန်နှစ်ပုံရအောင်ရှိလျက်</h2>
-            <div class="progress-bar">
-                <div class="progress-fill" style="width: 60%;"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Floating Menu -->
-    <div class="floating-menu" onclick="toggleMenu()">
-        <i class="fas fa-plus"></i>
-    </div>
-    <div class="menu-items">
-        <div><a href="#">မူလစာမျက်နှာ</a></div>
-        <div><a href="#">သီချင်းများ</a></div>
-        <div><a href="#">အသိုင်းအဝိုင်း</a></div>
-    </div>
-
-    <!-- Notification System -->
-    <div class="notification" id="notification">အသိပေးချက်။</div>
-
-    <script src="script.js"></script> <!-- Ensure you link your JS file here -->
-</body>
-</html>
-s ease;
+    <title>Biology Learning Hub</title>
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #81c784;
+            --accent-color: #ff8f00;
+            --light-color: #f1f8e9;
+            --dark-color: #1b5e20;
+            --text-color: #333;
+            --white: #ffffff;
         }
-
-        .fade-in.show {
-            opacity: 1;
-            transform: translateY(0);
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #ff6f00;
+        }
+        
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-color);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .feature-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .feature-card:hover .feature-img img {
+            transform: scale(1.1);
+        }
+        
+        .feature-content {
+            padding: 1.5rem;
+        }
+        
+        .feature-content h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .topics {
+            background-color: var(--white);
+        }
+        
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .topic-card {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .topic-card:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        .topic-card i {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .topic-card:hover i {
+            color: var(--white);
+        }
+        
+        .resources {
+            background-color: var(--light-color);
+        }
+        
+        .resource-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--white);
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .tab-btn:first-child {
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .tab-btn:last-child {
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .resource-item {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .resource-item iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+        }
+        
+        .resource-info {
+            padding: 1.5rem;
+        }
+        
+        .quiz-section {
+            background-color: var(--white);
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-progress {
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            border-radius: 5px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .question-container {
+            margin-bottom: 2rem;
+        }
+        
+        .question {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+        
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .option {
+            background-color: var(--white);
+            padding: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #ddd;
+        }
+        
+        .option:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-color: var(--secondary-color);
+        }
+        
+        .option.selected {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+        
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .result-container {
+            text-align: center;
+            display: none;
+        }
+        
+        .result-container h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .newsletter {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: 1rem auto 0;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: var(--dark-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* FAQ Styles */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--white);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: var(--light-color);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+        }
+        
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+        
+        /* Blog Styles */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .blog-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .blog-card:hover .blog-img img {
+            transform: scale(1.1);
+        }
+        
+        .blog-content {
+            padding: 1.5rem;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .blog-title {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .blog-excerpt {
+            margin-bottom: 1.5rem;
+        }
+        
+        .read-more {
+            color: var(--primary-color);
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s;
+        }
+        
+        .read-more:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* About Page Styles */
+        .about-section {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+            border: 5px solid var(--light-color);
+        }
+        
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-name {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .team-role {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonials {
+            margin-top: 3rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            font-weight: bold;
+        }
+        
+        .testimonial-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+                width: 100%;
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 5px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .newsletter-form button {
+                border-radius: 5px;
+            }
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="dark-mode-switch">
-        <button class="button" onclick="toggleDarkMode()">Dark Mode</button>
-    </div>
-    <div class="container">
-        <h1>ဗုဒ္ဓဘာသာ အခြေခံသိကောင်းစရာများ</h1>
-        <img src="dhamma-wheel.png" alt="Dhamma Wheel" class="dhamma-wheel">
-        <div class="section fade-in" id="introduction">
-            <h2>နိဒါန်း</h2>
-            <p>ဗုဒ္ဓဘာသာသည် ရုပ်သိမ်းမှုများနှင့် ပညာရှင်ဖြစ်ရန် ချဉ်းကပ်မှုများပါရှိသော လောကဓုမှတ်တမ်းလေးဖြစ်ပါသည်။</p>
-        </div>
-        <div class="grid-container">
-            <div class="card fade-in" id="five-precepts">
-                <h3>၅ ကျင့်ဝတ်</h3>
-                <p>ဘဝကို ကာကွယ်ရန်နှင့် စစ်တမ်းအခြေအနေများကို ပေါင်းစည်းရန်၊ အလေးအနက်ပြုခြင်းတို ပါဝင်သည်။</p>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-microscope"></i>
+                <span>Biology Learning Hub</span>
             </div>
-            <div class="card fade-in" id="four-noble-truths">
-                <h3>လေးကြိမ်သိမြင်ချက်</h3>
-                <p>ဒုက္ခများနှင့် ပြုပြင်ပျက်စီးမှုများသည် အများအတွက် စကားပြောပါသည်။</p>
-            </div>
-            <div class="card fade-in" id="eightfold-path">
-                <h3>၈ ရွှေနှစ်ခု</h3>
-                <p>ဆရာဘုရား၏ကိုယ်ရေး မှတ်တမ်းရရှိရန်လှုပ်ရှားမှု ၆ ယဉ်ကျေးမှုဟူ၍ တွေ့မြင်သည်။</p>
-            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav class="nav-menu" id="navMenu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#topics">Biology Topics</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#quizzes">Quizzes</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <div class="footer">
-            <p>&copy; 2025 မင်္ဂလာပါစေ။</p>
-        </div>
-    </div>
+    </header>
 
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Explore the Wonders of Biology</h1>
+            <p>Discover the fascinating world of life sciences through interactive lessons, engaging resources, and fun quizzes.</p>
+            <a href="#topics" class="btn">Start Learning</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Why Learn With Us?</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Interactive Learning">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Interactive Learning</h3>
+                        <p>Engage with interactive diagrams, 3D models, and virtual labs that make complex biological concepts easy to understand.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Expert Resources">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Expert Resources</h3>
+                        <p>Access high-quality content created by biology educators and researchers with years of experience.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-img">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Personalized Learning">
+                    </div>
+                    <div class="feature-content">
+                        <h3>Personalized Learning</h3>
+                        <p>Track your progress and get personalized recommendations based on your learning style and pace.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Section -->
+    <section class="section topics" id="topics">
+        <div class="container">
+            <h2 class="section-title">Explore Biology Topics</h2>
+            <div class="topic-grid">
+                <div class="topic-card">
+                    <i class="fas fa-microscope"></i>
+                    <h3>Cell Biology</h3>
+                    <p>Study the building blocks of life and their functions.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-dna"></i>
+                    <h3>Genetics</h3>
+                    <p>Explore DNA, genes, and inheritance patterns.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-frog"></i>
+                    <h3>Evolution</h3>
+                    <p>Understand how life changes over time.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-tree"></i>
+                    <h3>Ecology</h3>
+                    <p>Learn about ecosystems and environmental interactions.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-heartbeat"></i>
+                    <h3>Anatomy & Physiology</h3>
+                    <p>Discover how the human body works.</p>
+                </div>
+                <div class="topic-card">
+                    <i class="fas fa-bacteria"></i>
+                    <h3>Microbiology</h3>
+                    <p>Explore the microscopic world of organisms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="section resources" id="resources">
+        <div class="container">
+            <h2 class="section-title">Learning Resources</h2>
+            <div class="resource-tabs">
+                <button class="tab-btn active" data-tab="articles">Articles</button>
+                <button class="tab-btn" data-tab="videos">Videos</button>
+                <button class="tab-btn" data-tab="infographics">Infographics</button>
+                <button class="tab-btn" data-tab="podcasts">Podcasts</button>
+            </div>
+            
+            <div class="tab-content active" id="articles-tab">
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cell Biology Article">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Introduction to Cell Biology</h3>
+                            <p>A comprehensive guide to understanding cell structure and function.</p>
+                            <a href="#" class="btn">Read Article</a>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Genetics Article">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Mendelian Genetics Explained</h3>
+                            <p>Learn the basics of inheritance and Punnett squares.</p>
+                            <a href="#" class="btn">Read Article</a>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Evolution Article">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Evidence for Evolution</h3>
+                            <p>Explore the scientific evidence supporting evolutionary theory.</p>
+                            <a href="#" class="btn">Read Article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="videos-tab">
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <iframe src="https://www.youtube.com/embed/URUJD5NEXC8" frameborder="0" allowfullscreen></iframe>
+                        <div class="resource-info">
+                            <h3>Cell Structure and Function</h3>
+                            <p>A visual tour through the eukaryotic cell.</p>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <iframe src="https://www.youtube.com/embed/CBezq1fFUEA" frameborder="0" allowfullscreen></iframe>
+                        <div class="resource-info">
+                            <h3>DNA Replication</h3>
+                            <p>How cells copy their genetic information.</p>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <iframe src="https://www.youtube.com/embed/GcjgWov7mTM" frameborder="0" allowfullscreen></iframe>
+                        <div class="resource-info">
+                            <h3>Natural Selection</h3>
+                            <p>Understanding Darwin's revolutionary idea.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="infographics-tab">
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1581094271901-8022df4466f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cell Biology Infographic">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Organelles at a Glance</h3>
+                            <p>Visual guide to cellular organelles and their functions.</p>
+                            <a href="#" class="btn">View Full Size</a>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Genetics Infographic">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Genetic Inheritance Patterns</h3>
+                            <p>Quick reference for Mendelian and non-Mendelian inheritance.</p>
+                            <a href="#" class="btn">View Full Size</a>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1581093057305-255b0b0b8c3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ecosystem Infographic">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Ecosystem Relationships</h3>
+                            <p>Visualizing food webs and energy flow in ecosystems.</p>
+                            <a href="#" class="btn">View Full Size</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="podcasts-tab">
+                <div class="resource-grid">
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Podcast Cover">
+                        </div>
+                        <div class="resource-info">
+                            <h3>The Biology Podcast</h3>
+                            <p>Episode 42: CRISPR and Gene Editing</p>
+                            <audio controls style="width: 100%; margin-top: 1rem;">
+                                <source src="#" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Podcast Cover">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Science Today</h3>
+                            <p>Microbiomes and Human Health</p>
+                            <audio controls style="width: 100%; margin-top: 1rem;">
+                                <source src="#" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                    <div class="resource-item">
+                        <div class="resource-img">
+                            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Podcast Cover">
+                        </div>
+                        <div class="resource-info">
+                            <h3>Evolution Matters</h3>
+                            <p>Speciation in the Galapagos</p>
+                            <audio controls style="width: 100%; margin-top: 1rem;">
+                                <source src="#" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="section quiz-section" id="quizzes">
+        <div class="container">
+            <h2 class="section-title">Test Your Knowledge</h2>
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h3>Biology Basics Quiz</h3>
+                    <p>Answer 5 questions to test your understanding of fundamental biology concepts.</p>
+                </div>
+                
+                <div class="quiz-progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+                
+                <div class="quiz-content">
+                    <div class="question-container" id="questionContainer">
+                        <div class="question" id="question">Question text goes here</div>
+                        <div class="options" id="options">
+                            <!-- Options will be inserted here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="result-container" id="resultContainer">
+                        <h2>Quiz Completed!</h2>
+                        <div class="score" id="score">You scored 4/5</div>
+                        <p id="resultMessage">Great job! You have a solid understanding of basic biology concepts.</p>
+                        <button class="btn" id="retryBtn">Try Again</button>
+                    </div>
+                    
+                    <div class="quiz-footer">
+                        <div class="question-count" id="questionCount">Question 1 of 5</div>
+                        <button class="btn" id="nextBtn">Next Question</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="section-title">From Our Blog</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1575505586569-646b2ca898fc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blog Post Image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> June 15, 2023</span>
+                            <span><i class="far fa-comment"></i> 12 Comments</span>
+                        </div>
+                        <h3 class="blog-title">The Future of Gene Editing</h3>
+                        <p class="blog-excerpt">Explore how CRISPR technology is revolutionizing medicine and agriculture, and what ethical considerations we must address.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1581093450021-4a7360e9a7f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blog Post Image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> May 28, 2023</span>
+                            <span><i class="far fa-comment"></i> 8 Comments</span>
+                        </div>
+                        <h3 class="blog-title">Understanding the Human Microbiome</h3>
+                        <p class="blog-excerpt">Discover how the trillions of microbes living in and on your body affect your health, mood, and even behavior.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1551033406-611cf9a28f67?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blog Post Image">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> May 10, 2023</span>
+                            <span><i class="far fa-comment"></i> 15 Comments</span>
+                        </div>
+                        <h3 class="blog-title">Conservation Success Stories</h3>
+                        <p class="blog-excerpt">Learn about species that have come back from the brink of extinction thanks to dedicated conservation efforts.</p>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#" class="btn">View All Blog Posts</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <div class="about-section">
+                <h3>Our Mission</h3>
+                <p>At Biology Learning Hub, we believe that understanding biology is essential for everyone. Our mission is to make biological concepts accessible, engaging, and relevant to students, educators, and lifelong learners around the world.</p>
+                <p>Founded in 2020 by a team of biology educators and science communicators, we've grown into a trusted resource for thousands of learners each month.</p>
+                
+                <h3 style="margin-top: 2rem;">Our Team</h3>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-img">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Dr. Sarah Johnson">
+                        </div>
+                        <div class="team-name">Dr. Sarah Johnson</div>
+                        <div class="team-role">Founder & Lead Educator</div>
+                        <p>PhD in Molecular Biology with 15 years of teaching experience.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Michael Chen">
+                        </div>
+                        <div class="team-name">Michael Chen</div>
+                        <div class="team-role">Content Developer</div>
+                        <p>MS in Ecology and Evolutionary Biology, specializing in science communication.</p>
+                    </div>
+                    <div class="team-member">
+                        <div class="team-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Dr. Amina Diallo">
+                        </div>
+                        <div class="team-name">Dr. Amina Diallo</div>
+                        <div class="team-role">Medical Consultant</div>
+                        <p>MD with specialization in human anatomy and physiology education.</p>
+                    </div>
+                </div>
+                
+                <div class="testimonials">
+                    <h3>What Our Users Say</h3>
+                    <div class="testimonial-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">
+                                "This website completely transformed how I teach cell biology. The interactive resources engage my students like never before."
+                            </div>
+                            <div class="testimonial-author">Jessica R.</div>
+                            <div class="testimonial-role">High School Biology Teacher</div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">
+                                "As a pre-med student, I've found the anatomy and physiology materials to be incredibly thorough and well-presented."
+                            </div>
+                            <div class="testimonial-author">David P.</div>
+                            <div class="testimonial-role">College Student</div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-text">
+                                "The genetics section helped me finally understand concepts I'd struggled with for years. The visual explanations are brilliant."
+                            </div>
+                            <div class="testimonial-author">Maria G.</div>
+                            <div class="testimonial-role">Homeschool Parent</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is this website suitable for all age groups?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our content is primarily designed for high school and college-level learners, but we have resources that can be adapted for younger students with guidance from educators or parents. We're currently working on expanding our elementary and middle school content.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need to create an account to access materials?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, all our educational resources are freely available without requiring an account. However, creating a free account allows you to track your progress, save favorite resources, and participate in our community forums.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How often is new content added?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We add new content weekly, including blog posts, video lessons, and interactive activities. Major topic expansions occur every 3-6 months based on user feedback and curriculum needs.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I contribute content to the website?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We welcome contributions from qualified educators and researchers. Please visit our Contact page and select "Content Contribution" from the dropdown menu to submit your proposal along with your credentials.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are there any costs associated with using this site?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All core educational content on Biology Learning Hub is completely free. We offer optional premium features like personalized tutoring and certification programs for those who want additional support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <select id="subject" name="subject">
+                            <option value="general">General Inquiry</option>
+                            <option value="content">Content Suggestion</option>
+                            <option value="technical">Technical Issue</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Send Message</button>
+                </form>
+                
+                <div class="newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <p>Get the latest biology resources, news, and updates delivered to your inbox.</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Biology Learning Hub</h3>
+                    <p>Making biology education accessible and engaging for everyone.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#topics">Biology Topics</a></li>
+                        <li><a href="#resources">Resources</a></li>
+                        <li><a href="#quizzes">Quizzes</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Articles</a></li>
+                        <li><a href="#">Videos</a></li>
+                        <li><a href="#">Infographics</a></li>
+                        <li><a href="#">Podcasts</a></li>
+                        <li><a href="#">Lesson Plans</a></li>
+                        <li><a href="#">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Accessibility</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Biology Learning Hub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
     <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-            document.querySelectorAll('.fade-in').forEach((element) => {
-                element.classList.toggle('show');
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                }
             });
-        }
-
-        // Automatically show fade-in elements after the page loads
-        window.onload = () => {
-            document.querySelectorAll('.fade-in').forEach((element) => {
-                element.classList.add('show');
+        });
+        
+        // Resource Tabs
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('active');
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
             });
+        });
+        
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Quiz Functionality
+        const quizQuestions = [
+            {
+                question: "What is the basic structural and functional unit of all living organisms?",
+                options: ["Atom", "Cell", "Molecule", "Organ"],
+                correctAnswer: 1
+            },
+            {
+                question: "Which of these is NOT one of the four main types of biological macromolecules?",
+                options: ["Proteins", "Carbohydrates", "Lipids", "Vitamins"],
+                correctAnswer: 3
+            },
+            {
+                question: "What is the process by which plants convert sunlight into chemical energy?",
+                options: ["Respiration", "Photosynthesis", "Fermentation", "Transpiration"],
+                correctAnswer: 1
+            },
+            {
+                question: "Which scientist is known as the father of modern genetics?",
+                options: ["Charles Darwin", "Gregor Mendel", "Louis Pasteur", "James Watson"],
+                correctAnswer: 1
+            },
+            {
+                question: "What is the name of the molecule that carries genetic information in cells?",
+                options: ["RNA", "Protein", "DNA", "Lipid"],
+                correctAnswer: 2
+            }
+        ];
+        
+        const questionElement = document.getElementById('question');
+        const optionsElement = document.getElementById('options');
+        const questionCountElement = document.getElementById('questionCount');
+        const nextBtn = document.getElementById('nextBtn');
+        const resultContainer = document.getElementById('resultContainer');
+        const questionContainer = document.getElementById('questionContainer');
+        const scoreElement = document.getElementById('score');
+        const resultMessageElement = document.getElementById('resultMessage');
+        const retryBtn = document.getElementById('retryBtn');
+        const progressBar = document.getElementById('progressBar');
+        
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let selectedOption = null;
+        
+        function loadQuestion() {
+            const currentQuestion = quizQuestions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+            
+            optionsElement.innerHTML = '';
+            currentQuestion.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.classList.add('option');
+                optionElement.textContent = option;
+                optionElement.addEventListener('click', () => selectOption(index));
+                optionsElement.appendChild(optionElement);
+            });
+            
+            questionCountElement.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+            progressBar.style.width = `${((currentQuestionIndex) / quizQuestions.length) * 100}%`;
+            
+            nextBtn.style.display = 'none';
+            selectedOption = null;
         }
+        
+        function selectOption(index) {
+            const options = document.querySelectorAll('.option');
+            
+            // Remove selected class from all options
+            options.forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            options[index].classList.add('selected');
+            selectedOption = index;
+            
+            // Show next button
+            nextBtn.style.display = 'block';
+        }
+        
+        function showResult() {
+            questionContainer.style.display = 'none';
+            resultContainer.style.display = 'block';
+            
+            scoreElement.textContent = `You scored ${score}/${quizQuestions.length}`;
+            
+            // Custom result message based on score
+            if (score === quizQuestions.length) {
+                resultMessageElement.textContent = "Perfect! You're a biology expert!";
+            } else if (score >= quizQuestions.length * 0.7) {
+                resultMessageElement.textContent = "Great job! You have a solid understanding of basic biology concepts.";
+            } else if (score >= quizQuestions.length * 0.5) {
+                resultMessageElement.textContent = "Good effort! Review some materials and try again to improve.";
+            } else {
+                resultMessageElement.textContent = "Keep learning! Check out our resources to strengthen your biology knowledge.";
+            }
+            
+            progressBar.style.width = '100%';
+        }
+        
+        nextBtn.addEventListener('click', () => {
+            if (selectedOption !== null) {
+                // Check if answer is correct
+                if (selectedOption === quizQuestions[currentQuestionIndex].correctAnswer) {
+                    score++;
+                }
+                
+                currentQuestionIndex++;
+                
+                if (currentQuestionIndex < quizQuestions.length) {
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }
+        });
+        
+        retryBtn.addEventListener('click', () => {
+            currentQuestionIndex = 0;
+            score = 0;
+            questionContainer.style.display = 'block';
+            resultContainer.style.display = 'none';
+            loadQuestion();
+        });
+        
+        // Initialize quiz
+        loadQuestion();
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const newsletterForm = document.getElementById('newsletterForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for subscribing to our newsletter!');
+            newsletterForm.reset();
+        });
+        
+        // Sticky Header on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
     </script>
 </body>
 </html>
