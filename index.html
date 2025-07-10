@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biology Education Portal</title>
+    <title>Physics Video Creator: Linear Motion</title>
     <style>
-        /* Global Styles */
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --accent-color: #e74c3c;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --text-light: #7f8c8d;
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
         }
         
         * {
@@ -24,865 +23,527 @@
         }
         
         body {
-            background-color: #f5f5f5;
-            color: var(--text-color);
+            background-color: #f5f7fa;
+            color: var(--dark);
             line-height: 1.6;
-        }
-        
-        a {
-            text-decoration: none;
-            color: var(--secondary-color);
-            transition: color 0.3s;
-        }
-        
-        a:hover {
-            color: var(--accent-color);
         }
         
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 20px;
         }
         
-        /* Header Styles */
         header {
-            background-color: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            padding: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
-        }
-        
-        .logo span {
-            color: var(--secondary-color);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 20px;
-        }
-        
-        nav ul li a {
-            color: white;
-            font-weight: 500;
-            padding: 5px 10px;
-            border-radius: 4px;
-        }
-        
-        nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 100px 0;
+            padding: 2rem 0;
             text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
         }
         
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
         }
         
-        .hero p {
-            font-size: 20px;
-            max-width: 800px;
-            margin: 0 auto 30px;
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
         }
         
-        .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: #2980b9;
-            color: white;
-        }
-        
-        /* Chapters Section */
-        .chapters {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .chapter-grid {
+        .video-creator {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
         
-        .chapter-card {
+        .video-preview {
             background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .chapter-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .chapter-img {
-            height: 200px;
-            overflow: hidden;
-        }
-        
-        .chapter-img img {
+        .video-canvas {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+            height: 300px;
+            background-color: #f0f2f5;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
         }
         
-        .chapter-card:hover .chapter-img img {
-            transform: scale(1.1);
-        }
-        
-        .chapter-content {
-            padding: 25px;
-        }
-        
-        .chapter-content h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
-        
-        .chapter-content p {
-            color: var(--text-light);
-            margin-bottom: 20px;
-        }
-        
-        .chapter-content .btn {
-            padding: 8px 20px;
-            font-size: 14px;
-        }
-        
-        /* Content Section */
-        .content-section {
-            padding: 80px 0;
-            background-color: white;
-        }
-        
-        .content-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        .content-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .content-header h1 {
-            font-size: 36px;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-        
-        .content-header .meta {
-            color: var(--text-light);
-            font-size: 14px;
-            margin-bottom: 20px;
-        }
-        
-        .content-body {
-            line-height: 1.8;
-        }
-        
-        .content-body h2 {
-            font-size: 28px;
-            color: var(--primary-color);
-            margin: 40px 0 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-color);
-        }
-        
-        .content-body h3 {
-            font-size: 22px;
-            color: var(--secondary-color);
-            margin: 30px 0 15px;
-        }
-        
-        .content-body p {
-            margin-bottom: 20px;
-        }
-        
-        .content-body ul, .content-body ol {
-            margin-bottom: 20px;
-            padding-left: 30px;
-        }
-        
-        .content-body li {
-            margin-bottom: 10px;
-        }
-        
-        .content-body figure {
-            margin: 30px 0;
-            text-align: center;
-        }
-        
-        .content-body figure img {
-            max-width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        .content-body figcaption {
-            font-size: 14px;
-            color: var(--text-light);
-            margin-top: 10px;
-        }
-        
-        .content-body table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-        }
-        
-        .content-body table th, 
-        .content-body table td {
-            padding: 12px 15px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-        
-        .content-body table th {
-            background-color: var(--light-color);
-            font-weight: 600;
-        }
-        
-        .content-body table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        /* Sidebar */
-        .sidebar {
-            width: 300px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            position: sticky;
-            top: 100px;
-        }
-        
-        .sidebar-title {
-            font-size: 20px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light-color);
-        }
-        
-        .sidebar-menu {
-            list-style: none;
-        }
-        
-        .sidebar-menu li {
-            margin-bottom: 10px;
-        }
-        
-        .sidebar-menu a {
-            display: block;
-            padding: 8px 10px;
-            border-radius: 4px;
-            color: var(--text-color);
-            transition: background-color 0.3s;
-        }
-        
-        .sidebar-menu a:hover {
-            background-color: var(--light-color);
-            color: var(--secondary-color);
-        }
-        
-        .sidebar-menu a.active {
-            background-color: var(--secondary-color);
-            color: white;
-        }
-        
-        /* Two-column layout */
-        .two-column {
+        .controls {
             display: flex;
-            gap: 40px;
+            gap: 10px;
+            margin-bottom: 1rem;
         }
         
-        .main-content {
+        button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
             flex: 1;
         }
         
-        /* Footer */
-        footer {
-            background-color: var(--dark-color);
+        .record-btn {
+            background-color: var(--danger);
             color: white;
-            padding: 50px 0 20px;
         }
         
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-col h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            color: var(--secondary-color);
-        }
-        
-        .footer-col p {
-            margin-bottom: 15px;
-            color: #bdc3c7;
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col ul li a {
-            color: #bdc3c7;
-            transition: color 0.3s;
-        }
-        
-        .footer-col ul li a:hover {
-            color: var(--secondary-color);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
+        .stop-btn {
+            background-color: var(--dark);
             color: white;
-            transition: background-color 0.3s;
         }
         
-        .social-links a:hover {
-            background-color: var(--secondary-color);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: #bdc3c7;
-            font-size: 14px;
-        }
-        
-        /* Back to top button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--secondary-color);
+        .add-slide-btn {
+            background-color: var(--success);
             color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
+        }
+        
+        .export-btn {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .editor-panel {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .slide-list {
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .slide-item {
+            background-color: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
             cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s;
-            z-index: 99;
+            transition: all 0.2s ease;
+            border-left: 4px solid var(--primary);
         }
         
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
+        .slide-item:hover {
+            background-color: #e9ecef;
         }
         
-        .back-to-top:hover {
-            background-color: var(--primary-color);
+        .slide-item.active {
+            background-color: var(--primary);
+            color: white;
         }
         
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .two-column {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-                position: static;
-                margin-bottom: 40px;
-            }
+        .simulation-controls {
+            margin-top: 1rem;
+        }
+        
+        .car-simulation {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 50px;
+            height: 30px;
+            background-color: var(--accent);
+            border-radius: 5px;
+            transition: left 2s linear;
+        }
+        
+        .graph-container {
+            width: 100%;
+            height: 200px;
+            margin-top: 1rem;
+            position: relative;
+        }
+        
+        .axis {
+            position: absolute;
+            background-color: var(--dark);
+        }
+        
+        .x-axis {
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+        }
+        
+        .y-axis {
+            bottom: 0;
+            left: 50px;
+            width: 2px;
+            height: 100%;
+        }
+        
+        .graph-line {
+            position: absolute;
+            background-color: var(--danger);
+            height: 2px;
+            bottom: 0;
+            left: 50px;
+            width: 0;
+            transform-origin: left;
         }
         
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            nav ul {
-                margin-top: 20px;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            nav ul li {
-                margin: 5px 0;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 18px;
-            }
-            
-            .section-title h2 {
-                font-size: 30px;
-            }
-            
-            .content-header h1 {
-                font-size: 30px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero {
-                padding: 80px 0;
-            }
-            
-            .hero h1 {
-                font-size: 30px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .chapter-grid {
+            .video-creator {
                 grid-template-columns: 1fr;
-            }
-            
-            .section-title h2 {
-                font-size: 26px;
-            }
-            
-            .content-body h2 {
-                font-size: 24px;
-            }
-            
-            .content-body h3 {
-                font-size: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="container header-container">
-            <a href="index.html" class="logo">Bio<span>Learn</span></a>
-            <button class="mobile-menu-btn">☰</button>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="chapters.html">Chapters</a></li>
-                    <li><a href="resources.html">Resources</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
-            </nav>
+        <div class="container">
+            <h1>Linear Motion Video Creator</h1>
+            <p class="subtitle">Create beautiful physics education videos with interactive simulations</p>
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Introduction to Biology</h1>
-            <p>Explore the fascinating world of living organisms, from molecular biology to ecosystems and biodiversity conservation.</p>
-            <a href="#start-learning" class="btn">Start Learning</a>
-        </div>
-    </section>
-
-    <!-- Chapters Section -->
-    <section class="chapters" id="start-learning">
-        <div class="container">
-            <div class="section-title">
-                <h2>Course Chapters</h2>
-                <p>Browse through our comprehensive biology curriculum covering all major topics</p>
-            </div>
-            
-            <div class="chapter-grid">
-                <!-- Chapter 1 -->
-                <div class="chapter-card">
-                    <div class="chapter-img">
-                        <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Introduction to Biology">
-                    </div>
-                    <div class="chapter-content">
-                        <h3>Chapter 1: Introduction to Biology</h3>
-                        <p>Explore the fundamental themes of biology and its importance in daily life, including agriculture, aquaculture, health, and more.</p>
-                        <a href="chapter1.html" class="btn">Read Chapter</a>
+    
+    <div class="container">
+        <div class="video-creator">
+            <div class="video-preview">
+                <h2>Video Preview</h2>
+                <div class="video-canvas" id="videoCanvas">
+                    <div class="car-simulation" id="carSimulation"></div>
+                    <div class="graph-container" id="graphContainer">
+                        <div class="axis x-axis"></div>
+                        <div class="axis y-axis"></div>
+                        <div class="graph-line" id="graphLine"></div>
                     </div>
                 </div>
-                
-                <!-- Chapter 2 -->
-                <div class="chapter-card">
-                    <div class="chapter-img">
-                        <img src="https://images.unsplash.com/photo-1519735777090-ec97162dc266?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Molecular Biology">
-                    </div>
-                    <div class="chapter-content">
-                        <h3>Chapter 2: Molecular Biology</h3>
-                        <p>Learn about DNA and RNA structure, genetic code, protein synthesis, and genetic engineering techniques.</p>
-                        <a href="chapter2.html" class="btn">Read Chapter</a>
-                    </div>
-                </div>
-                
-                <!-- Chapter 3 -->
-                <div class="chapter-card">
-                    <div class="chapter-img">
-                        <img src="https://images.unsplash.com/photo-1518640467707-6811f4a6ab73?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Transport System">
-                    </div>
-                    <div class="chapter-content">
-                        <h3>Chapter 3: Transport System in Organisms</h3>
-                        <p>Understand transport mechanisms in plants and animals, including xylem, phloem, and cardiovascular systems.</p>
-                        <a href="chapter3.html" class="btn">Read Chapter</a>
-                    </div>
-                </div>
-                
-                <!-- Chapter 4 -->
-                <div class="chapter-card">
-                    <div class="chapter-img">
-                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Diseases">
-                    </div>
-                    <div class="chapter-content">
-                        <h3>Chapter 4: Diseases in Plants and Animals</h3>
-                        <p>Study plant and animal diseases, including infectious and non-infectious diseases like malaria and cardiovascular diseases.</p>
-                        <a href="chapter4.html" class="btn">Read Chapter</a>
-                    </div>
-                </div>
-                
-                <!-- Chapter 5 -->
-                <div class="chapter-card">
-                    <div class="chapter-img">
-                        <img src="https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Coordination and Response">
-                    </div>
-                    <div class="chapter-content">
-                        <h3>Chapter 5: Coordination and Response</h3>
-                        <p>Explore how plants and animals coordinate their activities and respond to stimuli through hormones and nervous systems.</p>
-                        <a href="chapter5.html" class="btn">Read Chapter</a>
-                    </div>
-                </div>
-                
-                <!-- Chapter 6 -->
-                <div class="chapter-card">
-                    <div class="chapter-img">
-                        <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Biodiversity">
-                    </div>
-                    <div class="chapter-content">
-                        <h3>Chapter 6: Biodiversity and Conservation</h3>
-                        <p>Learn about biodiversity levels, threats to biodiversity, and conservation methods to protect our planet's species.</p>
-                        <a href="chapter6.html" class="btn">Read Chapter</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Chapter Content Example (Chapter 1) -->
-    <section class="content-section">
-        <div class="container two-column">
-            <div class="main-content">
-                <div class="content-header">
-                    <h1>Chapter 1: Introduction to Biology</h1>
-                    <div class="meta">Last updated: June 15, 2023</div>
-                    <p>This chapter introduces the fundamental themes of biology and explores its importance in our daily lives.</p>
-                </div>
-                
-                <div class="content-body">
-                    <h2>1.1 Learning Outcomes</h2>
-                    <p>It is expected that students will be able to:</p>
-                    <ul>
-                        <li>Identify, explain and give examples of the five themes that central to living organisms</li>
-                        <li>Understand the core theme of evolution, together with organization, information, energy and matter, and their interactions</li>
-                        <li>Review the importance of biology in the daily lives of people</li>
-                        <li>Increase the awareness of production and productivity of cereals and vegetable crops</li>
-                        <li>Understand the basic knowledge of aquaculture and livestock</li>
-                        <li>Gain knowledge about the food resources</li>
-                        <li>Promote the knowledge of health and how to prevent diseases by using medicines</li>
-                        <li>Learn the uses of fibres and materials used in making clothing and shelter</li>
-                    </ul>
-                    
-                    <h2>1.1 THEMES OF BIOLOGY</h2>
-                    <p>Biology is broadly divided into five major themes: organization, information, energy and matter, interactions and evolution. Each of these themes will be described and explained their importance to understand life as a whole. Life on Earth is simply amazing diverse, resilient, powerful, intelligent, and mystify. In the time, that humans have studied biology understanding of its five major themes has been able to be categorized.</p>
-                    
-                    <h3>1.1.1 Theme 1: New Properties Emerge at Successive Levels of Biological Organization</h3>
-                    <p>The hierarchy of life on earth is unfolded as follows: biosphere, ecosystem, community, population, organism, organ system, organ, tissue, cell, organelle, molecule and atom. With each set up, new properties emerge (emergent properties) because of interactions among components at the lower levels.</p>
-                    <p>The structure and function of biological components are interrelated. At each level of the biological hierarchy, a correlation of structure and function can be observed. For example, the hummingbird's anatomy allows the wings to rotate at the shoulder, so hummingbirds have the ability, unique among birds, to fly backward or hover in place. While hovering, the birds can extend their long, slender beaks into flowers and feed on nectar (Figure 1.1).</p>
-                    
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1551085251-e8b8592d5e9b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Hummingbird feeding">
-                        <figcaption>Figure 1.1: A hummingbird feeding on nectar, demonstrating the relationship between structure and function.</figcaption>
-                    </figure>
-                    
-                    <p>The cell, one of the steps composed in the hierarchy of life is a basic unit structure and function of an organism. It is the lowest level of organization that can perform all activities required for life. Cells are either prokaryote or eukaryote. Eukaryotic cells contain membrane- enclosed organelles, including DNA in nucleus whereas prokaryotic cells lack membrane-enclosed organelles (Figure 1.2).</p>
-                    
-                    <h3>1.1.2 Theme 2: Life's Processes Involve the Expression and Transmission of Genetic Information</h3>
-                    <p>The genetic information is encoded in the nucleotide sequences of DNA. The DNA transmits heritable information from parents to offspring. DNA sequences (called genes) act as instructions to make a cell's protein production by being transcribed into mRNA and then translated into specific proteins. These processes are called gene expression. Gene expression can also produce some RNAs that are not translated into proteins but serve other important functions (Figure 1.3 A and B).</p>
-                    
-                    <!-- More content would continue here... -->
-                    
-                    <h2>1.2 IMPORTANCE OF BIOLOGY IN DAILY LIFE</h2>
-                    <p>Scientific research and the development of new tools and techniques have undoubtedly improved the quality of our lives. Generally, the relevance of biology is the important of the human society and humankind. Biology is also important to our everyday life because it allows human beings to know better their bodies, their resources and potential threats in the environment.</p>
-                    <p>Biology being the study of living things help us to understand every organism. As a field of science, biology helps us to understand the living world and the ways its many species (including humans) function, evolve, and interact. Advances in medicine, agriculture, biotechnology, and many other areas of biology have brought improvements in the quality of life.</p>
-                    <p>Fields such as genetics and evolution give insight into the past and can help shape the future, and research in ecology and conservation inform how we can protect this planet's precious biodiversity. Biology has also helped us to understand the characteristics of living things, the similarities between plants and animals, as well as how germs work and help us staying healthier.</p>
-                    
-                    <h3>1.2.1 Agriculture, Horticulture and Hydroponic Culture</h3>
-                    <p>The food that we consume is the results of agriculture. Humans and animals depend on the agricultural products for sustaining themselves. Fruits, vegetables, grains, pulses, oils, sugar, tea, coffee, and other foods are obtained from the plants.</p>
-                    
-                    <h4>Agriculture</h4>
-                    <p>Agriculture is defined to produce commodities which maintain life, including foods, fibers, forest products, agricultural crops, horticultural crops, and their related services. Agricultural crops mean food or fiber commodities grown for resale or commercial or economic purposes that provide foods, clothing, or animal feeds, and include nursery products and florist items while in the hands of a nursery grower. The global major agricultural products can be broadly grouped into foods, fibers, fuels, and raw materials (such as rubber). Myanmar's agricultural exports include rice, maize, blackgram, greengram, pigeonpea, chickpea, sesame, onion, tamarind, raw rubber, vegetables, and fruits. Commercially cultivating agricultural crops in Myanmar are mainly cereals, pulses and oilseed crops. Myanmar's farms are well diversified, with most farms producing rice paddy during the monsoon season and other crops such as beans, pulses, oilseeds and maize, during the cool and dry seasons.</p>
-                    
-                    <figure>
-                        <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Rice cultivation">
-                        <figcaption>Figure 1.7 A: Rice cultivation in Myanmar</figcaption>
-                    </figure>
-                    
-                    <!-- Continue with more content... -->
+                <div class="controls">
+                    <button class="record-btn" id="recordBtn">Record Slide</button>
+                    <button class="stop-btn" id="stopBtn" disabled>Stop</button>
+                    <button class="export-btn" id="exportBtn">Export Video</button>
                 </div>
             </div>
             
-            <div class="sidebar">
-                <h3 class="sidebar-title">Chapter Contents</h3>
-                <ul class="sidebar-menu">
-                    <li><a href="#learning-outcomes" class="active">1.1 Learning Outcomes</a></li>
-                    <li><a href="#themes-of-biology">1.1 Themes of Biology</a></li>
-                    <li><a href="#theme1">1.1.1 New Properties Emerge</a></li>
-                    <li><a href="#theme2">1.1.2 Genetic Information</a></li>
-                    <li><a href="#theme3">1.1.3 Energy and Matter</a></li>
-                    <li><a href="#theme4">1.1.4 Interactions</a></li>
-                    <li><a href="#theme5">1.1.5 Evolution</a></li>
-                    <li><a href="#importance-biology">1.2 Importance of Biology</a></li>
-                    <li><a href="#agriculture">1.2.1 Agriculture</a></li>
-                    <li><a href="#aquaculture">1.2.2 Aquaculture</a></li>
-                    <li><a href="#food">1.2.3 Food</a></li>
-                    <li><a href="#health">1.2.4 Health</a></li>
-                    <li><a href="#clothing">1.2.5 Clothing</a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>About BioLearn</h3>
-                    <p>BioLearn is an educational platform dedicated to providing comprehensive biology resources for students and educators worldwide.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f">f</i></a>
-                        <a href="#"><i class="fab fa-twitter">t</i></a>
-                        <a href="#"><i class="fab fa-instagram">i</i></a>
-                        <a href="#"><i class="fab fa-youtube">y</i></a>
+            <div class="editor-panel">
+                <h2>Slide Editor</h2>
+                <div class="form-group">
+                    <label for="slideTitle">Slide Title</label>
+                    <input type="text" id="slideTitle" placeholder="Enter slide title">
+                </div>
+                <div class="form-group">
+                    <label for="slideContent">Content</label>
+                    <textarea id="slideContent" placeholder="Enter your explanation"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="simulationType">Simulation Type</label>
+                    <select id="simulationType">
+                        <option value="none">No Simulation</option>
+                        <option value="constant">Constant Velocity</option>
+                        <option value="accelerated">Accelerated Motion</option>
+                        <option value="decelerated">Decelerated Motion</option>
+                    </select>
+                </div>
+                <div class="simulation-controls" id="simulationControls">
+                    <div class="form-group">
+                        <label for="initialVelocity">Initial Velocity (m/s)</label>
+                        <input type="number" id="initialVelocity" value="0" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="acceleration">Acceleration (m/s²)</label>
+                        <input type="number" id="acceleration" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="simulationTime">Duration (seconds)</label>
+                        <input type="number" id="simulationTime" value="5" min="1" max="10">
                     </div>
                 </div>
+                <button class="add-slide-btn" id="addSlideBtn">Add Slide</button>
                 
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="chapters.html">Chapters</a></li>
-                        <li><a href="resources.html">Resources</a></li>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
+                <div class="slide-list" id="slideList">
+                    <h3>Slides</h3>
+                    <!-- Slides will be added here dynamically -->
                 </div>
-                
-                <div class="footer-col">
-                    <h3>Resources</h3>
-                    <ul>
-                        <li><a href="glossary.html">Glossary</a></li>
-                        <li><a href="quizzes.html">Quizzes</a></li>
-                        <li><a href="videos.html">Video Lectures</a></li>
-                        <li><a href="downloads.html">Download Materials</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <p>Email: info@biolearn.edu</p>
-                    <p>Phone: +1 (555) 123-4567</p>
-                    <p>Address: 123 Biology Lane, Science City</p>
-                </div>
-            </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 BioLearn. All Rights Reserved.</p>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top">↑</div>
-
-    <!-- JavaScript -->
     <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const nav = document.querySelector('nav');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-        
-        // Back to Top Button
-        const backToTopBtn = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('active');
-            } else {
-                backToTopBtn.classList.remove('active');
-            }
-        });
-        
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const videoCanvas = document.getElementById('videoCanvas');
+            const carSimulation = document.getElementById('carSimulation');
+            const graphLine = document.getElementById('graphLine');
+            const recordBtn = document.getElementById('recordBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const exportBtn = document.getElementById('exportBtn');
+            const addSlideBtn = document.getElementById('addSlideBtn');
+            const slideList = document.getElementById('slideList');
+            const simulationType = document.getElementById('simulationType');
+            const simulationControls = document.getElementById('simulationControls');
+            
+            // Form elements
+            const slideTitle = document.getElementById('slideTitle');
+            const slideContent = document.getElementById('slideContent');
+            const initialVelocity = document.getElementById('initialVelocity');
+            const acceleration = document.getElementById('acceleration');
+            const simulationTime = document.getElementById('simulationTime');
+            
+            // Video recording variables
+            let mediaRecorder;
+            let recordedChunks = [];
+            let slides = [];
+            let currentSlide = null;
+            
+            // Toggle simulation controls based on selection
+            simulationType.addEventListener('change', function() {
+                if (this.value === 'none') {
+                    simulationControls.style.display = 'none';
+                } else {
+                    simulationControls.style.display = 'block';
+                }
             });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
+            
+            // Initialize with controls hidden
+            simulationControls.style.display = 'none';
+            
+            // Add slide to the presentation
+            addSlideBtn.addEventListener('click', function() {
+                const title = slideTitle.value.trim() || 'Untitled Slide';
+                const content = slideContent.value.trim() || 'No content provided';
+                const type = simulationType.value;
                 
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
+                const slide = {
+                    title,
+                    content,
+                    type,
+                    initialVelocity: parseFloat(initialVelocity.value),
+                    acceleration: parseFloat(acceleration.value),
+                    time: parseFloat(simulationTime.value)
+                };
                 
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
+                slides.push(slide);
+                renderSlideList();
+                resetForm();
+                
+                // Preview the new slide
+                previewSlide(slide);
+            });
+            
+            // Render the slide list
+            function renderSlideList() {
+                slideList.innerHTML = '<h3>Slides</h3>';
+                
+                if (slides.length === 0) {
+                    slideList.innerHTML += '<p>No slides added yet</p>';
+                    return;
+                }
+                
+                slides.forEach((slide, index) => {
+                    const slideItem = document.createElement('div');
+                    slideItem.className = 'slide-item';
+                    if (currentSlide === index) {
+                        slideItem.classList.add('active');
+                    }
+                    slideItem.innerHTML = `
+                        <strong>${index + 1}. ${slide.title}</strong>
+                        <p>${slide.content.substring(0, 50)}${slide.content.length > 50 ? '...' : ''}</p>
+                    `;
+                    
+                    slideItem.addEventListener('click', () => {
+                        currentSlide = index;
+                        previewSlide(slide);
+                        renderSlideList();
                     });
-                }
-            });
-        });
-        
-        // Active link highlighting in sidebar
-        const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
-        const sections = document.querySelectorAll('.content-body h2, .content-body h3');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
-            
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= sectionTop - 200) {
-                    current = '#' + section.getAttribute('id');
-                }
-            });
-            
-            sidebarLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === current) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-        // Simple quiz functionality example
-        const quizQuestions = [
-            {
-                question: "Which of these is NOT one of the five major themes of biology?",
-                options: ["Organization", "Information", "Energy and Matter", "Reproduction"],
-                answer: 3
-            },
-            {
-                question: "What is the basic unit of structure and function in living organisms?",
-                options: ["Atom", "Molecule", "Cell", "Tissue"],
-                answer: 2
-            },
-            {
-                question: "Which process involves the conversion of DNA to mRNA?",
-                options: ["Translation", "Transcription", "Replication", "Mutation"],
-                answer: 1
+                    
+                    slideList.appendChild(slideItem);
+                });
             }
-        ];
-        
-        // You would implement a quiz system using the above data
-        // This is just a placeholder for the actual implementation
+            
+            // Reset the form after adding a slide
+            function resetForm() {
+                slideTitle.value = '';
+                slideContent.value = '';
+                simulationType.value = 'none';
+                initialVelocity.value = '0';
+                acceleration.value = '1';
+                simulationTime.value = '5';
+                simulationControls.style.display = 'none';
+            }
+            
+            // Preview a slide with simulation
+            function previewSlide(slide) {
+                // Clear previous content
+                videoCanvas.innerHTML = `
+                    <div class="car-simulation" id="carSimulation"></div>
+                    <div class="graph-container" id="graphContainer">
+                        <div class="axis x-axis"></div>
+                        <div class="axis y-axis"></div>
+                        <div class="graph-line" id="graphLine"></div>
+                    </div>
+                `;
+                
+                const car = document.getElementById('carSimulation');
+                const graph = document.getElementById('graphLine');
+                
+                // Add title and content
+                const titleElement = document.createElement('div');
+                titleElement.style.position = 'absolute';
+                titleElement.style.top = '20px';
+                titleElement.style.left = '20px';
+                titleElement.style.fontSize = '24px';
+                titleElement.style.fontWeight = 'bold';
+                titleElement.style.color = '#4361ee';
+                titleElement.textContent = slide.title;
+                videoCanvas.appendChild(titleElement);
+                
+                const contentElement = document.createElement('div');
+                contentElement.style.position = 'absolute';
+                contentElement.style.top = '60px';
+                contentElement.style.left = '20px';
+                contentElement.style.right = '20px';
+                contentElement.style.fontSize = '18px';
+                contentElement.style.color = '#212529';
+                contentElement.textContent = slide.content;
+                videoCanvas.appendChild(contentElement);
+                
+                // Run simulation if not 'none'
+                if (slide.type !== 'none') {
+                    runSimulation(car, graph, slide);
+                }
+            }
+            
+            // Run the physics simulation
+            function runSimulation(car, graph, slide) {
+                const canvasWidth = videoCanvas.offsetWidth - 50;
+                const canvasHeight = videoCanvas.offsetHeight;
+                
+                // Reset positions
+                car.style.left = '0px';
+                graph.style.width = '0px';
+                graph.style.transform = 'rotate(0rad)';
+                
+                // Calculate motion parameters
+                const initialVelocity = slide.initialVelocity;
+                const acceleration = slide.acceleration;
+                const time = slide.time;
+                
+                // Calculate final position
+                const finalPosition = initialVelocity * time + 0.5 * acceleration * time * time;
+                const scaleFactor = canvasWidth / (finalPosition * 1.2); // Add 20% padding
+                
+                // Animate car
+                let currentTime = 0;
+                const interval = 50; // ms
+                const steps = (time * 1000) / interval;
+                let currentStep = 0;
+                
+                const animation = setInterval(() => {
+                    if (currentStep >= steps) {
+                        clearInterval(animation);
+                        return;
+                    }
+                    
+                    currentTime += interval / 1000; // Convert to seconds
+                    currentStep++;
+                    
+                    // Calculate current position
+                    const position = initialVelocity * currentTime + 0.5 * acceleration * currentTime * currentTime;
+                    const scaledPosition = position * scaleFactor;
+                    
+                    // Update car position
+                    car.style.left = `${scaledPosition}px`;
+                    
+                    // Update graph (position vs time)
+                    const graphHeight = Math.min(position * 5, 180); // Scale for visibility
+                    graph.style.width = `${currentTime * 50}px`;
+                    graph.style.transform = `rotate(${-Math.atan(graphHeight / (currentTime * 50))}rad)`;
+                    
+                }, interval);
+            }
+            
+            // Start recording (simplified - in a real app you'd use MediaRecorder API)
+            recordBtn.addEventListener('click', function() {
+                if (!currentSlide && slides.length > 0) {
+                    currentSlide = 0;
+                    previewSlide(slides[0]);
+                    renderSlideList();
+                }
+                
+                if (currentSlide !== null) {
+                    recordBtn.disabled = true;
+                    stopBtn.disabled = false;
+                    alert("Recording started for slide: " + slides[currentSlide].title);
+                    // In a real implementation, you would:
+                    // 1. Start MediaRecorder
+                    // 2. Capture canvas stream
+                    // 3. Store recorded chunks
+                } else {
+                    alert("Please add and select a slide first");
+                }
+            });
+            
+            // Stop recording
+            stopBtn.addEventListener('click', function() {
+                recordBtn.disabled = false;
+                stopBtn.disabled = true;
+                alert("Recording stopped");
+                // In a real implementation:
+                // 1. Stop MediaRecorder
+                // 2. Process recorded chunks
+                // 3. Save the recording for this slide
+            });
+            
+            // Export video (simplified)
+            exportBtn.addEventListener('click', function() {
+                if (slides.length === 0) {
+                    alert("Please add some slides first");
+                    return;
+                }
+                
+                alert("Video exported (this would combine all slide recordings in a real app)");
+                // In a real implementation:
+                // 1. Combine all slide recordings
+                // 2. Offer download or upload
+            });
+            
+            // Initial render
+            renderSlideList();
+        });
     </script>
 </body>
 </html>
