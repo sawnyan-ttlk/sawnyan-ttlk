@@ -3,296 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotational Motion Explained</title>
+    <title>Rotational Motion | Physics Education</title>
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --danger: #f72585;
+            --youtube-red: #ff0000;
+            --youtube-dark: #212121;
+            --youtube-light: #f9f9f9;
+            --youtube-gray: #606060;
+            --youtube-text: #030303;
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Roboto', Arial, sans-serif;
         }
         
         body {
-            background-color: #f5f7fa;
-            color: var(--dark);
+            background-color: var(--youtube-light);
+            color: var(--youtube-text);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+            height: 56px;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            color: var(--youtube-red);
+            font-size: 24px;
+            margin-right: 4px;
+        }
+        
+        .logo-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--youtube-text);
+        }
+        
+        .search-bar {
+            display: flex;
+            flex-grow: 0.6;
+            margin: 0 40px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 10px 16px;
+            border: 1px solid #ccc;
+            border-radius: 40px 0 0 40px;
+            font-size: 16px;
+            outline: none;
+        }
+        
+        .search-btn {
+            padding: 0 20px;
+            border: 1px solid #d3d3d3;
+            border-left: none;
+            border-radius: 0 40px 40px 0;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+        
+        .main-content {
+            display: flex;
+            margin-top: 56px;
+        }
+        
+        .video-container {
+            flex: 2;
+            padding: 24px 24px 0 24px;
+        }
+        
+        .video-player {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: black;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .video-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin: 12px 0;
+        }
+        
+        .video-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .video-views {
+            color: var(--youtube-gray);
+            font-size: 14px;
+        }
+        
+        .video-actions {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--youtube-gray);
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .channel-info {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .channel-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            margin-right: 12px;
+        }
+        
+        .channel-name {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        
+        .subscribers {
+            color: var(--youtube-gray);
+            font-size: 13px;
+        }
+        
+        .subscribe-btn {
+            margin-left: auto;
+            padding: 10px 16px;
+            background-color: var(--youtube-red);
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-weight: 500;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+        
+        .video-description {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 12px;
+            font-size: 14px;
             line-height: 1.6;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .sidebar {
+            flex: 1;
+            padding: 24px 24px 0 0;
         }
         
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .video-creator {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .video-preview {
-            background-color: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .video-canvas {
-            width: 100%;
-            height: 400px;
-            background-color: #f0f2f5;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .controls {
+        .recommended-video {
             display: flex;
-            gap: 10px;
-            margin-bottom: 1rem;
+            margin-bottom: 12px;
+            cursor: pointer;
         }
         
-        button {
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .recommended-thumbnail {
+            width: 168px;
+            height: 94px;
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+        
+        .recommended-info {
             flex: 1;
         }
         
-        .record-btn {
-            background-color: var(--danger);
-            color: white;
+        .recommended-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         
-        .stop-btn {
-            background-color: var(--dark);
-            color: white;
+        .recommended-channel {
+            font-size: 12px;
+            color: var(--youtube-gray);
+            margin-bottom: 4px;
         }
         
-        .add-slide-btn {
-            background-color: var(--success);
-            color: white;
+        .recommended-views {
+            font-size: 12px;
+            color: var(--youtube-gray);
         }
         
-        .export-btn {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .editor-panel {
-            background-color: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .slide-list {
-            margin-top: 1rem;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .slide-item {
-            background-color: #f8f9fa;
-            padding: 0.8rem;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .slide-item:hover {
-            background-color: #e9ecef;
-        }
-        
-        .slide-item.active {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        /* Rotational Motion Elements */
-        .rotating-object {
+        /* Rotational Motion Simulation Elements */
+        .simulation-container {
             position: absolute;
-            width: 80px;
-            height: 80px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f9f9f9;
+        }
+        
+        .rotating-disk {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             background: conic-gradient(
-                var(--accent) 0% 30%,
-                var(--danger) 30% 60%,
-                var(--success) 60% 100%
+                #4285F4 0% 25%,
+                #EA4335 25% 50%,
+                #FBBC05 50% 75%,
+                #34A853 75% 100%
             );
+            position: relative;
+            transition: transform 0.1s linear;
+        }
+        
+        .axis {
+            position: absolute;
+            width: 4px;
+            height: 240px;
+            background-color: #212121;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            transition: transform 0.5s linear;
-        }
-        
-        .axis-line {
-            position: absolute;
-            width: 2px;
-            height: 120px;
-            background-color: var(--dark);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(0deg);
             transform-origin: top center;
         }
         
-        .formula-display {
+        .physics-info {
             position: absolute;
-            top: 20px;
+            bottom: 20px;
             left: 20px;
-            font-size: 24px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 12px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
-        .angular-velocity-display {
+        .physics-formula {
+            font-size: 18px;
+            font-family: 'Times New Roman', serif;
+            margin-bottom: 8px;
+        }
+        
+        .physics-values {
+            font-size: 14px;
+            color: #606060;
+        }
+        
+        .controls {
             position: absolute;
             bottom: 20px;
             right: 20px;
-            font-size: 18px;
-            color: var(--dark);
+            display: flex;
+            gap: 8px;
         }
         
-        @media (max-width: 768px) {
-            .video-creator {
-                grid-template-columns: 1fr;
+        .control-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            border: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 900px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                padding: 0 24px 24px 24px;
+            }
+            
+            .search-bar {
+                flex-grow: 1;
+                margin: 0 16px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Rotational Motion Video Creator</h1>
-            <p class="subtitle">Learn angular velocity, torque, and moment of inertia interactively</p>
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon">▶</span>
+            <span class="logo-text">PhysicsEd</span>
         </div>
-    </header>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="Search">
+            <button class="search-btn">🔍</button>
+        </div>
+        <div class="user-actions">
+            <button>☰</button>
+        </div>
+    </nav>
     
-    <div class="container">
-        <div class="video-creator">
-            <div class="video-preview">
-                <h2>Video Preview</h2>
-                <div class="video-canvas" id="videoCanvas">
-                    <div class="rotating-object" id="rotatingObject"></div>
-                    <div class="axis-line" id="axisLine"></div>
-                    <div class="formula-display" id="formulaDisplay">τ = Iα</div>
-                    <div class="angular-velocity-display" id="angularVelocityDisplay">ω = 0 rad/s</div>
-                </div>
-                <div class="controls">
-                    <button class="record-btn" id="recordBtn">Record Slide</button>
-                    <button class="stop-btn" id="stopBtn" disabled>Stop</button>
-                    <button class="export-btn" id="exportBtn">Export Video</button>
+    <div class="main-content">
+        <div class="video-container">
+            <div class="video-player">
+                <div class="simulation-container">
+                    <div class="rotating-disk" id="rotatingDisk"></div>
+                    <div class="axis" id="axis"></div>
+                    <div class="physics-info">
+                        <div class="physics-formula">τ = Iα</div>
+                        <div class="physics-values">
+                            <div>Angular Velocity (ω): <span id="angularVelocity">0</span> rad/s</div>
+                            <div>Torque (τ): <span id="torqueValue">0</span> N·m</div>
+                            <div>Moment of Inertia (I): <span id="inertiaValue">1</span> kg·m²</div>
+                        </div>
+                    </div>
+                    <div class="controls">
+                        <button class="control-btn" id="playBtn">▶</button>
+                        <button class="control-btn" id="torqueBtn">+τ</button>
+                        <button class="control-btn" id="inertiaBtn">I↓</button>
+                    </div>
                 </div>
             </div>
             
-            <div class="editor-panel">
-                <h2>Slide Editor</h2>
-                <div class="form-group">
-                    <label for="slideTitle">Slide Title</label>
-                    <input type="text" id="slideTitle" placeholder="Enter slide title" value="Torque and Angular Acceleration">
+            <h1 class="video-title">Understanding Rotational Motion: Torque and Angular Momentum</h1>
+            
+            <div class="video-meta">
+                <div class="video-views">125,408 views • Premiered 2 weeks ago</div>
+                <div class="video-actions">
+                    <button class="action-btn">👍 12K</button>
+                    <button class="action-btn">👎 245</button>
+                    <button class="action-btn">↗ Share</button>
+                    <button class="action-btn">⏬ Save</button>
                 </div>
-                <div class="form-group">
-                    <label for="slideContent">Content</label>
-                    <textarea id="slideContent" placeholder="Enter your explanation">Torque (τ) causes angular acceleration (α) according to τ = Iα, where I is moment of inertia.</textarea>
+            </div>
+            
+            <div class="channel-info">
+                <div class="channel-avatar"></div>
+                <div>
+                    <div class="channel-name">Physics Explained</div>
+                    <div class="subscribers">1.2M subscribers</div>
                 </div>
-                <div class="form-group">
-                    <label for="simulationType">Simulation Type</label>
-                    <select id="simulationType">
-                        <option value="none">No Simulation</option>
-                        <option value="constant" selected>Constant Angular Velocity</option>
-                        <option value="accelerated">Torque Applied</option>
-                        <option value="moment-of-inertia">Changing Moment of Inertia</option>
-                    </select>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+            
+            <div class="video-description">
+                <p>In this video, we explore the fundamental concepts of rotational motion in physics:</p>
+                <ul style="margin: 8px 0 8px 20px;">
+                    <li>Relationship between torque (τ), moment of inertia (I), and angular acceleration (α)</li>
+                    <li>Conservation of angular momentum (L = Iω)</li>
+                    <li>Practical applications in engineering and everyday life</li>
+                </ul>
+                <p>Try the interactive simulation above to see these concepts in action!</p>
+                <p style="margin-top: 8px; color: var(--youtube-gray);">#Physics #RotationalMotion #Education</p>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="recommended-video">
+                <div class="recommended-thumbnail"></div>
+                <div class="recommended-info">
+                    <div class="recommended-title">Introduction to Torque and Rotational Dynamics</div>
+                    <div class="recommended-channel">Physics Explained</div>
+                    <div class="recommended-views">245K views • 1 year ago</div>
                 </div>
-                <div class="simulation-controls" id="simulationControls">
-                    <div class="form-group">
-                        <label for="initialVelocity">Initial ω (rad/s)</label>
-                        <input type="number" id="initialVelocity" value="2" step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="acceleration">Angular Acceleration (rad/s²)</label>
-                        <input type="number" id="acceleration" value="0.5" step="0.1">
-                    </div>
-                    <div class="form-group">
-                        <label for="momentInertia">Moment of Inertia (kg·m²)</label>
-                        <input type="number" id="momentInertia" value="1" step="0.1">
-                    </div>
+            </div>
+            
+            <div class="recommended-video">
+                <div class="recommended-thumbnail"></div>
+                <div class="recommended-info">
+                    <div class="recommended-title">Angular Momentum Conservation Explained</div>
+                    <div class="recommended-channel">Science Academy</div>
+                    <div class="recommended-views">189K views • 8 months ago</div>
                 </div>
-                <button class="add-slide-btn" id="addSlideBtn">Add Slide</button>
-                
-                <div class="slide-list" id="slideList">
-                    <h3>Slides</h3>
-                    <!-- Slides will be added here dynamically -->
+            </div>
+            
+            <div class="recommended-video">
+                <div class="recommended-thumbnail"></div>
+                <div class="recommended-info">
+                    <div class="recommended-title">Moment of Inertia: The Complete Guide</div>
+                    <div class="recommended-channel">Physics Lab</div>
+                    <div class="recommended-views">312K views • 2 years ago</div>
+                </div>
+            </div>
+            
+            <div class="recommended-video">
+                <div class="recommended-thumbnail"></div>
+                <div class="recommended-info">
+                    <div class="recommended-title">10 Amazing Applications of Rotational Physics</div>
+                    <div class="recommended-channel">Engineering Today</div>
+                    <div class="recommended-views">1.2M views • 3 years ago</div>
                 </div>
             </div>
         </div>
@@ -300,238 +433,82 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
-            const videoCanvas = document.getElementById('videoCanvas');
-            const rotatingObject = document.getElementById('rotatingObject');
-            const axisLine = document.getElementById('axisLine');
-            const formulaDisplay = document.getElementById('formulaDisplay');
-            const angularVelocityDisplay = document.getElementById('angularVelocityDisplay');
-            const recordBtn = document.getElementById('recordBtn');
-            const stopBtn = document.getElementById('stopBtn');
-            const exportBtn = document.getElementById('exportBtn');
-            const addSlideBtn = document.getElementById('addSlideBtn');
-            const slideList = document.getElementById('slideList');
-            const simulationType = document.getElementById('simulationType');
-            const simulationControls = document.getElementById('simulationControls');
-            
-            // Form elements
-            const slideTitle = document.getElementById('slideTitle');
-            const slideContent = document.getElementById('slideContent');
-            const initialVelocity = document.getElementById('initialVelocity');
-            const acceleration = document.getElementById('acceleration');
-            const momentInertia = document.getElementById('momentInertia');
+            const rotatingDisk = document.getElementById('rotatingDisk');
+            const axis = document.getElementById('axis');
+            const angularVelocityDisplay = document.getElementById('angularVelocity');
+            const torqueValueDisplay = document.getElementById('torqueValue');
+            const inertiaValueDisplay = document.getElementById('inertiaValue');
+            const playBtn = document.getElementById('playBtn');
+            const torqueBtn = document.getElementById('torqueBtn');
+            const inertiaBtn = document.getElementById('inertiaBtn');
             
             // Physics variables
-            let currentAngle = 0;
+            let angle = 0;
             let angularVelocity = 0;
             let angularAcceleration = 0;
             let momentOfInertia = 1;
+            let torque = 0;
+            let isPlaying = false;
             let animationId = null;
-            let slides = [];
-            let currentSlideIndex = 0;
+            let lastTime = 0;
             
-            // Toggle simulation controls based on selection
-            simulationType.addEventListener('change', function() {
-                simulationControls.style.display = this.value === 'none' ? 'none' : 'block';
-                updateSimulation();
-            });
-            
-            // Initialize with controls visible
-            simulationControls.style.display = 'block';
-            
-            // Add slide to the presentation
-            addSlideBtn.addEventListener('click', function() {
-                const title = slideTitle.value.trim() || 'Untitled Slide';
-                const content = slideContent.value.trim() || 'No content provided';
-                const type = simulationType.value;
+            // Update simulation
+            function updateSimulation(timestamp) {
+                if (!lastTime) lastTime = timestamp;
+                const deltaTime = (timestamp - lastTime) / 1000; // Convert to seconds
+                lastTime = timestamp;
                 
-                const slide = {
-                    title,
-                    content,
-                    type,
-                    initialVelocity: parseFloat(initialVelocity.value),
-                    acceleration: parseFloat(acceleration.value),
-                    momentInertia: parseFloat(momentInertia.value)
-                };
+                // Apply physics
+                angularAcceleration = torque / momentOfInertia;
+                angularVelocity += angularAcceleration * deltaTime;
+                angle += angularVelocity * deltaTime;
                 
-                slides.push(slide);
-                renderSlideList();
-                resetForm();
+                // Apply some friction
+                angularVelocity *= 0.995;
                 
-                // If first slide, preview it
-                if (slides.length === 1) {
-                    previewSlide(slide);
-                }
-            });
-            
-            // Render the slide list
-            function renderSlideList() {
-                slideList.innerHTML = '<h3>Slides</h3>';
+                // Update visuals
+                rotatingDisk.style.transform = `rotate(${angle}rad)`;
+                axis.style.transform = `translate(-50%, -50%) rotate(${angle}rad)`;
                 
-                if (slides.length === 0) {
-                    slideList.innerHTML += '<p>No slides added yet</p>';
-                    return;
-                }
+                // Update displays
+                angularVelocityDisplay.textContent = angularVelocity.toFixed(2);
+                torqueValueDisplay.textContent = torque.toFixed(2);
+                inertiaValueDisplay.textContent = momentOfInertia.toFixed(2);
                 
-                slides.forEach((slide, index) => {
-                    const slideItem = document.createElement('div');
-                    slideItem.className = 'slide-item';
-                    if (currentSlideIndex === index) {
-                        slideItem.classList.add('active');
-                    }
-                    slideItem.innerHTML = `
-                        <strong>${index + 1}. ${slide.title}</strong>
-                        <p>${slide.content.substring(0, 50)}${slide.content.length > 50 ? '...' : ''}</p>
-                    `;
-                    
-                    slideItem.addEventListener('click', () => {
-                        currentSlideIndex = index;
-                        previewSlide(slide);
-                        renderSlideList();
-                    });
-                    
-                    slideList.appendChild(slideItem);
-                });
+                animationId = requestAnimationFrame(updateSimulation);
             }
             
-            // Reset the form after adding a slide
-            function resetForm() {
-                slideTitle.value = '';
-                slideContent.value = '';
-                simulationType.value = 'none';
-                initialVelocity.value = '2';
-                acceleration.value = '0.5';
-                momentInertia.value = '1';
-                simulationControls.style.display = 'none';
-            }
-            
-            // Preview a slide with simulation
-            function previewSlide(slide) {
-                // Clear previous content
-                videoCanvas.innerHTML = `
-                    <div class="rotating-object" id="rotatingObject"></div>
-                    <div class="axis-line" id="axisLine"></div>
-                    <div class="formula-display" id="formulaDisplay">τ = Iα</div>
-                    <div class="angular-velocity-display" id="angularVelocityDisplay">ω = 0 rad/s</div>
-                `;
+            // Play/pause simulation
+            playBtn.addEventListener('click', function() {
+                isPlaying = !isPlaying;
                 
-                rotatingObject = document.getElementById('rotatingObject');
-                axisLine = document.getElementById('axisLine');
-                formulaDisplay = document.getElementById('formulaDisplay');
-                angularVelocityDisplay = document.getElementById('angularVelocityDisplay');
-                
-                // Add title and content
-                const titleElement = document.createElement('div');
-                titleElement.style.position = 'absolute';
-                titleElement.style.top = '20px';
-                titleElement.style.left = '20px';
-                titleElement.style.fontSize = '24px';
-                titleElement.style.fontWeight = 'bold';
-                titleElement.style.color = '#4361ee';
-                titleElement.textContent = slide.title;
-                videoCanvas.appendChild(titleElement);
-                
-                const contentElement = document.createElement('div');
-                contentElement.style.position = 'absolute';
-                contentElement.style.top = '60px';
-                contentElement.style.left = '20px';
-                contentElement.style.right = '20px';
-                contentElement.style.fontSize = '18px';
-                contentElement.style.color = '#212529';
-                contentElement.textContent = slide.content;
-                videoCanvas.appendChild(contentElement);
-                
-                // Update physics parameters
-                angularVelocity = slide.initialVelocity;
-                angularAcceleration = slide.acceleration;
-                momentOfInertia = slide.momentInertia;
-                
-                // Update formula display based on simulation type
-                switch(slide.type) {
-                    case 'constant':
-                        formulaDisplay.textContent = 'ω = constant';
-                        angularAcceleration = 0;
-                        break;
-                    case 'accelerated':
-                        formulaDisplay.textContent = 'τ = Iα';
-                        break;
-                    case 'moment-of-inertia':
-                        formulaDisplay.textContent = 'L = Iω (conserved)';
-                        break;
-                    default:
-                        formulaDisplay.textContent = '';
-                }
-                
-                // Start simulation
-                startSimulation();
-            }
-            
-            // Start the physics simulation
-            function startSimulation() {
-                if (animationId) {
+                if (isPlaying) {
+                    playBtn.textContent = '❚❚';
+                    lastTime = 0;
+                    animationId = requestAnimationFrame(updateSimulation);
+                } else {
+                    playBtn.textContent = '▶';
                     cancelAnimationFrame(animationId);
                 }
-                
-                let lastTime = performance.now();
-                currentAngle = 0;
-                
-                function animate(currentTime) {
-                    const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
-                    lastTime = currentTime;
-                    
-                    // Update angular velocity and angle
-                    angularVelocity += angularAcceleration * deltaTime;
-                    currentAngle += angularVelocity * deltaTime;
-                    
-                    // Apply conservation of angular momentum if moment of inertia changes
-                    if (simulationType.value === 'moment-of-inertia' && momentInertia.value < 1) {
-                        angularVelocity = angularVelocity / momentInertia.value;
-                    }
-                    
-                    // Rotate the object and axis
-                    rotatingObject.style.transform = `translate(-50%, -50%) rotate(${currentAngle}rad)`;
-                    axisLine.style.transform = `translate(-50%, -50%) rotate(${currentAngle}rad)`;
-                    
-                    // Update angular velocity display
-                    angularVelocityDisplay.textContent = `ω = ${angularVelocity.toFixed(2)} rad/s`;
-                    
-                    animationId = requestAnimationFrame(animate);
+            });
+            
+            // Apply torque
+            torqueBtn.addEventListener('click', function() {
+                torque += 0.5;
+            });
+            
+            // Change moment of inertia (conserves angular momentum)
+            inertiaBtn.addEventListener('click', function() {
+                if (momentOfInertia > 0.2) {
+                    const oldAngularMomentum = momentOfInertia * angularVelocity;
+                    momentOfInertia *= 0.8;
+                    angularVelocity = oldAngularMomentum / momentOfInertia;
                 }
-                
-                animationId = requestAnimationFrame(animate);
-            }
+            });
             
-            // Update simulation parameters when inputs change
-            function updateSimulation() {
-                if (slides.length > 0 && currentSlideIndex !== null) {
-                    const currentSlide = slides[currentSlideIndex];
-                    currentSlide.initialVelocity = parseFloat(initialVelocity.value);
-                    currentSlide.acceleration = parseFloat(acceleration.value);
-                    currentSlide.momentInertia = parseFloat(momentInertia.value);
-                    
-                    angularVelocity = currentSlide.initialVelocity;
-                    angularAcceleration = currentSlide.acceleration;
-                    momentOfInertia = currentSlide.momentInertia;
-                }
-            }
-            
-            // Event listeners for parameter changes
-            initialVelocity.addEventListener('input', updateSimulation);
-            acceleration.addEventListener('input', updateSimulation);
-            momentInertia.addEventListener('input', updateSimulation);
-            
-            // Start with an initial slide about torque
-            const initialSlide = {
-                title: "Torque and Angular Acceleration",
-                content: "Torque (τ) causes angular acceleration (α) according to τ = Iα, where I is moment of inertia.",
-                type: "accelerated",
-                initialVelocity: 0,
-                acceleration: 0.5,
-                momentInertia: 1
-            };
-            slides.push(initialSlide);
-            previewSlide(initialSlide);
-            renderSlideList();
+            // Start with small automatic rotation
+            angularVelocity = 0.5;
+            animationId = requestAnimationFrame(updateSimulation);
         });
     </script>
 </body>
