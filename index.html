@@ -3,547 +3,529 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Video Creator: Linear Motion</title>
+    <title>Physics Whiteboard Animation</title>
     <style>
-        :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --success: #4cc9f0;
-            --danger: #f72585;
-        }
-        
-        * {
+        body {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #f5f7fa;
-            color: var(--dark);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-            border-radius: 0 0 20px 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-        }
-        
-        .video-creator {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .video-preview {
-            background-color: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .video-canvas {
-            width: 100%;
-            height: 300px;
-            background-color: #f0f2f5;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            position: relative;
+            background-color: #f0f0f0;
+            font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
         
-        .controls {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 1rem;
-        }
-        
-        button {
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            flex: 1;
-        }
-        
-        .record-btn {
-            background-color: var(--danger);
-            color: white;
-        }
-        
-        .stop-btn {
-            background-color: var(--dark);
-            color: white;
-        }
-        
-        .add-slide-btn {
-            background-color: var(--success);
-            color: white;
-        }
-        
-        .export-btn {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .editor-panel {
-            background-color: white;
-            border-radius: 15px;
-            padding: 1.5rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-        
-        input, textarea, select {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
-        
-        .slide-list {
-            margin-top: 1rem;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-        
-        .slide-item {
-            background-color: #f8f9fa;
-            padding: 0.8rem;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-left: 4px solid var(--primary);
-        }
-        
-        .slide-item:hover {
-            background-color: #e9ecef;
-        }
-        
-        .slide-item.active {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .simulation-controls {
-            margin-top: 1rem;
-        }
-        
-        .car-simulation {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            width: 50px;
-            height: 30px;
-            background-color: var(--accent);
-            border-radius: 5px;
-            transition: left 2s linear;
-        }
-        
-        .graph-container {
-            width: 100%;
-            height: 200px;
-            margin-top: 1rem;
+        #whiteboard {
+            width: 100vw;
+            height: 100vh;
+            background-color: #f9f7e8;
             position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        
+        .hand {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23ff5722" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V128c0-17.7-14.3-32-32-32s-32 14.3-32 32V336c0 97.2 78.8 176 176 176h32c97.2 0 176-78.8 176-176V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V32z"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            z-index: 100;
+            pointer-events: none;
+        }
+        
+        .text-element {
+            position: absolute;
+            font-size: 32px;
+            font-weight: bold;
+            color: #333;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s ease-out;
+        }
+        
+        .equation {
+            font-family: 'Times New Roman', serif;
+            font-size: 48px;
+            color: #2c3e50;
         }
         
         .axis {
             position: absolute;
-            background-color: var(--dark);
+            height: 4px;
+            background-color: #333;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
-        .x-axis {
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-        }
-        
-        .y-axis {
-            bottom: 0;
-            left: 50px;
-            width: 2px;
-            height: 100%;
-        }
-        
-        .graph-line {
+        .axis-label {
             position: absolute;
-            background-color: var(--danger);
-            height: 2px;
-            bottom: 0;
-            left: 50px;
-            width: 0;
-            transform-origin: left;
+            font-size: 24px;
+            color: #333;
         }
         
-        @media (max-width: 768px) {
-            .video-creator {
-                grid-template-columns: 1fr;
-            }
+        .car {
+            position: absolute;
+            width: 60px;
+            height: 30px;
+            background-color: #3498db;
+            border-radius: 5px;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .wheel {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #333;
+            border-radius: 50%;
+            bottom: -6px;
+        }
+        
+        .wheel-front {
+            right: 5px;
+        }
+        
+        .wheel-back {
+            left: 5px;
+        }
+        
+        .bullet-list {
+            position: absolute;
+            width: 80%;
+            left: 10%;
+            top: 20%;
+            font-size: 28px;
+            line-height: 1.6;
+        }
+        
+        .bullet-item {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.5s ease-out;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-circle {
+            position: absolute;
+            border: 3px dashed #e74c3c;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            opacity: 0;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 0.7; }
+        }
+        
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 200;
+        }
+        
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        
+        button:hover {
+            background-color: #1abc9c;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Linear Motion Video Creator</h1>
-            <p class="subtitle">Create beautiful physics education videos with interactive simulations</p>
-        </div>
-    </header>
+    <div id="whiteboard"></div>
     
-    <div class="container">
-        <div class="video-creator">
-            <div class="video-preview">
-                <h2>Video Preview</h2>
-                <div class="video-canvas" id="videoCanvas">
-                    <div class="car-simulation" id="carSimulation"></div>
-                    <div class="graph-container" id="graphContainer">
-                        <div class="axis x-axis"></div>
-                        <div class="axis y-axis"></div>
-                        <div class="graph-line" id="graphLine"></div>
-                    </div>
-                </div>
-                <div class="controls">
-                    <button class="record-btn" id="recordBtn">Record Slide</button>
-                    <button class="stop-btn" id="stopBtn" disabled>Stop</button>
-                    <button class="export-btn" id="exportBtn">Export Video</button>
-                </div>
-            </div>
-            
-            <div class="editor-panel">
-                <h2>Slide Editor</h2>
-                <div class="form-group">
-                    <label for="slideTitle">Slide Title</label>
-                    <input type="text" id="slideTitle" placeholder="Enter slide title">
-                </div>
-                <div class="form-group">
-                    <label for="slideContent">Content</label>
-                    <textarea id="slideContent" placeholder="Enter your explanation"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="simulationType">Simulation Type</label>
-                    <select id="simulationType">
-                        <option value="none">No Simulation</option>
-                        <option value="constant">Constant Velocity</option>
-                        <option value="accelerated">Accelerated Motion</option>
-                        <option value="decelerated">Decelerated Motion</option>
-                    </select>
-                </div>
-                <div class="simulation-controls" id="simulationControls">
-                    <div class="form-group">
-                        <label for="initialVelocity">Initial Velocity (m/s)</label>
-                        <input type="number" id="initialVelocity" value="0" min="0">
-                    </div>
-                    <div class="form-group">
-                        <label for="acceleration">Acceleration (m/s²)</label>
-                        <input type="number" id="acceleration" value="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="simulationTime">Duration (seconds)</label>
-                        <input type="number" id="simulationTime" value="5" min="1" max="10">
-                    </div>
-                </div>
-                <button class="add-slide-btn" id="addSlideBtn">Add Slide</button>
-                
-                <div class="slide-list" id="slideList">
-                    <h3>Slides</h3>
-                    <!-- Slides will be added here dynamically -->
-                </div>
-            </div>
-        </div>
+    <div class="controls">
+        <button id="prevBtn">Previous</button>
+        <button id="nextBtn">Next</button>
+        <button id="playAllBtn">Play All</button>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // DOM Elements
-            const videoCanvas = document.getElementById('videoCanvas');
-            const carSimulation = document.getElementById('carSimulation');
-            const graphLine = document.getElementById('graphLine');
-            const recordBtn = document.getElementById('recordBtn');
-            const stopBtn = document.getElementById('stopBtn');
-            const exportBtn = document.getElementById('exportBtn');
-            const addSlideBtn = document.getElementById('addSlideBtn');
-            const slideList = document.getElementById('slideList');
-            const simulationType = document.getElementById('simulationType');
-            const simulationControls = document.getElementById('simulationControls');
+        const whiteboard = document.getElementById('whiteboard');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const playAllBtn = document.getElementById('playAllBtn');
+        
+        let currentShot = 0;
+        const totalShots = 5;
+        let animationTimeout;
+        
+        // Shot 1: Define the Problem
+        function createShot1() {
+            whiteboard.innerHTML = '';
             
-            // Form elements
-            const slideTitle = document.getElementById('slideTitle');
-            const slideContent = document.getElementById('slideContent');
-            const initialVelocity = document.getElementById('initialVelocity');
-            const acceleration = document.getElementById('acceleration');
-            const simulationTime = document.getElementById('simulationTime');
+            // Create hand
+            const hand = document.createElement('div');
+            hand.className = 'hand';
+            hand.style.top = '150px';
+            hand.style.left = '200px';
+            whiteboard.appendChild(hand);
             
-            // Video recording variables
-            let mediaRecorder;
-            let recordedChunks = [];
-            let slides = [];
-            let currentSlide = null;
+            // Create title
+            const title = document.createElement('div');
+            title.className = 'text-element';
+            title.textContent = 'Step 1: Define the Problem';
+            title.style.top = '50px';
+            title.style.left = '50%';
+            title.style.transform = 'translateX(-50%)';
+            whiteboard.appendChild(title);
             
-            // Toggle simulation controls based on selection
-            simulationType.addEventListener('change', function() {
-                if (this.value === 'none') {
-                    simulationControls.style.display = 'none';
-                } else {
-                    simulationControls.style.display = 'block';
-                }
+            // Create variables
+            const variables = ['v₀', 'a', 't', 's'];
+            const variableElements = [];
+            
+            variables.forEach((varName, index) => {
+                const element = document.createElement('div');
+                element.className = 'text-element';
+                element.textContent = varName;
+                element.style.top = `${150 + index * 60}px`;
+                element.style.left = `${300 + index * 80}px`;
+                whiteboard.appendChild(element);
+                variableElements.push(element);
+                
+                // Create highlight circle
+                const circle = document.createElement('div');
+                circle.className = 'highlight-circle';
+                circle.style.top = `${140 + index * 60}px`;
+                circle.style.left = `${280 + index * 80}px`;
+                whiteboard.appendChild(circle);
             });
             
-            // Initialize with controls hidden
-            simulationControls.style.display = 'none';
-            
-            // Add slide to the presentation
-            addSlideBtn.addEventListener('click', function() {
-                const title = slideTitle.value.trim() || 'Untitled Slide';
-                const content = slideContent.value.trim() || 'No content provided';
-                const type = simulationType.value;
+            // Animate elements
+            setTimeout(() => {
+                title.style.opacity = '1';
+                title.style.transform = 'translateX(-50%) scale(1)';
                 
-                const slide = {
-                    title,
-                    content,
-                    type,
-                    initialVelocity: parseFloat(initialVelocity.value),
-                    acceleration: parseFloat(acceleration.value),
-                    time: parseFloat(simulationTime.value)
-                };
+                // Animate hand writing
+                hand.style.transition = 'all 1s ease-out';
+                hand.style.left = '350px';
+                hand.style.top = '170px';
                 
-                slides.push(slide);
-                renderSlideList();
-                resetForm();
-                
-                // Preview the new slide
-                previewSlide(slide);
-            });
-            
-            // Render the slide list
-            function renderSlideList() {
-                slideList.innerHTML = '<h3>Slides</h3>';
-                
-                if (slides.length === 0) {
-                    slideList.innerHTML += '<p>No slides added yet</p>';
-                    return;
-                }
-                
-                slides.forEach((slide, index) => {
-                    const slideItem = document.createElement('div');
-                    slideItem.className = 'slide-item';
-                    if (currentSlide === index) {
-                        slideItem.classList.add('active');
-                    }
-                    slideItem.innerHTML = `
-                        <strong>${index + 1}. ${slide.title}</strong>
-                        <p>${slide.content.substring(0, 50)}${slide.content.length > 50 ? '...' : ''}</p>
-                    `;
-                    
-                    slideItem.addEventListener('click', () => {
-                        currentSlide = index;
-                        previewSlide(slide);
-                        renderSlideList();
+                setTimeout(() => {
+                    variableElements.forEach((el, i) => {
+                        setTimeout(() => {
+                            el.style.opacity = '1';
+                            el.style.transform = 'scale(1)';
+                            const circle = whiteboard.querySelectorAll('.highlight-circle')[i];
+                            circle.style.opacity = '0.7';
+                            
+                            // Move hand to circle each variable
+                            setTimeout(() => {
+                                hand.style.left = `${280 + i * 80}px`;
+                                hand.style.top = `${170 + i * 60}px`;
+                            }, i * 300);
+                        }, i * 600);
                     });
+                }, 800);
+            }, 500);
+        }
+        
+        // Shot 2: 1D Axis Diagram
+        function createShot2() {
+            whiteboard.innerHTML = '';
+            
+            // Create axis
+            const axis = document.createElement('div');
+            axis.className = 'axis';
+            axis.style.width = '600px';
+            axis.style.top = '200px';
+            whiteboard.appendChild(axis);
+            
+            // Create labels
+            const labels = ['v₀', 't', 's'];
+            const labelColors = ['#e74c3c', '#3498db', '#2ecc71'];
+            
+            labels.forEach((label, index) => {
+                const labelElement = document.createElement('div');
+                labelElement.className = 'axis-label';
+                labelElement.textContent = label;
+                labelElement.style.color = labelColors[index];
+                labelElement.style.top = '220px';
+                labelElement.style.left = `${200 + index * 150}px`;
+                labelElement.style.opacity = '0';
+                whiteboard.appendChild(labelElement);
+                
+                // Animate labels
+                setTimeout(() => {
+                    labelElement.style.opacity = '1';
+                    labelElement.style.transition = 'opacity 0.5s ease-out';
+                }, 500 + index * 300);
+            });
+            
+            // Create +ve direction arrow
+            const arrow = document.createElement('div');
+            arrow.className = 'text-element';
+            arrow.textContent = '→ +ve direction';
+            arrow.style.top = '170px';
+            arrow.style.left = '400px';
+            whiteboard.appendChild(arrow);
+            
+            // Animate arrow
+            setTimeout(() => {
+                arrow.style.opacity = '1';
+                arrow.style.transform = 'scale(1)';
+            }, 1500);
+        }
+        
+        // Shot 3: Kinematic Equation
+        function createShot3() {
+            whiteboard.innerHTML = '';
+            
+            // Create equation parts
+            const equationParts = [
+                { text: 's', delay: 500 },
+                { text: ' = ', delay: 800 },
+                { text: 's₀', delay: 1100 },
+                { text: ' + ', delay: 1400 },
+                { text: 'v₀', delay: 1700 },
+                { text: 't', delay: 2000 },
+                { text: ' + ', delay: 2300 },
+                { text: '½', delay: 2600 },
+                { text: 'a', delay: 2900 },
+                { text: 't²', delay: 3200 }
+            ];
+            
+            let leftPosition = 100;
+            const equationContainer = document.createElement('div');
+            equationContainer.style.position = 'absolute';
+            equationContainer.style.top = '150px';
+            equationContainer.style.left = '50px';
+            whiteboard.appendChild(equationContainer);
+            
+            equationParts.forEach((part, index) => {
+                const partElement = document.createElement('span');
+                partElement.className = 'equation';
+                partElement.textContent = part.text;
+                partElement.style.opacity = '0';
+                partElement.style.display = 'inline-block';
+                partElement.style.transform = 'translateY(20px)';
+                equationContainer.appendChild(partElement);
+                
+                setTimeout(() => {
+                    partElement.style.opacity = '1';
+                    partElement.style.transform = 'translateY(0)';
+                    partElement.style.transition = 'all 0.3s ease-out';
                     
-                    slideList.appendChild(slideItem);
-                });
-            }
-            
-            // Reset the form after adding a slide
-            function resetForm() {
-                slideTitle.value = '';
-                slideContent.value = '';
-                simulationType.value = 'none';
-                initialVelocity.value = '0';
-                acceleration.value = '1';
-                simulationTime.value = '5';
-                simulationControls.style.display = 'none';
-            }
-            
-            // Preview a slide with simulation
-            function previewSlide(slide) {
-                // Clear previous content
-                videoCanvas.innerHTML = `
-                    <div class="car-simulation" id="carSimulation"></div>
-                    <div class="graph-container" id="graphContainer">
-                        <div class="axis x-axis"></div>
-                        <div class="axis y-axis"></div>
-                        <div class="graph-line" id="graphLine"></div>
-                    </div>
-                `;
-                
-                const car = document.getElementById('carSimulation');
-                const graph = document.getElementById('graphLine');
-                
-                // Add title and content
-                const titleElement = document.createElement('div');
-                titleElement.style.position = 'absolute';
-                titleElement.style.top = '20px';
-                titleElement.style.left = '20px';
-                titleElement.style.fontSize = '24px';
-                titleElement.style.fontWeight = 'bold';
-                titleElement.style.color = '#4361ee';
-                titleElement.textContent = slide.title;
-                videoCanvas.appendChild(titleElement);
-                
-                const contentElement = document.createElement('div');
-                contentElement.style.position = 'absolute';
-                contentElement.style.top = '60px';
-                contentElement.style.left = '20px';
-                contentElement.style.right = '20px';
-                contentElement.style.fontSize = '18px';
-                contentElement.style.color = '#212529';
-                contentElement.textContent = slide.content;
-                videoCanvas.appendChild(contentElement);
-                
-                // Run simulation if not 'none'
-                if (slide.type !== 'none') {
-                    runSimulation(car, graph, slide);
-                }
-            }
-            
-            // Run the physics simulation
-            function runSimulation(car, graph, slide) {
-                const canvasWidth = videoCanvas.offsetWidth - 50;
-                const canvasHeight = videoCanvas.offsetHeight;
-                
-                // Reset positions
-                car.style.left = '0px';
-                graph.style.width = '0px';
-                graph.style.transform = 'rotate(0rad)';
-                
-                // Calculate motion parameters
-                const initialVelocity = slide.initialVelocity;
-                const acceleration = slide.acceleration;
-                const time = slide.time;
-                
-                // Calculate final position
-                const finalPosition = initialVelocity * time + 0.5 * acceleration * time * time;
-                const scaleFactor = canvasWidth / (finalPosition * 1.2); // Add 20% padding
-                
-                // Animate car
-                let currentTime = 0;
-                const interval = 50; // ms
-                const steps = (time * 1000) / interval;
-                let currentStep = 0;
-                
-                const animation = setInterval(() => {
-                    if (currentStep >= steps) {
-                        clearInterval(animation);
-                        return;
+                    // Add example numbers after equation is complete
+                    if (index === equationParts.length - 1) {
+                        setTimeout(() => {
+                            const exampleNumbers = [
+                                { text: 's₀ = 0', top: '220px', left: '100px' },
+                                { text: 'v₀ = 2 m/s', top: '220px', left: '300px' },
+                                { text: 't = 5 s', top: '220px', left: '500px' },
+                                { text: 'a = 2 m/s²', top: '260px', left: '300px' }
+                            ];
+                            
+                            exampleNumbers.forEach((num, i) => {
+                                const numElement = document.createElement('div');
+                                numElement.className = 'text-element';
+                                numElement.textContent = num.text;
+                                numElement.style.top = num.top;
+                                numElement.style.left = num.left;
+                                numElement.style.fontSize = '28px';
+                                numElement.style.opacity = '0';
+                                whiteboard.appendChild(numElement);
+                                
+                                setTimeout(() => {
+                                    numElement.style.opacity = '1';
+                                    numElement.style.transform = 'scale(1)';
+                                }, i * 400);
+                            });
+                        }, 500);
                     }
+                }, part.delay);
+            });
+        }
+        
+        // Shot 4: Animated Car Example
+        function createShot4() {
+            whiteboard.innerHTML = '';
+            
+            // Create title
+            const title = document.createElement('div');
+            title.className = 'text-element';
+            title.textContent = 'Example: Car Acceleration';
+            title.style.top = '50px';
+            title.style.left = '50%';
+            title.style.transform = 'translateX(-50%)';
+            whiteboard.appendChild(title);
+            
+            setTimeout(() => {
+                title.style.opacity = '1';
+                title.style.transform = 'translateX(-50%) scale(1)';
+            }, 300);
+            
+            // Create car
+            const car = document.createElement('div');
+            car.className = 'car';
+            car.style.left = '100px';
+            whiteboard.appendChild(car);
+            
+            // Add wheels
+            const wheel1 = document.createElement('div');
+            wheel1.className = 'wheel wheel-front';
+            car.appendChild(wheel1);
+            
+            const wheel2 = document.createElement('div');
+            wheel2.className = 'wheel wheel-back';
+            car.appendChild(wheel2);
+            
+            // Create axis
+            const axis = document.createElement('div');
+            axis.className = 'axis';
+            axis.style.width = '700px';
+            axis.style.top = '280px';
+            axis.style.left = '50px';
+            whiteboard.appendChild(axis);
+            
+            // Animate car
+            setTimeout(() => {
+                car.style.transition = 'left 3s linear';
+                car.style.left = '600px';
+                
+                // Add acceleration label
+                setTimeout(() => {
+                    const accelLabel = document.createElement('div');
+                    accelLabel.className = 'text-element';
+                    accelLabel.textContent = 'a = 2 m/s²';
+                    accelLabel.style.top = '200px';
+                    accelLabel.style.left = '300px';
+                    accelLabel.style.opacity = '0';
+                    whiteboard.appendChild(accelLabel);
                     
-                    currentTime += interval / 1000; // Convert to seconds
-                    currentStep++;
+                    setTimeout(() => {
+                        accelLabel.style.opacity = '1';
+                        accelLabel.style.transform = 'scale(1)';
+                    }, 200);
+                }, 500);
+                
+                // Add distance calculation
+                setTimeout(() => {
+                    const distanceLabel = document.createElement('div');
+                    distanceLabel.className = 'text-element';
+                    distanceLabel.textContent = 'Distance = 25 m';
+                    distanceLabel.style.top = '350px';
+                    distanceLabel.style.left = '300px';
+                    distanceLabel.style.opacity = '0';
+                    distanceLabel.style.fontSize = '36px';
+                    distanceLabel.style.color = '#e74c3c';
+                    whiteboard.appendChild(distanceLabel);
                     
-                    // Calculate current position
-                    const position = initialVelocity * currentTime + 0.5 * acceleration * currentTime * currentTime;
-                    const scaledPosition = position * scaleFactor;
-                    
-                    // Update car position
-                    car.style.left = `${scaledPosition}px`;
-                    
-                    // Update graph (position vs time)
-                    const graphHeight = Math.min(position * 5, 180); // Scale for visibility
-                    graph.style.width = `${currentTime * 50}px`;
-                    graph.style.transform = `rotate(${-Math.atan(graphHeight / (currentTime * 50))}rad)`;
-                    
-                }, interval);
+                    setTimeout(() => {
+                        distanceLabel.style.opacity = '1';
+                        distanceLabel.style.transform = 'scale(1)';
+                    }, 200);
+                }, 2500);
+            }, 1000);
+        }
+        
+        // Shot 5: Bullet List Summary
+        function createShot5() {
+            whiteboard.innerHTML = '';
+            
+            const bulletItems = [
+                'Displacement (vector) vs Distance (scalar)',
+                'Velocity (vector) vs Speed (scalar)',
+                'Acceleration can be positive or negative',
+                'Always define your coordinate system'
+            ];
+            
+            const listContainer = document.createElement('div');
+            listContainer.className = 'bullet-list';
+            whiteboard.appendChild(listContainer);
+            
+            bulletItems.forEach((item, index) => {
+                const itemElement = document.createElement('div');
+                itemElement.className = 'bullet-item';
+                itemElement.textContent = '• ' + item;
+                listContainer.appendChild(itemElement);
+                
+                setTimeout(() => {
+                    itemElement.style.opacity = '1';
+                    itemElement.style.transform = 'translateX(0)';
+                }, 300 + index * 400);
+            });
+            
+            // Add decorative hand at bottom
+            const hand = document.createElement('div');
+            hand.className = 'hand';
+            hand.style.bottom = '30px';
+            hand.style.right = '50px';
+            hand.style.transform = 'rotate(180deg)';
+            whiteboard.appendChild(hand);
+        }
+        
+        // Navigation functions
+        function showShot(shotNumber) {
+            clearTimeout(animationTimeout);
+            currentShot = shotNumber;
+            
+            switch(shotNumber) {
+                case 1: createShot1(); break;
+                case 2: createShot2(); break;
+                case 3: createShot3(); break;
+                case 4: createShot4(); break;
+                case 5: createShot5(); break;
+                default: createShot1();
             }
             
-            // Start recording (simplified - in a real app you'd use MediaRecorder API)
-            recordBtn.addEventListener('click', function() {
-                if (!currentSlide && slides.length > 0) {
-                    currentSlide = 0;
-                    previewSlide(slides[0]);
-                    renderSlideList();
-                }
-                
-                if (currentSlide !== null) {
-                    recordBtn.disabled = true;
-                    stopBtn.disabled = false;
-                    alert("Recording started for slide: " + slides[currentSlide].title);
-                    // In a real implementation, you would:
-                    // 1. Start MediaRecorder
-                    // 2. Capture canvas stream
-                    // 3. Store recorded chunks
-                } else {
-                    alert("Please add and select a slide first");
-                }
-            });
+            updateButtons();
+        }
+        
+        function nextShot() {
+            if (currentShot < totalShots) {
+                showShot(currentShot + 1);
+            }
+        }
+        
+        function prevShot() {
+            if (currentShot > 1) {
+                showShot(currentShot - 1);
+            }
+        }
+        
+        function playAll() {
+            showShot(1);
             
-            // Stop recording
-            stopBtn.addEventListener('click', function() {
-                recordBtn.disabled = false;
-                stopBtn.disabled = true;
-                alert("Recording stopped");
-                // In a real implementation:
-                // 1. Stop MediaRecorder
-                // 2. Process recorded chunks
-                // 3. Save the recording for this slide
-            });
-            
-            // Export video (simplified)
-            exportBtn.addEventListener('click', function() {
-                if (slides.length === 0) {
-                    alert("Please add some slides first");
-                    return;
+            let shot = 1;
+            function playNext() {
+                if (shot < totalShots) {
+                    shot++;
+                    showShot(shot);
+                    animationTimeout = setTimeout(playNext, 8000); // 8 seconds per shot
                 }
-                
-                alert("Video exported (this would combine all slide recordings in a real app)");
-                // In a real implementation:
-                // 1. Combine all slide recordings
-                // 2. Offer download or upload
-            });
+            }
             
-            // Initial render
-            renderSlideList();
-        });
+            animationTimeout = setTimeout(playNext, 8000);
+        }
+        
+        function updateButtons() {
+            prevBtn.disabled = currentShot === 1;
+            nextBtn.disabled = currentShot === totalShots;
+        }
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextShot);
+        prevBtn.addEventListener('click', prevShot);
+        playAllBtn.addEventListener('click', playAll);
+        
+        // Initialize
+        showShot(1);
     </script>
 </body>
 </html>
