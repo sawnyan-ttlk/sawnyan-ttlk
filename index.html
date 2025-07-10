@@ -3,529 +3,536 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Whiteboard Animation</title>
+    <title>Rotational Motion Explained</title>
     <style>
-        body {
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #4cc9f0;
+            --danger: #f72585;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f0f0f0;
-            font-family: 'Arial', sans-serif;
-            overflow: hidden;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
-        #whiteboard {
-            width: 100vw;
-            height: 100vh;
-            background-color: #f9f7e8;
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        }
-        
-        .hand {
-            position: absolute;
-            width: 80px;
-            height: 80px;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="%23ff5722" d="M288 32c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V128c0-17.7-14.3-32-32-32s-32 14.3-32 32V336c0 97.2 78.8 176 176 176h32c97.2 0 176-78.8 176-176V64c0-17.7-14.3-32-32-32s-32 14.3-32 32V240c0 8.8-7.2 16-16 16s-16-7.2-16-16V32z"/></svg>');
-            background-size: contain;
-            background-repeat: no-repeat;
-            z-index: 100;
-            pointer-events: none;
-        }
-        
-        .text-element {
-            position: absolute;
-            font-size: 32px;
-            font-weight: bold;
-            color: #333;
-            opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.5s ease-out;
-        }
-        
-        .equation {
-            font-family: 'Times New Roman', serif;
-            font-size: 48px;
-            color: #2c3e50;
-        }
-        
-        .axis {
-            position: absolute;
-            height: 4px;
-            background-color: #333;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .axis-label {
-            position: absolute;
-            font-size: 24px;
-            color: #333;
-        }
-        
-        .car {
-            position: absolute;
-            width: 60px;
-            height: 30px;
-            background-color: #3498db;
-            border-radius: 5px;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .wheel {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background-color: #333;
-            border-radius: 50%;
-            bottom: -6px;
-        }
-        
-        .wheel-front {
-            right: 5px;
-        }
-        
-        .wheel-back {
-            left: 5px;
-        }
-        
-        .bullet-list {
-            position: absolute;
-            width: 80%;
-            left: 10%;
-            top: 20%;
-            font-size: 28px;
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
             line-height: 1.6;
         }
         
-        .bullet-item {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: all 0.5s ease-out;
-            margin-bottom: 15px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
         
-        .highlight-circle {
-            position: absolute;
-            border: 3px dashed #e74c3c;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            opacity: 0;
-            animation: pulse 1.5s infinite;
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
         }
         
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.1); opacity: 0.4; }
-            100% { transform: scale(1); opacity: 0.7; }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .video-creator {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .video-preview {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-canvas {
+            width: 100%;
+            height: 400px;
+            background-color: #f0f2f5;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            position: relative;
+            overflow: hidden;
         }
         
         .controls {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 200;
+            display: flex;
+            gap: 10px;
+            margin-bottom: 1rem;
         }
         
         button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #2c3e50;
-            color: white;
+            padding: 0.6rem 1.2rem;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
-            margin: 0 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+        
+        .record-btn {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .stop-btn {
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .add-slide-btn {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .export-btn {
+            background-color: var(--primary);
+            color: white;
         }
         
         button:hover {
-            background-color: #1abc9c;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .editor-panel {
+            background-color: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .slide-list {
+            margin-top: 1rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .slide-item {
+            background-color: #f8f9fa;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .slide-item:hover {
+            background-color: #e9ecef;
+        }
+        
+        .slide-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        /* Rotational Motion Elements */
+        .rotating-object {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--accent) 0% 30%,
+                var(--danger) 30% 60%,
+                var(--success) 60% 100%
+            );
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: transform 0.5s linear;
+        }
+        
+        .axis-line {
+            position: absolute;
+            width: 2px;
+            height: 120px;
+            background-color: var(--dark);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+            transform-origin: top center;
+        }
+        
+        .formula-display {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .angular-velocity-display {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 18px;
+            color: var(--dark);
+        }
+        
+        @media (max-width: 768px) {
+            .video-creator {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div id="whiteboard"></div>
+    <header>
+        <div class="container">
+            <h1>Rotational Motion Video Creator</h1>
+            <p class="subtitle">Learn angular velocity, torque, and moment of inertia interactively</p>
+        </div>
+    </header>
     
-    <div class="controls">
-        <button id="prevBtn">Previous</button>
-        <button id="nextBtn">Next</button>
-        <button id="playAllBtn">Play All</button>
+    <div class="container">
+        <div class="video-creator">
+            <div class="video-preview">
+                <h2>Video Preview</h2>
+                <div class="video-canvas" id="videoCanvas">
+                    <div class="rotating-object" id="rotatingObject"></div>
+                    <div class="axis-line" id="axisLine"></div>
+                    <div class="formula-display" id="formulaDisplay">τ = Iα</div>
+                    <div class="angular-velocity-display" id="angularVelocityDisplay">ω = 0 rad/s</div>
+                </div>
+                <div class="controls">
+                    <button class="record-btn" id="recordBtn">Record Slide</button>
+                    <button class="stop-btn" id="stopBtn" disabled>Stop</button>
+                    <button class="export-btn" id="exportBtn">Export Video</button>
+                </div>
+            </div>
+            
+            <div class="editor-panel">
+                <h2>Slide Editor</h2>
+                <div class="form-group">
+                    <label for="slideTitle">Slide Title</label>
+                    <input type="text" id="slideTitle" placeholder="Enter slide title" value="Torque and Angular Acceleration">
+                </div>
+                <div class="form-group">
+                    <label for="slideContent">Content</label>
+                    <textarea id="slideContent" placeholder="Enter your explanation">Torque (τ) causes angular acceleration (α) according to τ = Iα, where I is moment of inertia.</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="simulationType">Simulation Type</label>
+                    <select id="simulationType">
+                        <option value="none">No Simulation</option>
+                        <option value="constant" selected>Constant Angular Velocity</option>
+                        <option value="accelerated">Torque Applied</option>
+                        <option value="moment-of-inertia">Changing Moment of Inertia</option>
+                    </select>
+                </div>
+                <div class="simulation-controls" id="simulationControls">
+                    <div class="form-group">
+                        <label for="initialVelocity">Initial ω (rad/s)</label>
+                        <input type="number" id="initialVelocity" value="2" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="acceleration">Angular Acceleration (rad/s²)</label>
+                        <input type="number" id="acceleration" value="0.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="momentInertia">Moment of Inertia (kg·m²)</label>
+                        <input type="number" id="momentInertia" value="1" step="0.1">
+                    </div>
+                </div>
+                <button class="add-slide-btn" id="addSlideBtn">Add Slide</button>
+                
+                <div class="slide-list" id="slideList">
+                    <h3>Slides</h3>
+                    <!-- Slides will be added here dynamically -->
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        const whiteboard = document.getElementById('whiteboard');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const playAllBtn = document.getElementById('playAllBtn');
-        
-        let currentShot = 0;
-        const totalShots = 5;
-        let animationTimeout;
-        
-        // Shot 1: Define the Problem
-        function createShot1() {
-            whiteboard.innerHTML = '';
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const videoCanvas = document.getElementById('videoCanvas');
+            const rotatingObject = document.getElementById('rotatingObject');
+            const axisLine = document.getElementById('axisLine');
+            const formulaDisplay = document.getElementById('formulaDisplay');
+            const angularVelocityDisplay = document.getElementById('angularVelocityDisplay');
+            const recordBtn = document.getElementById('recordBtn');
+            const stopBtn = document.getElementById('stopBtn');
+            const exportBtn = document.getElementById('exportBtn');
+            const addSlideBtn = document.getElementById('addSlideBtn');
+            const slideList = document.getElementById('slideList');
+            const simulationType = document.getElementById('simulationType');
+            const simulationControls = document.getElementById('simulationControls');
             
-            // Create hand
-            const hand = document.createElement('div');
-            hand.className = 'hand';
-            hand.style.top = '150px';
-            hand.style.left = '200px';
-            whiteboard.appendChild(hand);
+            // Form elements
+            const slideTitle = document.getElementById('slideTitle');
+            const slideContent = document.getElementById('slideContent');
+            const initialVelocity = document.getElementById('initialVelocity');
+            const acceleration = document.getElementById('acceleration');
+            const momentInertia = document.getElementById('momentInertia');
             
-            // Create title
-            const title = document.createElement('div');
-            title.className = 'text-element';
-            title.textContent = 'Step 1: Define the Problem';
-            title.style.top = '50px';
-            title.style.left = '50%';
-            title.style.transform = 'translateX(-50%)';
-            whiteboard.appendChild(title);
+            // Physics variables
+            let currentAngle = 0;
+            let angularVelocity = 0;
+            let angularAcceleration = 0;
+            let momentOfInertia = 1;
+            let animationId = null;
+            let slides = [];
+            let currentSlideIndex = 0;
             
-            // Create variables
-            const variables = ['v₀', 'a', 't', 's'];
-            const variableElements = [];
-            
-            variables.forEach((varName, index) => {
-                const element = document.createElement('div');
-                element.className = 'text-element';
-                element.textContent = varName;
-                element.style.top = `${150 + index * 60}px`;
-                element.style.left = `${300 + index * 80}px`;
-                whiteboard.appendChild(element);
-                variableElements.push(element);
-                
-                // Create highlight circle
-                const circle = document.createElement('div');
-                circle.className = 'highlight-circle';
-                circle.style.top = `${140 + index * 60}px`;
-                circle.style.left = `${280 + index * 80}px`;
-                whiteboard.appendChild(circle);
+            // Toggle simulation controls based on selection
+            simulationType.addEventListener('change', function() {
+                simulationControls.style.display = this.value === 'none' ? 'none' : 'block';
+                updateSimulation();
             });
             
-            // Animate elements
-            setTimeout(() => {
-                title.style.opacity = '1';
-                title.style.transform = 'translateX(-50%) scale(1)';
-                
-                // Animate hand writing
-                hand.style.transition = 'all 1s ease-out';
-                hand.style.left = '350px';
-                hand.style.top = '170px';
-                
-                setTimeout(() => {
-                    variableElements.forEach((el, i) => {
-                        setTimeout(() => {
-                            el.style.opacity = '1';
-                            el.style.transform = 'scale(1)';
-                            const circle = whiteboard.querySelectorAll('.highlight-circle')[i];
-                            circle.style.opacity = '0.7';
-                            
-                            // Move hand to circle each variable
-                            setTimeout(() => {
-                                hand.style.left = `${280 + i * 80}px`;
-                                hand.style.top = `${170 + i * 60}px`;
-                            }, i * 300);
-                        }, i * 600);
-                    });
-                }, 800);
-            }, 500);
-        }
-        
-        // Shot 2: 1D Axis Diagram
-        function createShot2() {
-            whiteboard.innerHTML = '';
+            // Initialize with controls visible
+            simulationControls.style.display = 'block';
             
-            // Create axis
-            const axis = document.createElement('div');
-            axis.className = 'axis';
-            axis.style.width = '600px';
-            axis.style.top = '200px';
-            whiteboard.appendChild(axis);
-            
-            // Create labels
-            const labels = ['v₀', 't', 's'];
-            const labelColors = ['#e74c3c', '#3498db', '#2ecc71'];
-            
-            labels.forEach((label, index) => {
-                const labelElement = document.createElement('div');
-                labelElement.className = 'axis-label';
-                labelElement.textContent = label;
-                labelElement.style.color = labelColors[index];
-                labelElement.style.top = '220px';
-                labelElement.style.left = `${200 + index * 150}px`;
-                labelElement.style.opacity = '0';
-                whiteboard.appendChild(labelElement);
+            // Add slide to the presentation
+            addSlideBtn.addEventListener('click', function() {
+                const title = slideTitle.value.trim() || 'Untitled Slide';
+                const content = slideContent.value.trim() || 'No content provided';
+                const type = simulationType.value;
                 
-                // Animate labels
-                setTimeout(() => {
-                    labelElement.style.opacity = '1';
-                    labelElement.style.transition = 'opacity 0.5s ease-out';
-                }, 500 + index * 300);
+                const slide = {
+                    title,
+                    content,
+                    type,
+                    initialVelocity: parseFloat(initialVelocity.value),
+                    acceleration: parseFloat(acceleration.value),
+                    momentInertia: parseFloat(momentInertia.value)
+                };
+                
+                slides.push(slide);
+                renderSlideList();
+                resetForm();
+                
+                // If first slide, preview it
+                if (slides.length === 1) {
+                    previewSlide(slide);
+                }
             });
             
-            // Create +ve direction arrow
-            const arrow = document.createElement('div');
-            arrow.className = 'text-element';
-            arrow.textContent = '→ +ve direction';
-            arrow.style.top = '170px';
-            arrow.style.left = '400px';
-            whiteboard.appendChild(arrow);
-            
-            // Animate arrow
-            setTimeout(() => {
-                arrow.style.opacity = '1';
-                arrow.style.transform = 'scale(1)';
-            }, 1500);
-        }
-        
-        // Shot 3: Kinematic Equation
-        function createShot3() {
-            whiteboard.innerHTML = '';
-            
-            // Create equation parts
-            const equationParts = [
-                { text: 's', delay: 500 },
-                { text: ' = ', delay: 800 },
-                { text: 's₀', delay: 1100 },
-                { text: ' + ', delay: 1400 },
-                { text: 'v₀', delay: 1700 },
-                { text: 't', delay: 2000 },
-                { text: ' + ', delay: 2300 },
-                { text: '½', delay: 2600 },
-                { text: 'a', delay: 2900 },
-                { text: 't²', delay: 3200 }
-            ];
-            
-            let leftPosition = 100;
-            const equationContainer = document.createElement('div');
-            equationContainer.style.position = 'absolute';
-            equationContainer.style.top = '150px';
-            equationContainer.style.left = '50px';
-            whiteboard.appendChild(equationContainer);
-            
-            equationParts.forEach((part, index) => {
-                const partElement = document.createElement('span');
-                partElement.className = 'equation';
-                partElement.textContent = part.text;
-                partElement.style.opacity = '0';
-                partElement.style.display = 'inline-block';
-                partElement.style.transform = 'translateY(20px)';
-                equationContainer.appendChild(partElement);
+            // Render the slide list
+            function renderSlideList() {
+                slideList.innerHTML = '<h3>Slides</h3>';
                 
-                setTimeout(() => {
-                    partElement.style.opacity = '1';
-                    partElement.style.transform = 'translateY(0)';
-                    partElement.style.transition = 'all 0.3s ease-out';
-                    
-                    // Add example numbers after equation is complete
-                    if (index === equationParts.length - 1) {
-                        setTimeout(() => {
-                            const exampleNumbers = [
-                                { text: 's₀ = 0', top: '220px', left: '100px' },
-                                { text: 'v₀ = 2 m/s', top: '220px', left: '300px' },
-                                { text: 't = 5 s', top: '220px', left: '500px' },
-                                { text: 'a = 2 m/s²', top: '260px', left: '300px' }
-                            ];
-                            
-                            exampleNumbers.forEach((num, i) => {
-                                const numElement = document.createElement('div');
-                                numElement.className = 'text-element';
-                                numElement.textContent = num.text;
-                                numElement.style.top = num.top;
-                                numElement.style.left = num.left;
-                                numElement.style.fontSize = '28px';
-                                numElement.style.opacity = '0';
-                                whiteboard.appendChild(numElement);
-                                
-                                setTimeout(() => {
-                                    numElement.style.opacity = '1';
-                                    numElement.style.transform = 'scale(1)';
-                                }, i * 400);
-                            });
-                        }, 500);
+                if (slides.length === 0) {
+                    slideList.innerHTML += '<p>No slides added yet</p>';
+                    return;
+                }
+                
+                slides.forEach((slide, index) => {
+                    const slideItem = document.createElement('div');
+                    slideItem.className = 'slide-item';
+                    if (currentSlideIndex === index) {
+                        slideItem.classList.add('active');
                     }
-                }, part.delay);
-            });
-        }
-        
-        // Shot 4: Animated Car Example
-        function createShot4() {
-            whiteboard.innerHTML = '';
-            
-            // Create title
-            const title = document.createElement('div');
-            title.className = 'text-element';
-            title.textContent = 'Example: Car Acceleration';
-            title.style.top = '50px';
-            title.style.left = '50%';
-            title.style.transform = 'translateX(-50%)';
-            whiteboard.appendChild(title);
-            
-            setTimeout(() => {
-                title.style.opacity = '1';
-                title.style.transform = 'translateX(-50%) scale(1)';
-            }, 300);
-            
-            // Create car
-            const car = document.createElement('div');
-            car.className = 'car';
-            car.style.left = '100px';
-            whiteboard.appendChild(car);
-            
-            // Add wheels
-            const wheel1 = document.createElement('div');
-            wheel1.className = 'wheel wheel-front';
-            car.appendChild(wheel1);
-            
-            const wheel2 = document.createElement('div');
-            wheel2.className = 'wheel wheel-back';
-            car.appendChild(wheel2);
-            
-            // Create axis
-            const axis = document.createElement('div');
-            axis.className = 'axis';
-            axis.style.width = '700px';
-            axis.style.top = '280px';
-            axis.style.left = '50px';
-            whiteboard.appendChild(axis);
-            
-            // Animate car
-            setTimeout(() => {
-                car.style.transition = 'left 3s linear';
-                car.style.left = '600px';
-                
-                // Add acceleration label
-                setTimeout(() => {
-                    const accelLabel = document.createElement('div');
-                    accelLabel.className = 'text-element';
-                    accelLabel.textContent = 'a = 2 m/s²';
-                    accelLabel.style.top = '200px';
-                    accelLabel.style.left = '300px';
-                    accelLabel.style.opacity = '0';
-                    whiteboard.appendChild(accelLabel);
+                    slideItem.innerHTML = `
+                        <strong>${index + 1}. ${slide.title}</strong>
+                        <p>${slide.content.substring(0, 50)}${slide.content.length > 50 ? '...' : ''}</p>
+                    `;
                     
-                    setTimeout(() => {
-                        accelLabel.style.opacity = '1';
-                        accelLabel.style.transform = 'scale(1)';
-                    }, 200);
-                }, 500);
-                
-                // Add distance calculation
-                setTimeout(() => {
-                    const distanceLabel = document.createElement('div');
-                    distanceLabel.className = 'text-element';
-                    distanceLabel.textContent = 'Distance = 25 m';
-                    distanceLabel.style.top = '350px';
-                    distanceLabel.style.left = '300px';
-                    distanceLabel.style.opacity = '0';
-                    distanceLabel.style.fontSize = '36px';
-                    distanceLabel.style.color = '#e74c3c';
-                    whiteboard.appendChild(distanceLabel);
+                    slideItem.addEventListener('click', () => {
+                        currentSlideIndex = index;
+                        previewSlide(slide);
+                        renderSlideList();
+                    });
                     
-                    setTimeout(() => {
-                        distanceLabel.style.opacity = '1';
-                        distanceLabel.style.transform = 'scale(1)';
-                    }, 200);
-                }, 2500);
-            }, 1000);
-        }
-        
-        // Shot 5: Bullet List Summary
-        function createShot5() {
-            whiteboard.innerHTML = '';
+                    slideList.appendChild(slideItem);
+                });
+            }
             
-            const bulletItems = [
-                'Displacement (vector) vs Distance (scalar)',
-                'Velocity (vector) vs Speed (scalar)',
-                'Acceleration can be positive or negative',
-                'Always define your coordinate system'
-            ];
+            // Reset the form after adding a slide
+            function resetForm() {
+                slideTitle.value = '';
+                slideContent.value = '';
+                simulationType.value = 'none';
+                initialVelocity.value = '2';
+                acceleration.value = '0.5';
+                momentInertia.value = '1';
+                simulationControls.style.display = 'none';
+            }
             
-            const listContainer = document.createElement('div');
-            listContainer.className = 'bullet-list';
-            whiteboard.appendChild(listContainer);
-            
-            bulletItems.forEach((item, index) => {
-                const itemElement = document.createElement('div');
-                itemElement.className = 'bullet-item';
-                itemElement.textContent = '• ' + item;
-                listContainer.appendChild(itemElement);
+            // Preview a slide with simulation
+            function previewSlide(slide) {
+                // Clear previous content
+                videoCanvas.innerHTML = `
+                    <div class="rotating-object" id="rotatingObject"></div>
+                    <div class="axis-line" id="axisLine"></div>
+                    <div class="formula-display" id="formulaDisplay">τ = Iα</div>
+                    <div class="angular-velocity-display" id="angularVelocityDisplay">ω = 0 rad/s</div>
+                `;
                 
-                setTimeout(() => {
-                    itemElement.style.opacity = '1';
-                    itemElement.style.transform = 'translateX(0)';
-                }, 300 + index * 400);
-            });
-            
-            // Add decorative hand at bottom
-            const hand = document.createElement('div');
-            hand.className = 'hand';
-            hand.style.bottom = '30px';
-            hand.style.right = '50px';
-            hand.style.transform = 'rotate(180deg)';
-            whiteboard.appendChild(hand);
-        }
-        
-        // Navigation functions
-        function showShot(shotNumber) {
-            clearTimeout(animationTimeout);
-            currentShot = shotNumber;
-            
-            switch(shotNumber) {
-                case 1: createShot1(); break;
-                case 2: createShot2(); break;
-                case 3: createShot3(); break;
-                case 4: createShot4(); break;
-                case 5: createShot5(); break;
-                default: createShot1();
+                rotatingObject = document.getElementById('rotatingObject');
+                axisLine = document.getElementById('axisLine');
+                formulaDisplay = document.getElementById('formulaDisplay');
+                angularVelocityDisplay = document.getElementById('angularVelocityDisplay');
+                
+                // Add title and content
+                const titleElement = document.createElement('div');
+                titleElement.style.position = 'absolute';
+                titleElement.style.top = '20px';
+                titleElement.style.left = '20px';
+                titleElement.style.fontSize = '24px';
+                titleElement.style.fontWeight = 'bold';
+                titleElement.style.color = '#4361ee';
+                titleElement.textContent = slide.title;
+                videoCanvas.appendChild(titleElement);
+                
+                const contentElement = document.createElement('div');
+                contentElement.style.position = 'absolute';
+                contentElement.style.top = '60px';
+                contentElement.style.left = '20px';
+                contentElement.style.right = '20px';
+                contentElement.style.fontSize = '18px';
+                contentElement.style.color = '#212529';
+                contentElement.textContent = slide.content;
+                videoCanvas.appendChild(contentElement);
+                
+                // Update physics parameters
+                angularVelocity = slide.initialVelocity;
+                angularAcceleration = slide.acceleration;
+                momentOfInertia = slide.momentInertia;
+                
+                // Update formula display based on simulation type
+                switch(slide.type) {
+                    case 'constant':
+                        formulaDisplay.textContent = 'ω = constant';
+                        angularAcceleration = 0;
+                        break;
+                    case 'accelerated':
+                        formulaDisplay.textContent = 'τ = Iα';
+                        break;
+                    case 'moment-of-inertia':
+                        formulaDisplay.textContent = 'L = Iω (conserved)';
+                        break;
+                    default:
+                        formulaDisplay.textContent = '';
+                }
+                
+                // Start simulation
+                startSimulation();
             }
             
-            updateButtons();
-        }
-        
-        function nextShot() {
-            if (currentShot < totalShots) {
-                showShot(currentShot + 1);
+            // Start the physics simulation
+            function startSimulation() {
+                if (animationId) {
+                    cancelAnimationFrame(animationId);
+                }
+                
+                let lastTime = performance.now();
+                currentAngle = 0;
+                
+                function animate(currentTime) {
+                    const deltaTime = (currentTime - lastTime) / 1000; // Convert to seconds
+                    lastTime = currentTime;
+                    
+                    // Update angular velocity and angle
+                    angularVelocity += angularAcceleration * deltaTime;
+                    currentAngle += angularVelocity * deltaTime;
+                    
+                    // Apply conservation of angular momentum if moment of inertia changes
+                    if (simulationType.value === 'moment-of-inertia' && momentInertia.value < 1) {
+                        angularVelocity = angularVelocity / momentInertia.value;
+                    }
+                    
+                    // Rotate the object and axis
+                    rotatingObject.style.transform = `translate(-50%, -50%) rotate(${currentAngle}rad)`;
+                    axisLine.style.transform = `translate(-50%, -50%) rotate(${currentAngle}rad)`;
+                    
+                    // Update angular velocity display
+                    angularVelocityDisplay.textContent = `ω = ${angularVelocity.toFixed(2)} rad/s`;
+                    
+                    animationId = requestAnimationFrame(animate);
+                }
+                
+                animationId = requestAnimationFrame(animate);
             }
-        }
-        
-        function prevShot() {
-            if (currentShot > 1) {
-                showShot(currentShot - 1);
-            }
-        }
-        
-        function playAll() {
-            showShot(1);
             
-            let shot = 1;
-            function playNext() {
-                if (shot < totalShots) {
-                    shot++;
-                    showShot(shot);
-                    animationTimeout = setTimeout(playNext, 8000); // 8 seconds per shot
+            // Update simulation parameters when inputs change
+            function updateSimulation() {
+                if (slides.length > 0 && currentSlideIndex !== null) {
+                    const currentSlide = slides[currentSlideIndex];
+                    currentSlide.initialVelocity = parseFloat(initialVelocity.value);
+                    currentSlide.acceleration = parseFloat(acceleration.value);
+                    currentSlide.momentInertia = parseFloat(momentInertia.value);
+                    
+                    angularVelocity = currentSlide.initialVelocity;
+                    angularAcceleration = currentSlide.acceleration;
+                    momentOfInertia = currentSlide.momentInertia;
                 }
             }
             
-            animationTimeout = setTimeout(playNext, 8000);
-        }
-        
-        function updateButtons() {
-            prevBtn.disabled = currentShot === 1;
-            nextBtn.disabled = currentShot === totalShots;
-        }
-        
-        // Event listeners
-        nextBtn.addEventListener('click', nextShot);
-        prevBtn.addEventListener('click', prevShot);
-        playAllBtn.addEventListener('click', playAll);
-        
-        // Initialize
-        showShot(1);
+            // Event listeners for parameter changes
+            initialVelocity.addEventListener('input', updateSimulation);
+            acceleration.addEventListener('input', updateSimulation);
+            momentInertia.addEventListener('input', updateSimulation);
+            
+            // Start with an initial slide about torque
+            const initialSlide = {
+                title: "Torque and Angular Acceleration",
+                content: "Torque (τ) causes angular acceleration (α) according to τ = Iα, where I is moment of inertia.",
+                type: "accelerated",
+                initialVelocity: 0,
+                acceleration: 0.5,
+                momentInertia: 1
+            };
+            slides.push(initialSlide);
+            previewSlide(initialSlide);
+            renderSlideList();
+        });
     </script>
 </body>
 </html>
