@@ -1,14 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>English Grammar Fun</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Grammar Class</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <h1>English Grammar Learner</h1>
-    <p>Click the button to see an example of a <b>Noun</b>!</p>
-    
-    <div id="display-area">Wait for it...</div>
-    
-    <button onclick="showNoun()">Show Noun</button>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <h2><i class="fas fa-book-open"></i> Grammar<span>Master</span></h2>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#lessons">Lessons</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <h1>Master English <span class="highlight">Grammar</span></h1>
+                <p>Learn tenses, parts of speech, sentence structure and more with our expert teachers. From beginner to advanced level.</p>
+                <div class="hero-buttons">
+                    <a href="#lessons" class="btn btn-primary">Start Learning <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contact" class="btn btn-secondary">Free Trial Class</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat"><h3>5000+</h3><p>Students</p></div>
+                    <div class="stat"><h3>50+</h3><p>Lessons</p></div>
+                    <div class="stat"><h3>24/7</h3><p>Support</p></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/500x400?text=Learn+Grammar" alt="Grammar Learning">
+            </div>
+        </div>
+    </section>
+
+    <section id="lessons" class="lessons">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Grammar <span class="highlight">Lessons</span></h2>
+                <p>Structured courses to help you improve step by step</p>
+            </div>
+            <div class="lessons-grid">
+                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-clock"></i></div><h3>Tenses</h3><p>Present, Past, Future - Simple, Continuous, Perfect</p><a href="#" class="lesson-link">Learn More →</a></div>
+                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-tags"></i></div><h3>Parts of Speech</h3><p>Nouns, Verbs, Adjectives, Adverbs, Pronouns</p><a href="#" class="lesson-link">Learn More →</a></div>
+                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-code-branch"></i></div><h3>Sentence Structure</h3><p>Simple, Compound, Complex sentences</p><a href="#" class="lesson-link">Learn More →</a></div>
+                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-question-circle"></i></div><h3>Active & Passive</h3><p>Transform sentences with easy rules</p><a href="#" class="lesson-link">Learn More →</a></div>
+                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-comment-dots"></i></div><h3>Direct & Indirect</h3><p>Reported speech with tense changes</p><a href="#" class="lesson-link">Learn More →</a></div>
+                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-pen-alt"></i></div><h3>Punctuation</h3><p>Commas, periods, question marks and more</p><a href="#" class="lesson-link">Learn More →</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container about-container">
+            <div class="about-image"><img src="https://via.placeholder.com/450x400?text=Our+Teachers" alt="Teachers"></div>
+            <div class="about-content">
+                <h2>Why Choose <span class="highlight">Us?</span></h2>
+                <p>We have been teaching English grammar for over 10 years with thousands of successful students worldwide.</p>
+                <div class="features">
+                    <div class="feature"><i class="fas fa-chalkboard-teacher"></i><div><h4>Expert Teachers</h4><p>Native and certified instructors</p></div></div>
+                    <div class="feature"><i class="fas fa-video"></i><div><h4>Live Online Classes</h4><p>Interactive with real-time feedback</p></div></div>
+                    <div class="feature"><i class="fas fa-certificate"></i><div><h4>Certificate</h4><p>Get certified after each level</p></div></div>
+                    <div class="feature"><i class="fas fa-download"></i><div><h4>Free Resources</h4><p>Worksheets, quizzes and PDF materials</p></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header"><h2>Contact <span class="highlight">Us</span></h2><p>Get a free trial class or ask any questions</p></div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="info-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>info@grammarmaster.com</p></div></div>
+                    <div class="info-item"><i class="fas fa-phone-alt"></i><div><h4>Phone</h4><p>+95 123 456 789</p></div></div>
+                    <div class="info-item"><i class="fab fa-facebook"></i><div><h4>Facebook</h4><p>GrammarMaster English</p></div></div>
+                    <div class="info-item"><i class="fab fa-telegram"></i><div><h4>Telegram</h4><p>@grammarmaster</p></div></div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea rows="5" placeholder="Your Message"></textarea>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo"><h3><i class="fas fa-book-open"></i> GrammarMaster</h3><p>Your journey to perfect English starts here.</p></div>
+                <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#lessons">Lessons</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div>
+                <div class="footer-links"><h4>Courses</h4><ul><li><a href="#">Beginner (A1-A2)</a></li><li><a href="#">Intermediate (B1-B2)</a></li><li><a href="#">Advanced (C1-C2)</a></li><li><a href="#">Exam Preparation</a></li></ul></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2025 GrammarMaster. All rights reserved. | Designed for English learners</p></div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        if(menuToggle) {
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+        }
+    </script>
 </body>
 </html>
