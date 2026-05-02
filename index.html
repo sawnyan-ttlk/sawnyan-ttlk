@@ -25,6 +25,89 @@
             </div>
         </div>
     </nav>
+    <style>
+    /* Reading Section အတွက် သီးသန့် Style များ */
+    .reading-section {
+        background: #ffffff;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        border-left: 5px solid #1abc9c; /* ဘေးဘောင်အရောင် */
+    }
+
+    .reading-content h2 {
+        color: #2c3e50;
+        font-size: 28px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .reading-content p {
+        font-size: 18px;
+        color: #444;
+        line-height: 1.8;
+        margin-bottom: 15px;
+        text-align: justify; /* စာသားများကို ဘယ်ညာညှိရန် */
+    }
+
+    .highlight {
+        background-color: #fff3cd;
+        padding: 2px 5px;
+        font-weight: bold;
+        border-radius: 3px;
+    }
+
+    .vocabulary-box {
+        background: #f8f9fa;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 8px;
+        border: 1px dashed #bdc3c7;
+    }
+
+    .vocabulary-box h4 {
+        margin-top: 0;
+        color: #e67e22;
+    }
+
+    /* ဖုန်းနဲ့ကြည့်ရင် စာလုံးအရွယ်အစား ညှိရန် */
+    @media (max-width: 600px) {
+        .reading-section {
+            padding: 20px;
+            margin: 20px;
+        }
+    }
+</style>
+
+<div class="reading-section">
+    <article class="reading-content">
+        <h2>ယနေ့ဖတ်ရှုရန် သင်ခန်းစာ</h2>
+        
+        <p>
+            ဘာသာစကားတစ်ခုကို လေ့လာတဲ့အခါမှာ <span class="highlight">Reading (စာဖတ်ခြင်း)</span> ဟာ ဝေါဟာရအသစ်တွေကို သိရှိစေဖို့နဲ့ 
+            ဝါကျတည်ဆောက်ပုံတွေကို နားလည်စေဖို့အတွက် အကောင်းဆုံးနည်းလမ်းတစ်ခု ဖြစ်ပါတယ်။ 
+            စာဖတ်ခြင်းက သင့်ရဲ့ ဦးနှောက်ကို အနားပေးစေရုံသာမက ဗဟုသုတအသစ်တွေကိုလည်း တိုးပွားစေပါတယ်။
+        </p>
+
+        <p>
+            ဥပမာအားဖြင့်၊ သင်ဟာ နည်းပညာအကြောင်းကို ဖတ်ရှုနေတယ်ဆိုရင် Python programming ရဲ့ အခြေခံ သဘောတရားတွေကို 
+            စာအုပ်တွေထဲမှာ ရှာဖွေနိုင်ပါတယ်။ စာဖတ်တဲ့အခါမှာ အဓိကအချက်တွေကို မှတ်စုထုတ်ထားခြင်းက မှတ်ဉာဏ်ကို ပိုမိုကောင်းမွန်စေပါတယ်။
+        </p>
+
+        <!-- Vocabulary Tip Box -->
+        <div class="vocabulary-box">
+            <h4>💡 မှတ်သားရန် ဝေါဟာရများ</h4>
+            <ul>
+                <li><strong>Consistency</strong> - အစဉ်တစိုက်ရှိခြင်း</li>
+                <li><strong>Comprehension</strong> - နားလည်သဘောပေါက်မှု</li>
+                <li><strong>Context</strong> - အကြောင်းအရာ နောက်ခံ</li>
+            </ul>
+        </div>
+    </article>
+</div>
 
     <section id="home" class="hero">
         <div class="container hero-container">
