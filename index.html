@@ -1,183 +1,649 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English Grammar Class</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>ဗုဒ္ဓရောင်ခြည် - ဗုဒ္ဓဘာသာ ဝေါဟာရ</title>
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Serif Myanmar', sans-serif;
+      background: linear-gradient(145deg, #fef9e6 0%, #fff7ed 100%);
+      color: #2e241f;
+      scroll-behavior: smooth;
+    }
+
+    /* Custom scroll */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f0e4c2;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c2a15b;
+      border-radius: 10px;
+    }
+
+    /* Navigation */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(255, 248, 235, 0.96);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid #e9dbbc;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo i {
+      font-size: 2rem;
+      color: #c27e2e;
+    }
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #b45f1b, #e3a15a);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #5a3e2b;
+      transition: 0.2s;
+      font-size: 1rem;
+    }
+    .nav-links a:hover {
+      color: #c27e2e;
+      border-bottom: 2px solid #e5b875;
+    }
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #7a5a3a;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(107deg, #feeedb 0%, #fff3e2 100%);
+      min-height: 75vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "☸";
+      font-size: 18rem;
+      opacity: 0.05;
+      position: absolute;
+      bottom: -40px;
+      right: -20px;
+      font-family: serif;
+      pointer-events: none;
+    }
+    .hero-content {
+      max-width: 800px;
+      padding: 2rem;
+      z-index: 2;
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: #7b4a2e;
+    }
+    .hero .sub {
+      font-size: 1.3rem;
+      margin-bottom: 1.8rem;
+      color: #9b6a3c;
+      font-style: italic;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      line-height: 1.5;
+      color: #4b3621;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .btn-lotus {
+      margin-top: 2rem;
+      display: inline-block;
+      background: #c2863b;
+      padding: 0.9rem 2rem;
+      border-radius: 60px;
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 6px 14px rgba(160, 100, 20, 0.2);
+      transition: all 0.2s;
+    }
+    .btn-lotus:hover {
+      background: #aa6d2c;
+      transform: translateY(-2px);
+    }
+
+    /* sections general */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2.3rem;
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 3px;
+      background: #e2b87a;
+      margin: 0.7rem auto 0;
+      border-radius: 4px;
+    }
+
+    /* 3 jewels cards */
+    .jewels-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .card {
+      background: #ffffffdb;
+      backdrop-filter: blur(2px);
+      border-radius: 2rem;
+      padding: 2rem 1.5rem;
+      width: 280px;
+      text-align: center;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+      transition: 0.25s ease;
+      border: 1px solid #f7e5cd;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 32px -12px rgba(116, 77, 33, 0.15);
+      border-color: #efcf9e;
+    }
+    .card-icon {
+      font-size: 3rem;
+      color: #d9993b;
+      margin-bottom: 1rem;
+    }
+    .card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      color: #4e3e2e;
+    }
+
+    /* Buddhism info section: two columns */
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+    }
+    .info-text {
+      flex: 1.2;
+      background: #fffbf2;
+      padding: 2rem;
+      border-radius: 2rem;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.02);
+      border-left: 8px solid #e6bc7e;
+    }
+    .info-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: #b26923;
+    }
+    .info-text p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+    .quote-buddha {
+      flex: 0.8;
+      background: #efe3cf;
+      padding: 2rem;
+      border-radius: 2rem;
+      text-align: center;
+      font-style: italic;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #5a3f28;
+    }
+    .quote-buddha i {
+      font-size: 2rem;
+      color: #c48133;
+      margin-bottom: 0.7rem;
+      display: inline-block;
+    }
+
+    /* Meditation Timer Section */
+    .meditation-section {
+      background: #fef5ea;
+      border-radius: 2rem;
+      margin-top: 1rem;
+    }
+    .timer-box {
+      max-width: 500px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 1rem;
+    }
+    .timer-display {
+      font-size: 4rem;
+      font-weight: 700;
+      font-family: monospace;
+      background: #fff0df;
+      padding: 1rem;
+      border-radius: 3rem;
+      letter-spacing: 4px;
+      color: #7b4f26;
+      margin: 1rem 0;
+    }
+    .timer-buttons button {
+      background: none;
+      border: 1px solid #cfaa77;
+      padding: 0.6rem 1.4rem;
+      margin: 0.3rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: white;
+      transition: 0.1s;
+      color: #6b4423;
+    }
+    .timer-buttons button:hover {
+      background: #e9cfaa;
+      border-color: #b78847;
+    }
+    .dhamma-note {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #b37b42;
+    }
+
+    /* Daily dhammapada */
+    .dhammapada-card {
+      background: linear-gradient(115deg, #fff6e8, #fff1e0);
+      border-radius: 2rem;
+      padding: 2rem;
+      text-align: center;
+      box-shadow: 0 12px 24px -16px rgba(0,0,0,0.1);
+    }
+    .verse-text {
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 1.5;
+      color: #3e2c1c;
+      margin-bottom: 1rem;
+    }
+    .verse-ref {
+      font-size: 0.9rem;
+      color: #bc8a49;
+      letter-spacing: 1px;
+    }
+    .refresh-verse {
+      margin-top: 1rem;
+      background: #e7cfb0;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    /* Footer */
+    footer {
+      background: #2e241f;
+      color: #e9cfb0;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 780px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background: #fffcf5;
+        width: 70%;
+        height: calc(100vh - 70px);
+        padding: 2rem;
+        gap: 1.5rem;
+        transition: 0.3s;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.05);
+        border-right: 1px solid #eedbba;
+      }
+      .nav-links.active {
+        left: 0;
+      }
+      .menu-icon {
+        display: block;
+      }
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+      .info-grid {
+        flex-direction: column;
+      }
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="container nav-container">
-            <div class="logo">
-                <h2><i class="fas fa-book-open"></i> Grammar<span>Master</span></h2>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#lessons">Lessons</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
+
+<nav class="navbar">
+  <div class="logo">
+    <i class="fas fa-dharmachakra"></i>
+    <span>ဗုဒ္ဓရောင်ခြည်</span>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">ပင်မစာမျက်နှာ</a></li>
+    <li><a href="#jewels">ရတနာသုံးပါး</a></li>
+    <li><a href="#dhamma">ဓမ္မ</a></li>
+    <li><a href="#meditate">တရားထိုင်ချိန်</a></li>
+    <li><a href="#verse">နေ့စဉ်ဓမ္မစကား</a></li>
+  </ul>
+  <div class="menu-icon" id="menuToggle">
+    <i class="fas fa-bars"></i>
+  </div>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-content">
+    <h1>နမော တဿ ဘဂဝတော</h1>
+    <div class="sub">အရဟတော သမ္မာသမ္ဗုဒ္ဓဿ</div>
+    <p>ဗုဒ္ဓ၏ အဆုံးအမတော်များကို အခြေခံ၍ ငြိမ်းချမ်းသော လမ်းစဉ်အတိုင်း လျှောက်လှမ်းကြပါစို့။</p>
+    <a href="#meditate" class="btn-lotus"><i class="fas fa-seedling"></i> စိတ်ငြိမ်းအေးရန် တရားထိုင်မည်</a>
+  </div>
+</section>
+
+<main>
+  <!-- Three Jewels (ရတနာသုံးပါး) -->
+  <div class="container" id="jewels">
+    <h2 class="section-title">ရတနာသုံးပါး</h2>
+    <div class="jewels-grid">
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-buddha"></i></div>
+        <h3>ဗုဒ္ဓ</h3>
+        <p>သဗ္ဗညုတဉာဏ်တော်နှင့် ပြည့်စုံတော်မူသော မြတ်စွာဘုရား၊ သစ္စာလေးပါးကို ကိုယ်တိုင်သိရှိတော်မူသောအရှင်</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-book-open"></i></div>
+        <h3>တရား</h3>
+        <p>ဗုဒ္ဓ၏ အဆုံးအမ၊ ဓမ္မစကြာတရားတော်၊ မဂ္ဂင်ရှစ်ပါးနှင့် ပဋိစ္စသမုပ္ပါဒ် </p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-users"></i></div>
+        <h3>သံဃာ</h3>
+        <p>ကျင့်သုံးဆောက်တည်ကြသော ရဟန္တာအပေါင်း၊ သူတော်ကောင်းတရားကို ကျင့်ကြံအားထုတ်သူများ</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Buddhism info and quotes -->
+  <div class="container" id="dhamma">
+    <div class="info-grid">
+      <div class="info-text">
+        <h3><i class="fas fa-feather-alt"></i> ဗုဒ္ဓ၏ ဒေသနာတော်</h3>
+        <p>မြတ်စွာဘုရားရှင်သည် «သဗ္ဗပါပဿ အကရဏံ၊ ကုသလဿ ဥပသမ္ပဒါ၊ သစိတ္တပရိယောဒပနံ — မကောင်းမှုအားလုံးကို ရှောင်ကြဉ်ခြင်း၊ ကောင်းမှုနှင့် ပြည့်စုံစေခြင်း၊ မိမိစိတ်ကို စင်ကြယ်အောင် ထားခြင်းတို့သည် ဗုဒ္ဓဘာသာ၏ အဆုံးအမဖြစ်သည်» ဟု ဟောကြားတော်မူခဲ့သည်။</p>
+        <p>မဂ္ဂင်ရှစ်ပါး — သမ္မာဒိဋ္ဌိ၊ သမ္မာသင်္ကပ္ပ၊ သမ္မာဝါစာ၊ သမ္မာကမ္မန္တ၊ သမ္မာအာဇီဝ၊ သမ္မာဝါယာမ၊ သမ္မာသတိ၊ သမ္မာသမာဓိ — ဒုက္ခချုပ်ရာ နိဗ္ဗာန်သို့ ရောက်ကြောင်း အကျင့်မြတ်တို့တည်း။</p>
+      </div>
+      <div class="quote-buddha">
+        <i class="fas fa-quote-left"></i>
+        <p>“မေတ္တာစိတ်ဖြင့် လောကကို ပြုစုပါ။ ရန်ငြိုးဖွဲ့ခြင်းသည် ရန်ငြိုးကို မငြိမ်းစေနိုင်။ မေတ္တာဖြင့်သာ ငြိမ်းစေနိုင်သည် — ဤသည်ထာဝရဥပဒေဖြစ်သည်။”</p>
+        <span>— ဗုဒ္ဓ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Meditation Timer Section -->
+  <div class="container" id="meditate">
+    <div class="meditation-section">
+      <div class="timer-box">
+        <h2><i class="fas fa-om"></i> တရားထိုင်ချိန်တိုင်းကိရိယာ</h2>
+        <div class="timer-display" id="timerDisplay">05:00</div>
+        <div class="timer-buttons">
+          <button id="startBtn"><i class="fas fa-play"></i> စတင်ရန်</button>
+          <button id="pauseBtn"><i class="fas fa-pause"></i> ခေတ္တရပ်ရန်</button>
+          <button id="resetBtn"><i class="fas fa-undo-alt"></i> ပြန်စရန်</button>
+          <button id="setMinBtn"><i class="fas fa-plus-circle"></i> +1 မိနစ်</button>
         </div>
-    </nav>
-    <style>
-    /* Reading Section အတွက် သီးသန့် Style များ */
-    .reading-section {
-        background: #ffffff;
-        max-width: 800px;
-        margin: 40px auto;
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        border-left: 5px solid #1abc9c; /* ဘေးဘောင်အရောင် */
-    }
+        <div class="dhamma-note">
+          <i class="fas fa-spa"></i> အာနာပါနကမ္မဋ္ဌာန်း — သတိဖြင့် ထိုင်ခြင်းသည် စိတ်၏ငြိမ်းအေးရာ
+        </div>
+      </div>
+    </div>
+  </div>
 
-    .reading-content h2 {
-        color: #2c3e50;
-        font-size: 28px;
-        margin-bottom: 20px;
-        border-bottom: 2px solid #eee;
-        padding-bottom: 10px;
-    }
+  <!-- Daily Dhammapada verse Widget -->
+  <div class="container" id="verse">
+    <div class="dhammapada-card">
+      <h2><i class="fas fa-leaf"></i> နေ့စဉ် ဓမ္မပဒ အဆုံးအမ</h2>
+      <div id="dailyVerse" class="verse-text">—</div>
+      <div id="verseRef" class="verse-ref"></div>
+      <button id="newVerseBtn" class="refresh-verse"><i class="fas fa-sync-alt"></i> စိတ်ကြိုက်ရွေးရန်</button>
+      <p style="margin-top: 12px; font-size: 0.75rem;">တရားတော်မှ ဉာဏ်အလင်းရစေသတည်း</p>
+    </div>
+  </div>
+</main>
 
-    .reading-content p {
-        font-size: 18px;
-        color: #444;
-        line-height: 1.8;
-        margin-bottom: 15px;
-        text-align: justify; /* စာသားများကို ဘယ်ညာညှိရန် */
-    }
+<footer>
+  <i class="fas fa-dharmachakra"></i> သဗ္ဗေသတ္တာ သုခိတာ ဟောန္တု — သတ္တဝါအပေါင်း ချမ်းသာကြပါစေ <br>
+  © ၂၀၂၅ ဗုဒ္ဓရောင်ခြည် — မြတ်ဗုဒ္ဓ၏ တရားတော်ကို ဆည်းပူးရန် ရည်ရွယ်သည်
+</footer>
 
-    .highlight {
-        background-color: #fff3cd;
-        padding: 2px 5px;
-        font-weight: bold;
-        border-radius: 3px;
-    }
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+  // close when click link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('active'));
+  });
 
-    .vocabulary-box {
-        background: #f8f9fa;
-        padding: 20px;
-        margin-top: 30px;
-        border-radius: 8px;
-        border: 1px dashed #bdc3c7;
-    }
+  // ----- MEDITATION TIMER (Full js logic) -----
+  let timerInterval = null;
+  let timeSeconds = 300;   // default 5 min = 300 seconds
+  let isRunning = false;
+  const timerDisplay = document.getElementById('timerDisplay');
 
-    .vocabulary-box h4 {
-        margin-top: 0;
-        color: #e67e22;
-    }
+  function updateDisplay() {
+    let mins = Math.floor(timeSeconds / 60);
+    let secs = timeSeconds % 60;
+    timerDisplay.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+  }
 
-    /* ဖုန်းနဲ့ကြည့်ရင် စာလုံးအရွယ်အစား ညှိရန် */
-    @media (max-width: 600px) {
-        .reading-section {
-            padding: 20px;
-            margin: 20px;
+  function startTimer() {
+    if (timerInterval) return;
+    if (timeSeconds <= 0) {
+      // if time ended, reset to previous? just reset to 5 min if zero.
+      if(timeSeconds <= 0) timeSeconds = 300;
+      updateDisplay();
+    }
+    isRunning = true;
+    timerInterval = setInterval(() => {
+      if (timeSeconds > 0) {
+        timeSeconds--;
+        updateDisplay();
+        if (timeSeconds === 0) {
+          // timer finished
+          clearInterval(timerInterval);
+          timerInterval = null;
+          isRunning = false;
+          // Optional small alert but nice notification without intrusive alert
+          const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          // beep politely (simple beep if allowed)
+          try {
+            const beep = () => {
+              const osc = audioCtx.createOscillator();
+              const gain = audioCtx.createGain();
+              osc.connect(gain);
+              gain.connect(audioCtx.destination);
+              osc.frequency.value = 880;
+              gain.gain.value = 0.2;
+              osc.start();
+              gain.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
+              osc.stop(audioCtx.currentTime + 0.5);
+            };
+            beep();
+          } catch(e) { console.log("audio not permitted"); }
+          timerDisplay.style.animation = 'none';
+          setTimeout(() => timerDisplay.style.animation = '', 100);
+          // small flash
+          timerDisplay.style.backgroundColor = "#ffe3b5";
+          setTimeout(() => timerDisplay.style.backgroundColor = "#fff0df", 500);
         }
+      } else {
+        // stop running if somehow negative
+        clearInterval(timerInterval);
+        timerInterval = null;
+        isRunning = false;
+      }
+    }, 1000);
+  }
+
+  function pauseTimer() {
+    if (timerInterval) {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      isRunning = false;
     }
-</style>
+  }
 
+  function resetTimer() {
+    pauseTimer();
+    timeSeconds = 300;
+    updateDisplay();
+  }
 
+  function addMinute() {
+    pauseTimer();
+    timeSeconds += 60;
+    if (timeSeconds > 7200) timeSeconds = 7200; // max 2 hours
+    updateDisplay();
+  }
 
-    <section id="home" class="hero">
-        <div class="container hero-container">
-            <div class="hero-content">
-                <h1>Master English <span class="highlight">Grammar</span></h1>
-                <p>Learn tenses, parts of speech, sentence structure and more with our expert teachers. From beginner to advanced level.</p>
-                <div class="hero-buttons">
-                    <a href="#lessons" class="btn btn-primary">Start Learning <i class="fas fa-arrow-right"></i></a>
-                    <a href="#contact" class="btn btn-secondary">Free Trial Class</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat"><h3>5000+</h3><p>Students</p></div>
-                    <div class="stat"><h3>50+</h3><p>Lessons</p></div>
-                    <div class="stat"><h3>24/7</h3><p>Support</p></div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <img src="https://via.placeholder.com/500x400?text=Learn+Grammar" alt="Grammar Learning">
-            </div>
-        </div>
-    </section>
+  document.getElementById('startBtn').addEventListener('click', startTimer);
+  document.getElementById('pauseBtn').addEventListener('click', pauseTimer);
+  document.getElementById('resetBtn').addEventListener('click', resetTimer);
+  document.getElementById('setMinBtn').addEventListener('click', addMinute);
 
-    <section id="lessons" class="lessons">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Grammar <span class="highlight">Lessons</span></h2>
-                <p>Structured courses to help you improve step by step</p>
-            </div>
-            <div class="lessons-grid">
-                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-clock"></i></div><h3>Tenses</h3><p>Present, Past, Future - Simple, Continuous, Perfect</p><a href="#" class="lesson-link">Learn More →</a></div>
-                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-tags"></i></div><h3>Parts of Speech</h3><p>Nouns, Verbs, Adjectives, Adverbs, Pronouns</p><a href="#" class="lesson-link">Learn More →</a></div>
-                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-code-branch"></i></div><h3>Sentence Structure</h3><p>Simple, Compound, Complex sentences</p><a href="#" class="lesson-link">Learn More →</a></div>
-                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-question-circle"></i></div><h3>Active & Passive</h3><p>Transform sentences with easy rules</p><a href="#" class="lesson-link">Learn More →</a></div>
-                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-comment-dots"></i></div><h3>Direct & Indirect</h3><p>Reported speech with tense changes</p><a href="#" class="lesson-link">Learn More →</a></div>
-                <div class="lesson-card"><div class="lesson-icon"><i class="fas fa-pen-alt"></i></div><h3>Punctuation</h3><p>Commas, periods, question marks and more</p><a href="#" class="lesson-link">Learn More →</a></div>
-            </div>
-        </div>
-    </section>
+  // ---------- DHAMMAPADA VERSES Array (some inspirational English & Myanmar mixed but mainly Pali/Eng plus meaning)
+  const verses = [
+    { text: "မနောပုဗ္ဗင်္ဂမာ ဓမ္မာ၊ မနောသေဋ္ဌာ မနောမယာ။ မနသာ စေ ပဒုဋ္ဌေန၊ ဘာသတိ ဝါ ကရောတိ ဝါ။ တတော နံ ဒုက္ခမန္ဝေတိ၊ စက္ကံဝ ဝဟတော ပဒံ။", ref: "ဓမ္မပဒ, ယမကဝဂ် (၁)" },
+    { text: "မနောပုဗ္ဗင်္ဂမာ ဓမ္မာ၊ မနောသေဋ္ဌာ မနောမယာ။ မနသာ စေ ပသန္နေန၊ ဘာသတိ ဝါ ကရောတိ ဝါ။ တတော နံ သုခမန္ဝေတိ၊ ဆာယာဝ အနပါယိနီ။", ref: "ဓမ္မပဒ (၂) — စိတ်ဖြူစင် သုခ လိုက်ပါ၏" },
+    { text: "န ဟိ ဝေရေန ဝေရာနိ၊ သမ္မန္တီဓ ကုဒာစနံ။ အဝေရေန စ သမ္မန္တိ၊ ဧသ ဓမ္မော သနန္တနော။", ref: "ဓမ္မပဒ (၅) — မေတ္တာဖြင့် ရန်ငြိမ်းရေး" },
+    { text: "သဗ္ဗပါပဿ အကရဏံ၊ ကုသလဿ ဥပသမ္ပဒါ။ သစိတ္တပရိယောဒပနံ၊ ဧတံ ဗုဒ္ဓါန သာသနံ။", ref: "ဓမ္မပဒ (၁၈၃) — ဗုဒ္ဓ၏ အဆုံးအမ" },
+    { text: "အနိစ္စာ ဝတ သင်္ခါရာ၊ ဥပ္ပါဒဝယဓမ္မိနော။ ဥပ္ပဇ္ဇိတွာ နိရုဇ္ဈန္တိ၊ တေသံ ဝူပသမော သုခေါ။", ref: "မဟာပရိနိဗ္ဗာနသုတ္တ — သင်္ခါရတို့သည် မမြဲ" },
+    { text: "အတ္တာ ဟိ အတ္တနော နာထော၊ ကော ဟိ နာထော ပရော သိယာ။ အတ္တနာ ဟိ သုဒန္တေန၊ နာထံ လဘတိ ဒုလ္လဘံ။", ref: "ဓမ္မပဒ (၁၆၀) — ကိုယ်ကိုကိုယ် ကိုးကွယ်ရာ" }
+  ];
 
-    <section id="about" class="about">
-        <div class="container about-container">
-            <div class="about-image"><img src="https://via.placeholder.com/450x400?text=Our+Teachers" alt="Teachers"></div>
-            <div class="about-content">
-                <h2>Why Choose <span class="highlight">Us?</span></h2>
-                <p>We have been teaching English grammar for over 10 years with thousands of successful students worldwide.</p>
-                <div class="features">
-                    <div class="feature"><i class="fas fa-chalkboard-teacher"></i><div><h4>Expert Teachers</h4><p>Native and certified instructors</p></div></div>
-                    <div class="feature"><i class="fas fa-video"></i><div><h4>Live Online Classes</h4><p>Interactive with real-time feedback</p></div></div>
-                    <div class="feature"><i class="fas fa-certificate"></i><div><h4>Certificate</h4><p>Get certified after each level</p></div></div>
-                    <div class="feature"><i class="fas fa-download"></i><div><h4>Free Resources</h4><p>Worksheets, quizzes and PDF materials</p></div></div>
-                </div>
-            </div>
-        </div>
-    </section>
+  let currentVerseIdx = 0;
 
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header"><h2>Contact <span class="highlight">Us</span></h2><p>Get a free trial class or ask any questions</p></div>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="info-item"><i class="fas fa-envelope"></i><div><h4>Email</h4><p>info@grammarmaster.com</p></div></div>
-                    <div class="info-item"><i class="fas fa-phone-alt"></i><div><h4>Phone</h4><p>+95 123 456 789</p></div></div>
-                    <div class="info-item"><i class="fab fa-facebook"></i><div><h4>Facebook</h4><p>GrammarMaster English</p></div></div>
-                    <div class="info-item"><i class="fab fa-telegram"></i><div><h4>Telegram</h4><p>@grammarmaster</p></div></div>
-                </div>
-                <form class="contact-form">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
-                    <input type="text" placeholder="Subject">
-                    <textarea rows="5" placeholder="Your Message"></textarea>
-                    <button type="submit" class="btn btn-primary">Send Message</button>
-                </form>
-            </div>
-        </div>
-    </section>
+  function updateVerse(index) {
+    const verse = verses[index % verses.length];
+    document.getElementById('dailyVerse').innerHTML = `“${verse.text}”`;
+    document.getElementById('verseRef').innerHTML = `— ${verse.ref} —`;
+  }
 
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo"><h3><i class="fas fa-book-open"></i> GrammarMaster</h3><p>Your journey to perfect English starts here.</p></div>
-                <div class="footer-links"><h4>Quick Links</h4><ul><li><a href="#home">Home</a></li><li><a href="#lessons">Lessons</a></li><li><a href="#about">About</a></li><li><a href="#contact">Contact</a></li></ul></div>
-                <div class="footer-links"><h4>Courses</h4><ul><li><a href="#">Beginner (A1-A2)</a></li><li><a href="#">Intermediate (B1-B2)</a></li><li><a href="#">Advanced (C1-C2)</a></li><li><a href="#">Exam Preparation</a></li></ul></div>
-            </div>
-            <div class="footer-bottom"><p>&copy; 2025 GrammarMaster. All rights reserved. | Designed for English learners</p></div>
-        </div>
-    </footer>
+  function randomVerse() {
+    let newIdx = Math.floor(Math.random() * verses.length);
+    if (verses.length > 1 && newIdx === currentVerseIdx) newIdx = (newIdx + 1) % verses.length;
+    currentVerseIdx = newIdx;
+    updateVerse(currentVerseIdx);
+  }
 
-    <script>
-        const menuToggle = document.getElementById('mobile-menu');
-        const navLinks = document.querySelector('.nav-links');
-        if(menuToggle) {
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-        }
-    </script>
+  // initialize random verse daily style
+  (function initVerse() {
+    const todayIdx = Math.floor(Math.random() * verses.length);
+    currentVerseIdx = todayIdx;
+    updateVerse(currentVerseIdx);
+  })();
+
+  document.getElementById('newVerseBtn').addEventListener('click', () => {
+    randomVerse();
+  });
+
+  // smooth anchor scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href');
+      if(targetId === "#" || targetId === "") return;
+      const target = document.querySelector(targetId);
+      if(target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // small subtle audio context resume if page interactivity 
+  // No intrusive, just used when timer beeps but we require user interaction for audio anyway
+  // But beep inside timer will require AudioContext but it's activated on first start click (user gesture)
+  // Add a pre-warmup: 
+  let audioCtxReady = null;
+  function prewarmAudio() {
+    if(!audioCtxReady) {
+      audioCtxReady = new (window.AudioContext || window.webkitAudioContext)();
+      if(audioCtxReady.state === 'suspended') audioCtxReady.resume();
+    }
+  }
+  document.body.addEventListener('click', function() {
+    if (window.AudioContext || window.webkitAudioContext) {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      if(ctx.state === 'suspended') ctx.resume();
+      ctx.close();
+    }
+  }, { once: true });
+</script>
 </body>
 </html>
