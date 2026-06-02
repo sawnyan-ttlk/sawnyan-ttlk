@@ -1,498 +1,749 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="my">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Library & PDF Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- MODERN CSS STYLING --- */
-        :root {
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --success: #10b981;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --glass-white: rgba(255, 255, 255, 0.85);
-            --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ရတနာစာကြည့်တိုက် | မြန်မာ့ဒစ်ဂျစ်တယ်စာကြည့်တိုက်</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Noto+Serif+Myanmar:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+    body {
+      background: linear-gradient(145deg, #f8f4e9 0%, #f0ebdd 100%);
+      font-family: 'Inter', 'Noto Serif Myanmar', sans-serif;
+      color: #2d2a24;
+      line-height: 1.5;
+      scroll-behavior: smooth;
+    }
 
-        body {
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            color: var(--text-dark);
-            padding-bottom: 60px;
-        }
+    /* custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e9e0d0;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #b87333;
+      border-radius: 10px;
+    }
 
-        /* Top Header */
-        header {
-            text-align: center;
-            padding: 40px 20px 20px 20px;
-        }
+    /* header / navbar */
+    .header {
+      background: rgba(30, 24, 18, 0.92);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 2rem;
+      transition: all 0.2s;
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo i {
+      font-size: 2rem;
+      color: #f5bc70;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .logo h1 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      background: linear-gradient(135deg, #FFE6C7, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .logo span {
+      font-size: 0.85rem;
+      background: #b87333;
+      padding: 2px 8px;
+      border-radius: 30px;
+      color: white;
+      font-weight: 500;
+      margin-left: 6px;
+    }
+    .search-bar {
+      display: flex;
+      background: #fff6ed;
+      border-radius: 60px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      border: 1px solid #f0dec0;
+    }
+    .search-bar input {
+      padding: 10px 20px;
+      width: 260px;
+      border: none;
+      outline: none;
+      font-size: 0.95rem;
+      background: transparent;
+      font-family: inherit;
+    }
+    .search-bar button {
+      background: #b87333;
+      border: none;
+      padding: 0 22px;
+      color: white;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: 0.2s;
+    }
+    .search-bar button:hover {
+      background: #9b5e2a;
+    }
 
-        header h1 {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #1e1b4b;
-            margin-bottom: 8px;
-        }
+    /* hero section */
+    .hero {
+      background: linear-gradient(115deg, #fff3e2 0%, #fae9d4 100%);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-bottom: 1px solid #eeddbc;
+    }
+    .hero h2 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #4a2e1e;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin: 1rem auto 0;
+      color: #6b4c2c;
+    }
 
-        header p {
-            color: var(--text-light);
-            font-size: 1rem;
-        }
+    /* ==========================================
+       ADDED: NEW UPLOAD SECTION STYLE (ရွှေအိုရောင် Theme)
+       ========================================== */
+    .upload-container {
+      max-width: 900px;
+      margin: 2.5rem auto 1rem;
+      padding: 0 2rem;
+    }
+    .upload-card {
+      background: #ffffffef;
+      border-radius: 28px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 30px -12px rgba(44, 36, 26, 0.08);
+      border: 1px solid rgba(245, 200, 140, 0.5);
+    }
+    .upload-card h3 {
+      font-size: 1.4rem;
+      color: #4a2e1e;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .upload-card h3 i {
+      color: #b87333;
+    }
+    .upload-form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #5c4e3e;
+    }
+    .form-group input {
+      padding: 12px 16px;
+      border: 1px solid #eedbba;
+      border-radius: 14px;
+      outline: none;
+      background: #fffdf9;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+    .form-group input:focus {
+      border-color: #b87333;
+      box-shadow: 0 0 0 3px rgba(184, 115, 51, 0.12);
+    }
+    /* Custom File Dropzone inside grid */
+    .file-dropzone {
+      border: 2px dashed #d1bd9b;
+      background: #fbf8f2;
+      border-radius: 14px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      min-height: 48px;
+      transition: all 0.2s;
+    }
+    .file-dropzone:hover {
+      border-color: #b87333;
+      background: #fefcf7;
+    }
+    .file-dropzone span {
+      font-size: 0.9rem;
+      color: #7a6650;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .file-dropzone span i {
+      color: #b87333;
+      font-size: 1.1rem;
+    }
+    .upload-btn-container {
+      grid-column: 1 / -1;
+      text-align: right;
+      margin-top: 0.5rem;
+    }
+    .btn-submit-book {
+      background: #b87333;
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 5px 15px rgba(184,115,51,0.2);
+    }
+    .btn-submit-book:hover {
+      background: #9b5e2a;
+      transform: translateY(-1px);
+    }
 
-        /* Main App Container */
-        .app-container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        /* ==========================================
-           MAIN FEATURE: ADVANCED UPLOAD SECTION 
-           ========================================== */
-        .upload-section {
-            background: var(--glass-white);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 40px;
-            box-shadow: var(--card-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-        }
-
-        .section-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #1e1b4b;
-        }
-
-        .section-title i {
-            color: var(--primary);
-            background: rgba(79, 70, 229, 0.1);
-            padding: 10px;
-            border-radius: 12px;
-        }
-
-        /* Form Layout Grid */
-        .upload-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            .upload-grid { grid-template-columns: 1fr; }
-        }
-
-        /* Meta Inputs Left Side */
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-dark);
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 14px;
-            outline: none;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
-            background: rgba(255, 255, 255, 0.5);
-        }
-
-        .input-group input:focus {
-            border-color: var(--primary);
-            background: #fff;
-            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
-        }
-
-        /* Modern PDF Drop Zone Right Side */
-        .drop-zone {
-            border: 2.5px dashed #cbd5e1;
-            border-radius: 18px;
-            background: rgba(248, 250, 252, 0.6);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 30px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .drop-zone:hover, .drop-zone.drag-over {
-            border-color: var(--primary);
-            background: rgba(79, 70, 229, 0.03);
-        }
-
-        .drop-zone i.cloud-icon {
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin-bottom: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .drop-zone:hover i.cloud-icon {
-            transform: translateY(-5px);
-        }
-
-        .drop-zone p {
-            font-size: 0.95rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        .drop-zone span {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 5px;
-        }
-
-        /* File Selected State Overlay */
-        .file-selected-status {
-            display: none;
-            margin-top: 15px;
-            background: #ecfdf5;
-            border: 1px solid #a7f3d0;
-            padding: 10px 16px;
-            border-radius: 12px;
-            align-items: center;
-            gap: 10px;
-            color: #065f46;
-            font-size: 0.85rem;
-            font-weight: 500;
-            width: 100%;
-            word-break: break-all;
-        }
-
-        .file-selected-status i {
-            color: var(--success);
-            font-size: 1.1rem;
-        }
-
-        .file-input { display: none; }
-
-        /* Fancy Submit Button */
-        .submit-btn-wrapper {
-            grid-column: 1 / -1;
-            text-align: right;
-            margin-top: 10px;
-        }
-
-        .btn-submit {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 14px 32px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
-        }
-
-        .btn-submit:hover {
-            background: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
-        }
-
-        /* ==========================================
-           BOOK SHELF DISPLAY SECTION
-           ========================================== */
-        .shelf-section {
-            background: rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(5px);
-            border-radius: 24px;
-            padding: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.4);
-        }
-
-        .books-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
-        }
-
-        /* Modern Book Card Design */
-        .book-card {
-            background: white;
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid #f1f5f9;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .book-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .book-thumbnail {
-            height: 180px;
-            background: linear-gradient(135deg, #e0e7ff 0%, #e0f2fe 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .book-thumbnail i.pdf-icon {
-            font-size: 4rem;
-            color: #ef4444;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-        }
-
-        .book-details {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-        }
-
-        .b-title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 6px;
-            line-height: 1.4;
-        }
-
-        .b-author {
-            font-size: 0.85rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .b-action {
-            margin-top: auto;
-            background: #f8fafc;
-            color: var(--primary);
-            text-decoration: none;
-            text-align: center;
-            padding: 10px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border: 1px solid #e2e8f0;
-        }
-
-        .b-action:hover {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-    </style>
+    /* filter chips */
+    .filter-section {
+      max-width: 1300px;
+      margin: 2rem auto 0.5rem;
+      padding: 0 2rem;
+    }
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .chip {
+      background: #f5ebdd;
+      padding: 8px 20px;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid #eedbba;
+      font-size: 0.9rem;
+      color: #4f3e2e;
+    }
+    .chip.active, .chip:hover {
+      background: #b87333;
+      color: white;
+      border-color: #b87333;
+      box-shadow: 0 5px 12px rgba(184,115,51,0.3);
+    }
+    /* main books grid */
+    .container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    /* book card */
+    .book-card {
+      background: #ffffffef;
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+      border: 1px solid rgba(245, 200, 140, 0.6);
+      cursor: pointer;
+    }
+    .book-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 40px -15px rgba(0,0,0,0.2);
+      border-color: #f5bc70;
+    }
+    .book-cover {
+      height: 220px;
+      background: linear-gradient(135deg, #efe3d0, #d8c7ae);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 3px solid #f3cf9a;
+    }
+    .book-cover i {
+      font-size: 5rem;
+      color: #b87333;
+      text-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+    }
+    .pdf-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      background: #b87333dd;
+      backdrop-filter: blur(4px);
+      padding: 4px 10px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 0.5px;
+    }
+    .book-info {
+      padding: 1.3rem 1.2rem 1.2rem;
+    }
+    .book-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+      color: #2c241a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .book-author {
+      font-size: 0.85rem;
+      color: #9b7a5a;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .book-category {
+      display: inline-block;
+      background: #f3e9dd;
+      padding: 4px 12px;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: #b35f1a;
+      margin-top: 6px;
+    }
+    /* modal pdf viewer */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+    .modal-content {
+      background: #fffcf5;
+      border-radius: 40px;
+      width: 90%;
+      max-width: 1100px;
+      height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.5);
+      animation: fadeSlideUp 0.25s ease;
+    }
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .modal-header {
+      padding: 1rem 1.5rem;
+      background: #f9eedf;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #eed6b5;
+    }
+    .modal-header h3 {
+      font-weight: 700;
+      color: #4f321c;
+    }
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: #9b6e46;
+      transition: 0.2s;
+    }
+    .close-modal:hover {
+      color: #c13b1b;
+      transform: scale(1.1);
+    }
+    .pdf-frame {
+      flex: 1;
+      width: 100%;
+      border: none;
+      background: #e8e0d0;
+    }
+    .no-books {
+      text-align: center;
+      padding: 3rem;
+      font-size: 1.3rem;
+      color: #a48156;
+      background: #fef5e9;
+      border-radius: 60px;
+    }
+    footer {
+      background: #241f19;
+      color: #cfc2ae;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+      font-size: 0.85rem;
+    }
+    @media (max-width: 780px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .search-bar input {
+        width: 180px;
+      }
+      .hero h2 {
+        font-size: 1.9rem;
+      }
+      .books-grid {
+        gap: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
-
-    <header>
-        <h1><i class="fas fa-bookmark" style="color: var(--primary);"></i> Knowledge Hub</h1>
-        <p>သင်၏ PDF စာအုပ်ကောင်းများကို စနစ်တကျ သိမ်းဆည်းပြီး ဖတ်ရှုလိုက်ပါ။</p>
-    </header>
-
-    <div class="app-container">
-        
-        <div class="upload-section">
-            <div class="section-title">
-                <i class="fas fa-file-upload"></i>
-                <h2>စာအုပ်အသစ်တင်ရန် (Add New PDF Book)</h2>
-            </div>
-
-            <form id="pdfUploadForm">
-                <div class="upload-grid">
-                    
-                    <div class="form-inputs">
-                        <div class="input-group">
-                            <label for="titleInput">စာအုပ်အမည် / Book Title</label>
-                            <input type="text" id="titleInput" placeholder="ဥပမာ - မန္တလေးကျောင်းသားတစ်ယောက်ရဲ့ ဒိုင်ယာရီ" required>
-                        </div>
-                        <div class="input-group">
-                            <label for="authorInput">စာရေးဆရာ / Author Name</label>
-                            <input type="text" id="authorInput" placeholder="ဥပမာ - ဆရာကြီးပီမိုးနင်း" required>
-                        </div>
-                    </div>
-
-                    <div class="form-dropzone">
-                        <label style="display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px;">PDF File ရွေးချယ်ရန်</label>
-                        
-                        <div class="drop-zone" id="dropZoneContainer">
-                            <i class="fas fa-cloud-arrow-up cloud-icon"></i>
-                            <p>ဤနေရာတွင် နှိပ်၍ ဖိုင်ရွေးပါ</p>
-                            <span>သို့မဟုတ် PDF ဖိုင်ကို ဆွဲထည့်ပါ (Drag & Drop)</span>
-                            <input type="file" id="fileInput" class="file-input" accept=".pdf" required>
-                            
-                            <div class="file-selected-status" id="fileStatusBox">
-                                <i class="fas fa-check-circle"></i>
-                                <span id="fileNameDisplay">Selected: filename.pdf</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="submit-btn-wrapper">
-                        <button type="submit" class="btn-submit">
-                            <i class="fas fa-plus"></i> စာအုပ်စင်ထဲသို့ ထည့်မည်
-                        </button>
-                    </div>
-
-                </div>
-            </form>
-        </div>
-
-        <div class="shelf-section">
-            <div class="section-title">
-                <i class="fas fa-book-open"></i>
-                <h2>လက်ရှိစာအုပ်စင် (Book Shelf)</h2>
-            </div>
-            
-            <div class="books-grid" id="booksGrid">
-                <div class="book-card">
-                    <div class="book-thumbnail">
-                        <i class="fas fa-file-pdf pdf-icon"></i>
-                    </div>
-                    <div class="book-details">
-                        <div class="b-title">သုတေသနစာတမ်း နမူနာ</div>
-                        <div class="b-author">ဒေါက်တာအောင်ကျော်</div>
-                        <a href="#" class="b-action" onclick="alert('ဒါက နမူနာ စာအုပ်ဖြစ်လို့ ဖတ်ရှုလို့မရသေးပါဘူးဗျာ။ စာအုပ်အသစ် တင်ကြည့်ပေးပါ။'); return false;">
-                            <i class="fas fa-eye"></i> ဖတ်ရှုရန်
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+  <header class="header">
+    <div class="nav-container">
+      <div class="logo">
+        <i class="fas fa-landmark"></i>
+        <h1>ရတနာစာကြည့်တိုက် <span>PDF</span></h1>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="စာအုပ်အမည် သို့မဟုတ် စာရေးဆရာ...">
+        <button id="searchBtn"><i class="fas fa-search"></i></button>
+      </div>
     </div>
+  </header>
 
-    <script>
-        const dropZone = document.getElementById('dropZoneContainer');
-        const fileInput = document.getElementById('fileInput');
-        const fileStatusBox = document.getElementById('fileStatusBox');
-        const fileNameDisplay = document.getElementById('fileNameDisplay');
-        const uploadForm = document.getElementById('pdfUploadForm');
-        const booksGrid = document.getElementById('booksGrid');
+  <section class="hero">
+    <h2>📖 ဒစ်ဂျစ်တယ် မြန်မာ့စာကြည့်တိုက်</h2>
+    <p>ဂန္ထဝင်၊ သင်ရိုး၊ ယဉ်ကျေးမှုနှင့် ခေတ်သစ်စာအုပ်စုစည်းမှု — အခမဲ့ဖတ်ရှုပါ</p>
+  </section>
 
-        // Dropzone ကို နှိပ်ရင် ဖိုင်ရွေးတဲ့ Window ပွင့်အောင်လုပ်ခြင်း
-        dropZone.addEventListener('click', (e) => {
-            // Status Box ကို နှိပ်မိရင်လည်း အလုပ်လုပ်အောင် တားဆီးမှု မလုပ်ပါ
-            fileInput.click();
+  <div class="upload-container">
+    <div class="upload-card">
+      <h3><i class="fas fa-cloud-arrow-up"></i> စာအုပ်အသစ် လှူဒါန်း/တင်ရန် (Upload PDF)</h3>
+      <form id="bookUploadForm">
+        <div class="upload-form-grid">
+          <div class="form-group">
+            <label for="newBookTitle">စာအုပ်အမည်</label>
+            <input type="text" id="newBookTitle" placeholder="ဥပမာ - နွေရက်များ" required>
+          </div>
+          <div class="form-group">
+            <label for="newBookAuthor">စာရေးဆရာ</label>
+            <input type="text" id="newBookAuthor" placeholder="ဥပမာ - ဆရာမင်းသုဝဏ်" required>
+          </div>
+          <div class="form-group">
+            <label for="newBookCategory">အမျိုးအစား</label>
+            <input type="text" id="newBookCategory" placeholder="ဥပမာ - ဝတ္ထု၊ ကဗျာ၊ သမိုင်း" required>
+          </div>
+          <div class="form-group">
+            <label>PDF ဖိုင်</label>
+            <div class="file-dropzone" onclick="document.getElementById('newBookFile').click()">
+              <span id="fileLabelText"><i class="fas fa-file-pdf"></i> PDF ရွေးချယ်ပါ</span>
+              <input type="file" id="newBookFile" accept=".pdf" style="display:none;" required>
+            </div>
+          </div>
+          <div class="upload-btn-container">
+            <button type="submit" class="btn-submit-book"><i class="fas fa-plus"></i> စာအုပ်စင်ထဲသို့ ထည့်မည်</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="filter-section">
+    <div class="chips" id="categoryChips">
+      </div>
+  </div>
+
+  <div class="container">
+    <div class="books-grid" id="booksGrid">
+      </div>
+  </div>
+
+  <footer>
+    <p><i class="fas fa-book-open"></i> ရတနာစာကြည့်တိုက် — မြန်မာ့အသိပညာအလင်းရောင် | စာအုပ်အားလုံးသည် ပညာပေးရည်ရွယ်ချက်အတွက်သာ</p>
+  </footer>
+
+  <div id="pdfModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalBookTitle"><i class="fas fa-file-pdf"></i> စာမျက်နှာ</h3>
+        <button class="close-modal" id="closeModalBtn">&times;</button>
+      </div>
+      <iframe id="pdfViewer" class="pdf-frame" src="" title="PDF viewer"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // ---------- MOCK PDF BOOK DATABASE (မြန်မာအစွမ်း) ----------
+    const booksData = [
+      { id: 1, title: "မှော်စက်ရုံ", author: "ဂျူလီယန်စ်ဖြူ", category: "ဝတ္ထု", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 2, title: "ဘဝခရီးသည်များ", author: "ခင်နှင်းယုစိုး", category: "ဘဝအတွေ့အကြုံ", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 3, title: "မြန်မာ့ရိုးရာယဉ်ကျေးမှု", author: "ဒေါက်တာသန်းထွန်း", category: "ယဉ်ကျေးမှု", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 4, title: "ခေတ်သစ်စီးပွားရေး", author: "ကိုဇော်မျိုးအောင်", category: "စီးပွားရေး", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 5, title: "သင်္ချာအခြေခံလမ်းညွှန်", author: "ဆရာကြီးဦးကျော်စိန်", category: "ပညာရေး", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 6, title: "ပရဂ်မင်း၏ဒဿန", author: "ဖြိုးမင်းလွင်", category: "ဒဿနိကဗေဒ", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 7, title: "ကဗျာဆရာများ၏အိမ်", author: "မောင်ခင်မင် (ကဗျာ)", category: "ကဗျာ", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 8, title: "အင်္ဂလိပ်စာ လွယ်လွယ်ကူကူ", author: "ဒေါ်အေးအေးချမ်း", category: "ဘာသာစကား", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 9, title: "ရှေးဟောင်းပုဂံသမိုင်း", author: "ရာဇာဓိရာဇ်", category: "သမိုင်း", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 10, title: "အနုပညာရှင်တို့ဒိုင်ယာရီ", author: "မင်းမင်းထက်", category: "အနုပညာ", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 11, title: "ကမ္ဘာ့ဒဏ္ဍာရီလာ သတ္တဝါများ", author: "နေမျိုးအောင်", category: "ဒဏ္ဍာရီ", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" },
+      { id: 12, title: "နည်းပညာနှင့်လူသား", author: "ဆန်းဆန်းဌေး", category: "နည်းပညာ", pdfUrl: "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf" }
+    ];
+
+    // helper: get unique categories
+    function getAllCategories() {
+      const cats = booksData.map(book => book.category);
+      return [...new Set(cats)].sort();
+    }
+
+    // current state
+    let activeCategory = "အားလုံး";
+    let searchQuery = "";
+
+    // DOM elements
+    const booksGrid = document.getElementById("booksGrid");
+    const categoryChips = document.getElementById("categoryChips");
+    const searchInput = document.getElementById("searchInput");
+    const searchBtn = document.getElementById("searchBtn");
+    const pdfModal = document.getElementById("pdfModal");
+    const pdfViewer = document.getElementById("pdfViewer");
+    const modalBookTitle = document.getElementById("modalBookTitle");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+
+    // filter books based on category & search
+    function getFilteredBooks() {
+      let filtered = [...booksData];
+      // category filter
+      if (activeCategory !== "အားလုံး") {
+        filtered = filtered.filter(book => book.category === activeCategory);
+      }
+      // search filter (title or author)
+      if (searchQuery.trim() !== "") {
+        const lowerQuery = searchQuery.trim().toLowerCase();
+        filtered = filtered.filter(book => 
+          book.title.toLowerCase().includes(lowerQuery) || 
+          book.author.toLowerCase().includes(lowerQuery)
+        );
+      }
+      return filtered;
+    }
+
+    // simple XSS safe
+    function escapeHtml(str) {
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      });
+    }
+
+    // render books grid
+    function renderBooks() {
+      const filteredBooks = getFilteredBooks();
+      if (filteredBooks.length === 0) {
+        booksGrid.innerHTML = `<div class="no-books"><i class="fas fa-book-open"></i> <br/> စာအုပ်မတွေ့ပါ။ ကျေးဇူးပြု၍ အခြားသော့ချက်စာလုံးဖြင့် ရှာဖွေပါ။</div>`;
+        return;
+      }
+      booksGrid.innerHTML = filteredBooks.map(book => `
+        <div class="book-card" data-id="${book.id}">
+          <div class="book-cover">
+            <i class="fas fa-book-open"></i>
+            <div class="pdf-badge"><i class="fas fa-file-pdf"></i> PDF</div>
+          </div>
+          <div class="book-info">
+            <div class="book-title">${escapeHtml(book.title)}</div>
+            <div class="book-author"><i class="fas fa-user-pen"></i> ${escapeHtml(book.author)}</div>
+            <span class="book-category"><i class="fas fa-tag"></i> ${escapeHtml(book.category)}</span>
+          </div>
+        </div>
+      `).join('');
+
+      // attach event listeners to each card
+      document.querySelectorAll('.book-card').forEach(card => {
+        const id = parseInt(card.getAttribute('data-id'));
+        card.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const book = booksData.find(b => b.id === id);
+          if (book) {
+            openPdfModal(book);
+          }
+        });
+      });
+    }
+
+    // open modal with pdf preview
+    function openPdfModal(book) {
+      modalBookTitle.innerHTML = `<i class="fas fa-file-pdf"></i> ${escapeHtml(book.title)} — ${escapeHtml(book.author)}`;
+      pdfViewer.src = book.pdfUrl;
+      pdfModal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      pdfModal.style.display = "none";
+      pdfViewer.src = ""; // stop loading
+      document.body.style.overflow = "auto";
+    }
+
+    // search functionality
+    function performSearch() {
+      searchQuery = searchInput.value;
+      renderBooks();
+    }
+
+    // close modal events
+    window.addEventListener('click', (e) => { if (e.target === pdfModal) closeModal(); });
+    closeModalBtn.addEventListener('click', closeModal);
+    searchBtn.addEventListener('click', performSearch);
+    searchInput.addEventListener('keyup', (e) => { if (e.key === 'Enter') performSearch(); });
+
+    // Counter system
+    const counterSpan = document.createElement('div');
+    counterSpan.style.textAlign = 'right';
+    counterSpan.style.fontSize = '0.9rem';
+    counterSpan.style.marginTop = '-1rem';
+    counterSpan.style.paddingRight = '0.5rem';
+    counterSpan.style.color = '#b87333';
+    counterSpan.style.fontWeight = '600';
+    document.querySelector('.container').prepend(counterSpan);
+    
+    function updateCounter() {
+      const count = getFilteredBooks().length;
+      counterSpan.innerHTML = `<i class="fas fa-layer-group"></i> စုစုပေါင်း စာအုပ် ${count} အုပ်`;
+    }
+
+    // Dynamic Render Chips Function
+    function renderChips() {
+      const categories = getAllCategories();
+      const chipsHtml = `
+        <div class="chip ${activeCategory === 'အားလုံး' ? 'active' : ''}" data-category="အားလုံး">အားလုံး</div>
+        ${categories.map(cat => `<div class="chip ${activeCategory === cat ? 'active' : ''}" data-category="${escapeHtml(cat)}">${escapeHtml(cat)}</div>`).join('')}
+      `;
+      categoryChips.innerHTML = chipsHtml;
+      
+      document.querySelectorAll('.chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          activeCategory = chip.getAttribute('data-category');
+          renderChips();
+          renderBooks();
+        });
+      });
+    }
+
+    // ==========================================
+    // ADDED: JAVASCRIPT FOR PDF UPLOAD & DYNAMIC ADDITION
+    // ==========================================
+    const uploadForm = document.getElementById('bookUploadForm');
+    const fileInput = document.getElementById('newBookFile');
+    const fileLabelText = document.getElementById('fileLabelText');
+
+    // File ရွေးလိုက်တဲ့အခါ ဖိုင်နာမည် ပြောင်းပေးဖို့
+    fileInput.addEventListener('change', function() {
+      if(this.files && this.files.length > 0) {
+        fileLabelText.innerHTML = `<i class="fas fa-check" style="color:#10b981"></i> ${this.files[0].name.substring(0, 15)}...`;
+      } else {
+        fileLabelText.innerHTML = `<i class="fas fa-file-pdf"></i> PDF ရွေးချယ်ပါ`;
+      }
+    });
+
+    // Form Submit လုပ်ပြီး စာအုပ်အသစ်ထည့်ခြင်း
+    uploadForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('newBookTitle').value;
+      const author = document.getElementById('newBookAuthor').value;
+      const category = document.getElementById('newBookCategory').value.trim();
+      const file = fileInput.files[0];
+
+      if(file) {
+        const fileURL = URL.createObjectURL(file);
+
+        // Books Database Array ထဲသို့ အသစ်လှမ်းထည့်ခြင်း
+        const newId = booksData.length + 1;
+        booksData.unshift({
+          id: newId,
+          title: title,
+          author: author,
+          category: category,
+          pdfUrl: fileURL
         });
 
-        // Drag & Drop လုပ်တဲ့အခါ visual effects ပြောင်းလဲခြင်း
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('drag-over');
-        });
+        // UI တွေကို Dynamic ပြန် run ပေးခြင်း
+        renderChips();
+        renderBooks();
 
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('drag-over');
-        });
+        // Form ပြန်ရှင်းထုတ်ခြင်း
+        uploadForm.reset();
+        fileLabelText.innerHTML = `<i class="fas fa-file-pdf"></i> PDF ရွေးချယ်ပါ`;
+      }
+    });
 
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('drag-over');
-            
-            if (e.dataTransfer.files.length > 0) {
-                const droppedFiles = e.dataTransfer.files;
-                if(droppedFiles[0].type === "application/pdf") {
-                    fileInput.files = droppedFiles;
-                    handleFileSelection(droppedFiles[0].name);
-                } else {
-                    alert("ကျေးဇူးပြု၍ PDF ဖိုင်အမျိုးအစားကိုသာ တင်ပေးပါခင်ဗျာ။");
-                }
-            }
-        });
+    // Initial Engine Start
+    function init() {
+      renderChips();
+      renderBooks();
+    }
+    
+    // override standard wrapper logic for clean load
+    const origRender = renderBooks;
+    renderBooks = function() {
+      origRender();
+      updateCounter();
+    };
 
-        // ရိုးရိုးနှိပ်ပြီး ဖိုင်ရွေးချယ်တဲ့အခါ
-        fileInput.addEventListener('change', function() {
-            if(this.files && this.files.length > 0) {
-                handleFileSelection(this.files[0].name);
-            }
-        });
-
-        // ဖိုင်ရွေးပြီးကြောင်း UI မှာ ပြောင်းလဲပေးတဲ့ Function
-        function handleFileSelection(fileName) {
-            fileStatusBox.style.display = 'flex';
-            fileNameDisplay.textContent = "ရွေးချယ်ပြီး - " + fileName;
-        }
-
-        // စာအုပ်တင်ပြီး စာအုပ်စင်ထဲ ထည့်သွင်းခြင်း
-        uploadForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const title = document.getElementById('titleInput').value;
-            const author = document.getElementById('authorInput').value;
-            const file = fileInput.files[0];
-
-            if(file) {
-                // PDF ဖိုင်ကို ယာယီ ဖတ်လို့ရမယ့် URL Link အဖြစ်ပြောင်းလဲခြင်း
-                const fileURL = URL.createObjectURL(file);
-
-                // Book Card အသစ်တည်ဆောက်ခြင်း
-                const card = document.createElement('div');
-                card.className = 'book-card';
-                card.innerHTML = `
-                    <div class="book-thumbnail">
-                        <i class="fas fa-file-pdf pdf-icon"></i>
-                    </div>
-                    <div class="book-details">
-                        <div class="b-title">${title}</div>
-                        <div class="b-author">${author}</div>
-                        <a href="${fileURL}" class="b-action" target="_blank">
-                            <i class="fas fa-eye"></i> ဖတ်ရှုရန်
-                        </a>
-                    </div>
-                `;
-
-                // စာအုပ်စင်ရဲ့ အရှေ့ဆုံးကနေ ထည့်ပေးခြင်း (အသစ်တင်တာ ပထမဆုံးပေါ်အောင်)
-                booksGrid.insertBefore(card, booksGrid.firstChild);
-
-                // Form ကို မူလအတိုင်း ပြန်ရှင်းလင်းခြင်း
-                uploadForm.reset();
-                fileStatusBox.style.display = 'none';
-            }
-        });
-    </script>
+    init();
+  </script>
 </body>
 </html>
