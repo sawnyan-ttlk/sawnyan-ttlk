@@ -1,4 +1,380 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My name is Saw Nyan Hein</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Library</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS STYLING --- */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1d4ed8;
+            --background-color: #f8fafc;
+            --card-background: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--background-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: var(--card-background);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Upload Section */
+        .upload-section {
+            background: var(--card-background);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            margin-top: -50px;
+            margin-bottom: 3rem;
+        }
+
+        .upload-section h2 {
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .input-field label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .input-field input, .input-field .file-label {
+            padding: 0.75rem;
+            border: 2px dashed #cbd5e1;
+            border-radius: 10px;
+            outline: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .input-field input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+        }
+
+        .file-label:hover {
+            background-color: #e2e8f0;
+            border-color: var(--primary-color);
+        }
+
+        .upload-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .upload-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Books Grid Display */
+        .library-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .library-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 5px;
+            height: 25px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Book Card Style */
+        .book-card {
+            background: var(--card-background);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2e8f0;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-cover {
+            height: 160px;
+            background: linear-gradient(45deg, #e0e7ff, #c7d2fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .book-info {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .book-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .book-author {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-read {
+            margin-top: auto;
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            text-align: center;
+            padding: 0.6rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-read:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Empty State */
+        .no-books {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-book-reader"></i> My Digital Library
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Welcome to Your Personal Library</h1>
+        <p>စာအုပ်ကောင်းများကို တစ်နေရာတည်းတွင် စုစည်းသိမ်းဆည်းပြီး အလွယ်တကူ ဖတ်ရှုလိုက်ပါ။</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="upload-section">
+            <h2><i class="fas fa-cloud-upload-alt"></i> စာအုပ်အသစ် တင်ရန် (Upload PDF)</h2>
+            <form id="uploadForm">
+                <div class="form-group">
+                    <div class="input-field">
+                        <label for="bookTitle">စာအုပ်အမည်</label>
+                        <input type="text" id="bookTitle" placeholder="ဥပမာ - မဟာကဗျာများ" required>
+                    </div>
+                    <div class="input-field">
+                        <label for="bookAuthor">စာရေးဆရာ</label>
+                        <input type="text" id="bookAuthor" placeholder="ဥပမာ - ဆရာမင်းသုဝဏ်" required>
+                    </div>
+                    <div class="input-field">
+                        <label>PDF ဖိုင်ရွေးချယ်ရန်</label>
+                        <label for="pdfFile" class="file-label" id="fileLabelBtn">
+                            <i class="fas fa-file-pdf"></i> <span>Choose PDF</span>
+                        </label>
+                        <input type="file" id="pdfFile" class="file-input" accept=".pdf" required>
+                    </div>
+                </div>
+                <button type="submit" class="upload-btn">စာအုပ်စင်ထဲသို့ ထည့်မည်</button>
+            </form>
+        </div>
+
+        <h2 class="library-title">သင်၏ စာအုပ်စင် (Book Shelf)</h2>
+        <div class="books-grid" id="booksGrid">
+            <div class="book-card">
+                <div class="book-cover">
+                    <i class="fas fa-file-pdf fa-4x"></i>
+                </div>
+                <div class="book-info">
+                    <div class="book-title">နမူနာ စာအုပ်အမည်</div>
+                    <div class="book-author">စာရေးဆရာ အမည်</div>
+                    <a href="#" class="btn-read" target="_blank">
+                        <i class="fas fa-book-open"></i> ဖတ်ရှုရန်
+                    </a>
+                </div>
+            </div>
+            </div>
+
+    </div>
+
+    <script>
+        const uploadForm = document.getElementById('uploadForm');
+        const pdfFileInput = document.getElementById('pdfFile');
+        const fileLabelBtn = document.getElementById('fileLabelBtn').querySelector('span');
+        const booksGrid = document.getElementById('booksGrid');
+
+        // File ရွေးလိုက်တဲ့အခါ ဖိုင်နာမည်ကို Label မှာ ပြပေးဖို့
+        pdfFileInput.addEventListener('change', function() {
+            if(this.files && this.files.length > 0) {
+                fileLabelBtn.textContent = this.files[0].name;
+            } else {
+                fileLabelBtn.textContent = "Choose PDF";
+            }
+        });
+
+        // Form Submit လုပ်ပြီး စာအုပ်တင်တဲ့ အလုပ်
+        uploadForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Page list Refresh မဖြစ်အောင် တားတာ
+
+            const title = document.getElementById('bookTitle').value;
+            const author = document.getElementById('bookAuthor').value;
+            const file = pdfFileInput.files[0];
+
+            if(file) {
+                // PDF ဖိုင်ကို ယာယီ Link (URL) အဖြစ် ပြောင်းလဲခြင်း
+                const fileURL = URL.createObjectURL(file);
+
+                // Book Card အသစ်တစ်ခု တည်ဆောက်ခြင်း
+                const bookCard = document.createElement('div');
+                bookCard.className = 'book-card';
+                
+                bookCard.innerHTML = `
+                    <div class="book-cover">
+                        <i class="fas fa-file-pdf fa-4x" style="color: #ef4444;"></i>
+                    </div>
+                    <div class="book-info">
+                        <div class="book-title">${title}</div>
+                        <div class="book-author">${author}</div>
+                        <a href="${fileURL}" class="btn-read" target="_blank">
+                            <i class="fas fa-book-open"></i> ဖတ်ရှုရန်
+                        </a>
+                    </div>
+                `;
+
+                // စာအုပ်စင်ထဲသို့ ထည့်လိုက်ခြင်း
+                booksGrid.appendChild(bookCard);
+
+                // Form ကို ပြန်ရှင်းထုတ်ပြီး မူလအတိုင်း ထားခြင်း
+                uploadForm.reset();
+                fileLabelBtn.textContent = "Choose PDF";
+            }
+        });
+    </script>
+</body>
+</html>
